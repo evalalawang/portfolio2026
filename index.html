@@ -1,0 +1,1387 @@
+<!doctype html>
+<html lang="en" class="is-gated">
+  <head>
+    <meta charset="utf-8">
+    <title>portfolio</title>
+    <meta content="portfolio" property="og:title">
+    <meta content="portfolio" property="twitter:title">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Webflow" name="generator">
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="images/webclip.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="wallpaper" id="wallpaper">
+        <canvas id="wallpaper-canvas"></canvas>
+      </div>
+      <img class="grid grid--a" src="/assets/grid-a.svg" alt="">
+      <img class="grid grid--b" src="/assets/grid-b.svg" alt="">
+
+      <div class="gate" id="gate">
+        <div class="gate__copy">
+          <p class="gate__text">
+            <span class="gate__line is-typing"><span class="gate__chars"></span><span class="gate__caret" aria-hidden="true"><img src="/assets/icon-caret.svg" alt=""></span></span>
+            <span class="gate__line"><span class="gate__chars"></span><span class="gate__caret" aria-hidden="true"><img src="/assets/icon-caret.svg" alt=""></span></span>
+          </p>
+          <button class="gate__enter" id="gate-enter" type="button" disabled>
+            <img class="gate__enter-icon" src="/assets/icon-enter.svg" alt="">
+            <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+            <span>enter</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="headline">Making digital experiences clear, useful, and delightful.</p>
+
+      <div class="folder" id="folder-memory" data-drag data-open="memory">
+        <span class="wash"></span>
+        <img src="/assets/folder.svg" alt="">
+        <span>Memory folder</span>
+      </div>
+      <div class="folder" id="folder-portfolio" data-drag data-open="portfolio">
+        <span class="wash"></span>
+        <img src="/assets/folder.svg" alt="">
+        <span>Portfolio folder</span>
+      </div>
+      <div class="folder" id="folder-music" data-drag data-open="music">
+        <span class="wash"></span>
+        <img src="/assets/folder.svg" alt="">
+        <span>Music folder</span>
+      </div>
+
+      <article class="about" id="about" data-drag aria-label="About">
+        <header class="about__head">
+          <p class="kicker">
+            <img src="/assets/icon-about.svg" alt="">
+            About
+          </p>
+          <div class="tabs" role="tablist">
+            <button class="tab tab--on" type="button" role="tab" aria-selected="true" data-section="me">about me</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-section="work">what I do</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-section="beyond">Beyond Design</button>
+          </div>
+        </header>
+        <div class="about__body">
+          <div data-panel="me">
+            <div class="about__copy">
+              <h2>About me</h2>
+              <div class="about__prose">
+                <p>I’m an interaction designer who cares deeply about making digital experiences clear, useful, and delightful. I enjoy solving problems through research and by bringing together product thinking, visual systems, and emerging technologies.</p>
+                <p class="about__gap">​</p>
+                <p>With 8 years of design experience across apps, web platforms, and interactive experiences, I work across both the details of everyday product workflows and the possibilities of new forms of human–technology interaction.</p>
+              </div>
+            </div>
+            <div class="exploring">
+              <p>
+                <img src="/assets/icon-explore.svg" alt="">
+                currently exploring:
+              </p>
+              <ul>
+                <li>AI-enabled products</li>
+                <li>Multimodal interaction</li>
+                <li>Intelligent workflows</li>
+              </ul>
+            </div>
+          </div>
+          <div data-panel="work" hidden>
+            <h2>What I do</h2>
+            <div class="work">
+              <p class="work__lead">My most current experiences:</p>
+              <p class="work__row">
+                <img src="/assets/icon-explore.svg" alt="">
+                <span class="work__year">2023-2026</span>
+                <span>@<a class="underline" href="https://www.outliant.com/" target="_blank" rel="noreferrer">Outliant Inc.</a></span>
+              </p>
+              <p class="work__row">
+                <img src="/assets/icon-explore.svg" alt="">
+                <span class="work__year">2021-2023</span>
+                <span>@<a class="underline" href="https://www.monks.com/" target="_blank" rel="noreferrer">Media.Monks</a></span>
+              </p>
+              <p class="work__more">I’ve also worked for tech startup and companies include <a class="underline" href="https://kudosity.com/" target="_blank" rel="noreferrer">BurstSMS</a> and <a class="underline" href="https://wishpond.com/" target="_blank" rel="noreferrer">Wishpond Technologies</a>.</p>
+            </div>
+          </div>
+          <div data-panel="beyond" hidden>
+            <h2>Beyond design</h2>
+            <p class="beyond">In my free time, I love biking around the city <span class="emoji">🚲</span>, hanging out with my cats <span class="emoji">🐈🐈‍⬛🐈</span> and family, checking out new places and good food <span class="emoji">🍲🥟🍙🌮</span>, doodling, going for city walks, and hitting the badminton or tennis court <span class="emoji">🏸🎾</span>.</p>
+          </div>
+        </div>
+      </article>
+
+      <aside class="right-widget" id="right-widget" aria-label="Widgets">
+        <article class="contact">
+          <div class="contact__hero">
+            <div class="contact__hills">
+              <img src="/assets/contact-hills.png" alt="">
+            </div>
+            <canvas id="contact-dither"></canvas>
+          </div>
+          <div class="contact__main">
+            <div class="contact__top">
+              <div class="portrait">
+                <img src="/assets/portrait.png" alt="">
+              </div>
+              <div class="contact__actions">
+                <a class="mail" href="mailto:iamyifanwang@hotmail.com" aria-label="Email">
+                  <img src="/assets/icon-mail.svg" alt="">
+                </a>
+                <a class="connect" href="https://www.linkedin.com/in/iamyifanwang" target="_blank" rel="noreferrer">Connect</a>
+              </div>
+            </div>
+            <div class="contact__id">
+              <div class="contact__name">
+                <h1>Yifan Wang</h1>
+                <img src="/assets/icon-verified.svg" alt="">
+              </div>
+              <p class="handle">@Evalavida_W</p>
+            </div>
+            <p class="bio">I care about user, craft and experience.</p>
+          </div>
+          <ul class="facts">
+            <li>
+              <span class="fact__row">
+                <span class="fact__icon"><img src="/assets/icon-pin.svg" alt=""></span>
+                <span>Vancouver, Canada</span>
+              </span>
+              <span class="fact__row">
+                <span class="fact__icon"><img src="/assets/icon-behance-sm.svg" alt=""></span>
+                <span>/iamyifanwang</span>
+              </span>
+            </li>
+            <li>
+              <span class="fact__row">
+                <span class="fact__icon"><img src="/assets/icon-instagram-sm.svg" alt=""></span>
+                <span>/iamyifanwang</span>
+              </span>
+            </li>
+          </ul>
+        </article>
+
+        <section class="player" aria-label="Now playing">
+          <div class="player__song">
+            <div class="player__art" id="player-art" style="background-image: url('/assets/album-chill.png')" aria-hidden="true"></div>
+            <div class="player__copy">
+              <a class="player__title" id="player-title">Lo Fi Chill</a>
+              <p class="player__artist" id="player-artist">Prettyjohn1</p>
+            </div>
+          </div>
+          <div class="track" aria-hidden="true"><span id="player-fill"></span></div>
+          <button class="play" id="play" type="button" aria-label="Play" aria-pressed="false">
+            <img class="play__glyph play__glyph--play" src="/assets/icon-play.svg" alt="">
+            <img class="play__glyph play__glyph--pause" src="/assets/icon-pause.svg" alt="">
+          </button>
+        </section>
+
+        <div class="pair">
+          <section class="weather" aria-label="Weather">
+            <p class="weather__city">Vancouver</p>
+            <div class="weather__foot">
+              <p class="temp"><span class="temp__n" id="weather-temp">21</span><span class="temp__u">°C</span></p>
+              <p class="weather__sky">
+                <span class="sun"><img id="weather-icon" src="/weather/sunny.svg" alt=""></span>
+                <span class="weather__label" id="weather-label">Sunny</span>
+              </p>
+            </div>
+          </section>
+          <section class="note" id="note-thumb" role="button" tabindex="0" aria-label="Open note">
+            <div class="note__bar">
+              <p class="kicker kicker--note">
+                <img src="/assets/icon-note.svg" alt="">
+                note
+              </p>
+              <img src="/assets/note-close.svg" alt="">
+            </div>
+            <img class="note__script" src="/assets/welcome.svg" alt="">
+          </section>
+        </div>
+      </aside>
+
+      <section class="finder" data-drag hidden aria-label="Folder">
+        <header class="finder__bar">
+          <p class="kicker">
+            <img src="/assets/icon-folder-sm.svg" alt="">
+            <span class="finder__title">Folder</span>
+          </p>
+          <div class="finder__crumb">
+            <button class="finder__crumb-back" type="button">memory folder</button>
+            <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
+          </div>
+          <button class="finder__close" type="button" aria-label="Close">
+            <img src="/assets/close-dots.svg" alt="">
+          </button>
+        </header>
+        <div class="finder__body">
+          <nav class="side" aria-label="Favorites">
+            <p class="side__label">favorites</p>
+            <button class="side__item" type="button" data-open="portfolio">
+              <img src="/assets/side-portfolio.svg" alt="">
+              Portfolio
+            </button>
+            <button class="side__item" type="button" data-open="music">
+              <img src="/assets/side-music.svg" alt="">
+              music
+            </button>
+            <button class="side__item" type="button" data-open="memory">
+              <img src="/assets/side-memory.svg" alt="">
+              memory
+            </button>
+          </nav>
+        </div>
+      </section>
+      <section class="finder" data-drag hidden aria-label="Folder">
+        <header class="finder__bar">
+          <p class="kicker">
+            <img src="/assets/icon-folder-sm.svg" alt="">
+            <span class="finder__title">Folder</span>
+          </p>
+          <div class="finder__crumb">
+            <button class="finder__crumb-back" type="button">memory folder</button>
+            <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
+          </div>
+          <button class="finder__close" type="button" aria-label="Close">
+            <img src="/assets/close-dots.svg" alt="">
+          </button>
+        </header>
+        <div class="finder__body">
+          <nav class="side" aria-label="Favorites">
+            <p class="side__label">favorites</p>
+            <button class="side__item" type="button" data-open="portfolio">
+              <img src="/assets/side-portfolio.svg" alt="">
+              Portfolio
+            </button>
+            <button class="side__item" type="button" data-open="music">
+              <img src="/assets/side-music.svg" alt="">
+              music
+            </button>
+            <button class="side__item" type="button" data-open="memory">
+              <img src="/assets/side-memory.svg" alt="">
+              memory
+            </button>
+          </nav>
+        </div>
+      </section>
+      <section class="finder" data-drag hidden aria-label="Folder">
+        <header class="finder__bar">
+          <p class="kicker">
+            <img src="/assets/icon-folder-sm.svg" alt="">
+            <span class="finder__title">Folder</span>
+          </p>
+          <div class="finder__crumb">
+            <button class="finder__crumb-back" type="button">memory folder</button>
+            <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
+          </div>
+          <button class="finder__close" type="button" aria-label="Close">
+            <img src="/assets/close-dots.svg" alt="">
+          </button>
+        </header>
+        <div class="finder__body">
+          <nav class="side" aria-label="Favorites">
+            <p class="side__label">favorites</p>
+            <button class="side__item" type="button" data-open="portfolio">
+              <img src="/assets/side-portfolio.svg" alt="">
+              Portfolio
+            </button>
+            <button class="side__item" type="button" data-open="music">
+              <img src="/assets/side-music.svg" alt="">
+              music
+            </button>
+            <button class="side__item" type="button" data-open="memory">
+              <img src="/assets/side-memory.svg" alt="">
+              memory
+            </button>
+          </nav>
+        </div>
+      </section>
+
+      <div class="pane-park" hidden>
+        <div class="pane" data-pane="portfolio">
+          <button class="project" id="open-projects-file" type="button">
+            <span class="wash"></span>
+            <span class="project__tile"><img src="/assets/icon-projects.svg" alt=""></span>
+            <span>My projects</span>
+          </button>
+        </div>
+        <div class="pane" data-pane="memory">
+          <div class="trips">
+            <button class="trip" type="button" data-trip="korea">
+              <span class="trip__photo">
+                <img class="trip__pic" src="/assets/trip-korea.png" alt="">
+                <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
+                <span class="trip__count"><img src="/assets/icon-count.svg" alt="">9</span>
+              </span>
+              <span class="trip__copy">
+                <span class="trip__name">Korea trip</span>
+                <span class="trip__date">Jun 2026</span>
+              </span>
+            </button>
+            <button class="trip" type="button" data-trip="shaoxing">
+              <span class="trip__photo">
+                <img class="trip__pic" src="/assets/trip-shaoxing.png" alt="">
+                <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
+                <span class="trip__count"><img src="/assets/icon-count.svg" alt="">7</span>
+              </span>
+              <span class="trip__copy">
+                <span class="trip__name">Shaoxing trip</span>
+                <span class="trip__date">Dec 2025</span>
+              </span>
+            </button>
+            <button class="trip" type="button" data-trip="vancouver">
+              <span class="trip__photo">
+                <img class="trip__pic" src="/assets/trip-vancouver.png" alt="">
+                <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
+                <span class="trip__count"><img src="/assets/icon-count.svg" alt="">5</span>
+              </span>
+              <span class="trip__copy">
+                <span class="trip__name">Vancouver</span>
+                <span class="trip__date">Jul 2025</span>
+              </span>
+            </button>
+            <button class="trip" type="button" data-trip="japan">
+              <span class="trip__photo">
+                <img class="trip__pic" src="/assets/trip-japan.png" alt="">
+                <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
+                <span class="trip__count"><img src="/assets/icon-count.svg" alt="">8</span>
+              </span>
+              <span class="trip__copy">
+                <span class="trip__name">Japan trip</span>
+                <span class="trip__date">May 2025</span>
+              </span>
+            </button>
+          </div>
+          <div class="lightbox">
+            <button class="lightbox__arrow lightbox__arrow--prev" type="button" aria-label="Previous photo">
+              <img src="/assets/icon-chevron.svg" alt="">
+            </button>
+            <div class="lightbox__stage">
+              <div class="lightbox__track"></div>
+            </div>
+            <button class="lightbox__arrow lightbox__arrow--next" type="button" aria-label="Next photo">
+              <img src="/assets/icon-chevron.svg" alt="">
+            </button>
+            <button class="lightbox__back" type="button">
+              <img src="/assets/icon-back.svg" alt="">
+              <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+              <span>back to folder</span>
+            </button>
+          </div>
+        </div>
+        <div class="pane" data-pane="music">
+          <button class="file file--chill" type="button" data-song="chill">
+            <span class="wash"></span>
+            <span class="file__icon"><img src="/assets/icon-note-file.svg" alt=""></span>
+            <span>Lo Fi Chill.mp3</span>
+          </button>
+          <button class="file file--lofi" type="button" data-song="lofi">
+            <span class="wash"></span>
+            <span class="file__icon"><img src="/assets/icon-note-file.svg" alt=""></span>
+            <span>Lo Fi.mp3</span>
+          </button>
+          <button class="file file--synth" type="button" data-song="synth">
+            <span class="wash"></span>
+            <span class="file__icon"><img src="/assets/icon-note-file.svg" alt=""></span>
+            <span>Synth Pop - Synth Pop Music.mp3</span>
+          </button>
+        </div>
+      </div>
+
+      <header class="topbar">
+        <div class="topbar__home">
+          <img src="/assets/icon-apple.svg" alt="">
+        </div>
+        <div class="topbar__name">
+          <img src="/assets/status-dot.svg" alt="">
+          <p>Yifan Wang</p>
+          <p class="topbar__avail">/ Available for work</p>
+        </div>
+        <div class="lang" aria-hidden="true">
+          <span class="lang__on">EN</span>
+          <span>中</span>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/iamyifanwang" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="/assets/icon-linkedin.svg" alt=""></a>
+          <a href="https://www.behance.net/iamevawang" target="_blank" rel="noreferrer" aria-label="Behance"><img src="/assets/icon-behance.svg" alt=""></a>
+          <a href="https://dribbble.com/iamyifanwang" target="_blank" rel="noreferrer" aria-label="Dribbble"><img src="/assets/icon-dribbble.svg" alt=""></a>
+        </div>
+        <button class="time" id="time-button" type="button" aria-expanded="true" aria-controls="right-widget">
+          <span id="time-date">Fri, 30 Oct 2026</span>
+          <span class="time__clock" id="time-clock">10:40 AM</span>
+        </button>
+      </header>
+
+      <nav class="dock" aria-label="Dock">
+        <span class="dock__slot"><span class="dock__tip">Illustrator</span><span class="dock__tile"><img src="/assets/icon-ai.svg" alt=""></span></span>
+        <span class="dock__slot"><span class="dock__tip">ChatGPT</span><span class="dock__tile"><img src="/assets/icon-openai.svg" alt=""></span></span>
+        <span class="dock__slot"><span class="dock__tip">Photoshop</span><span class="dock__tile"><img src="/assets/icon-ps.svg" alt=""></span></span>
+        <span class="dock__slot"><span class="dock__tip">html/CSS/JS</span><span class="dock__tile"><img src="/assets/icon-html.svg" alt=""></span></span>
+        <span class="dock__slot"><span class="dock__tip">Sketch</span><span class="dock__tile"><img src="/assets/icon-sketch.svg" alt=""></span></span>
+        <span class="dock__slot"><span class="dock__tip">Figma</span><span class="dock__tile"><img src="/assets/icon-figma.svg" alt=""></span></span>
+        <span class="dock__slot dock__slot--desk"><span class="dock__tip">Notion</span><span class="dock__tile"><img src="/assets/icon-notion.svg" alt=""></span></span>
+        <button class="dock__slot dock__slot--desk" id="open-projects" type="button" aria-label="My Portfolio"><span class="dock__tip">My Portfolio</span><span class="dock__globe"><img src="/assets/icon-globe.svg" alt=""></span></button>
+      </nav>
+
+      <div class="pager">
+        <div class="pager__track" id="pager-track">
+          <section class="pager__view" id="phone-widgets"></section>
+          <section class="pager__view" id="phone-about"></section>
+          <section class="pager__view" id="phone-home">
+            <div class="phone-apps">
+              <button class="phone-app" type="button" data-sheet="projects">
+                <span class="phone-app__icon"><img src="/assets/icon-projects.svg" alt=""></span>
+                <span>My projects</span>
+              </button>
+              <button class="phone-app" type="button" data-sheet="memory">
+                <span class="phone-app__icon"><img src="/assets/icon-memory.svg" alt=""></span>
+                <span>Memory</span>
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+      <nav class="pager-dots" aria-label="Views">
+        <button class="is-on" type="button" data-page="0" aria-label="Widgets"></button>
+        <button type="button" data-page="1" aria-label="About"></button>
+        <button type="button" data-page="2" aria-label="Home"></button>
+      </nav>
+
+      <button class="restart" id="restart" type="button">
+        <img src="/assets/icon-restart.svg" alt="">
+        <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+        <span>default</span>
+      </button>
+
+      <section class="projects" id="projects" data-drag hidden aria-label="My projects">
+        <header class="projects__bar">
+          <p class="kicker projects__name">
+            <img src="/assets/icon-projects-globe.svg" alt="">
+            My projects
+          </p>
+          <div class="projects__tabs" role="tablist" aria-label="Projects">
+            <button class="projects__tab is-on" type="button" role="tab" data-project="honor" aria-selected="true">Honor app</button>
+            <button class="projects__tab" type="button" role="tab" data-project="sola" aria-selected="false">Sola Salon</button>
+            <button class="projects__tab" type="button" role="tab" data-project="banking" aria-selected="false">AI Banking</button>
+            <button class="projects__tab" type="button" role="tab" data-project="website" aria-selected="false">Honor 90</button>
+            <button class="projects__tab" type="button" role="tab" data-project="experiment" aria-selected="false">Experiment</button>
+          </div>
+          <button class="projects__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+        </header>
+        <button class="study-back" type="button">
+          <img src="/assets/icon-back.svg" alt="">
+          <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+          <span>back to projects</span>
+        </button>
+        <div class="projects__stage">
+          <div class="phone-studies">
+            <button type="button" data-study="honor"><span class="phone-studies__shot"><img src="/projects/honor-app.jpg" alt=""></span><span>Honor app</span></button>
+            <button type="button" data-study="sola"><span class="phone-studies__shot"><img src="/projects/sola.jpg" alt=""></span><span>Sola Salon</span></button>
+            <button type="button" data-study="banking"><span class="phone-studies__shot"><img src="/projects/banking.jpg" alt=""></span><span>AI Banking</span></button>
+            <button type="button" data-study="website"><span class="phone-studies__shot"><img src="/projects/honor-90.jpg" alt=""></span><span>Honor 90</span></button>
+            <button type="button" data-study="experiment"><span class="phone-studies__shot"><img src="/projects/experiment.jpg" alt=""></span><span>Experiment</span></button>
+          </div>
+          <nav class="projects__nav" aria-label="In this project">
+            <button type="button" class="is-on" data-jump="overview"><i></i>Overview</button>
+            <button type="button" data-jump="challenge"><i></i>Challenge</button>
+            <button type="button" data-jump="decision"><i></i>Decision</button>
+            <button type="button" data-jump="design"><i></i>Design</button>
+            <button type="button" data-jump="outcome"><i></i>Outcome</button>
+          </nav>
+          <div class="projects__scroll" id="projects-scroll">
+            <article class="study" data-project="honor">
+              <h1 class="study__title">My Honor app redesign</h1>
+              <div class="meta">
+                <div class="meta__item">
+                  <p class="meta__label">My Role</p>
+                  <p class="meta__value">UI/UX Designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Team size</p>
+                  <p class="meta__value">4-person team</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Duration</p>
+                  <p class="meta__value">5 mos 2023</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Tools</p>
+                  <p class="meta__value">Figma, Photoshop</p>
+                </div>
+              </div>
+
+              <section class="block" id="overview" data-section="overview">
+                <div class="chunk">
+                  <h2>Overview</h2>
+                  <div class="prose">
+                    <p>My HONOR is a service platform for HONOR device owners, connecting device management, after-sales support, membership benefits, and product discovery.</p>
+                    <p>As the app evolved to support a broader range of services and business needs, I worked on redesigning its UI and interactions to create clearer content hierarchy, more accessible service entry points, and more consistent patterns across modules.</p>
+                    <p><strong>My role:</strong> UI design, interaction design, module-level information hierarchy, visual direction, and shared component development.</p>
+                    <p>I collaborated with UX designer on user flows, partnered with another UI designer to develop and synchronize shared components, and worked with stakeholders to align design goals and modular UI patterns.</p>
+                  </div>
+                </div>
+                <div class="goal">
+                  <div class="goal__head">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">the design goal</p>
+                    <p class="lede">Making a growing service ecosystem more visual, scannable, and cohesive</p>
+                  </div>
+                  <p class="muted">The service ecosystem of My Honor App is comprised of:</p>
+                  <div class="cards">
+                    <article class="card">
+                      <img src="/case/card-service.jpg" alt="Woman on a call, looking at a laptop">
+                      <div class="card__copy">
+                        <h3>Service flow</h3>
+                        <p>A portal for all-around services</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/card-membership.jpg" alt="HONOR storefront">
+                      <div class="card__copy">
+                        <h3>Membership flow</h3>
+                        <p>An access to exclusive offers and benefits</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/card-product.jpg" alt="Person holding an HONOR tablet and a coffee">
+                      <div class="card__copy">
+                        <h3>Product flow</h3>
+                        <p>A platform for purchasing new products</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" id="challenge" data-section="challenge">
+                <div class="chunk">
+                  <h2>Design challenge</h2>
+                  <div class="prose">
+                    <p>The app brought together different user needs, from checking device information and finding after-sales services to exploring membership benefits and new products. However, many screens relied on similar text-and-icon layouts, making different types of information and actions visually indistinct.</p>
+                    <p>I focused on three design challenges:</p>
+                  </div>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #1</p>
+                    <h3>Making service info easier to scan</h3>
+                    <p>The service homepage relied on text labels and similarly styled icons, making offerings difficult to distinguish at a glance. A clearer visual hierarchy was needed to differentiate key services from secondary options.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #2</p>
+                    <h3>Streamlining navigation and interaction</h3>
+                    <p>Across service support, membership benefits, and product discovery, interaction patterns needed to be more consistent and actions easier to reach. The challenge was to reduce unnecessary navigation steps and bring relevant actions closer to the information users needed.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #3</p>
+                    <h3>Creating consistency across modules</h3>
+                    <p>Different flows needed to support distinct content and functions while maintaining a coherent visual language. Shared components and modular design patterns were important to keeping the experience consistent as different areas evolved.</p>
+                  </article>
+                </div>
+                <div class="compare" data-mode="before">
+                  <div class="compare__before">
+                    <img src="/case/before.jpg" alt="Earlier My HONOR screens for product browsing, device status, and recommendations">
+                  </div>
+                  <img class="compare__after" src="/case/after.jpg" alt="Redesigned My HONOR screens for device care, product discovery, and membership">
+                  <div class="compare__switch" role="group" aria-label="Compare versions">
+                    <button type="button" class="is-on" data-mode="before">Before</button>
+                    <button type="button" data-mode="after">After</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" id="decision" data-section="decision">
+                <div class="chunk">
+                  <h2>Design decisions</h2>
+                  <p class="muted">Three areas of focus are as follows:</p>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">decision #1</p>
+                    <h3>Bring information and actions closer together</h3>
+                    <p>I shifted service modules beyond simple entry points by surfacing relevant information and actions directly within the page. By combining visual content, concise descriptions, and contextual CTAs, users could better understand service offerings and access relevant actions without always entering a separate flow.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">decision #2</p>
+                    <h3>Create a clearer hierarchy and more direct paths to action</h3>
+                    <p>I differentiated components through visual hierarchy and established clearer patterns for prioritizing services, presenting key info, and guiding users toward next steps. This included giving key services greater prominence, separating secondary options into a dedicated catalogue, and making service discovery and actions more accessible.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">decision #3</p>
+                    <h3>Build consistency across the app ecosystem</h3>
+                    <p>I collaborated with another designer to refine and synchronize shared components across multiple flows, aligning visual patterns and interaction details. We also conducted a UI/UX audit to identify inconsistencies and opportunities for improvement.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="subs" id="design" data-section="design">
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Service homepage</p>
+                    <p class="lede">Bringing information and actions forward</p>
+                  </div>
+                  <p class="muted">The service homepage was redesigned to present device information and support options through more visual, informative modules. Instead of relying exclusively on text-and-icon entry points, the new layouts surfaced selected service details and relevant actions directly on the page.</p>
+                  <div class="figs">
+                    <figure class="fig">
+                      <img src="/case/service-modules.jpg" alt="Service modules with a call to action, a service card, and quick actions">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #1</p>
+                        <p>Introduced smaller visual modules for selected service offerings.</p>
+                      </figcaption>
+                    </figure>
+                    <figure class="fig">
+                      <img src="/case/service-prominence.jpg" alt="Device page with a smaller device summary and a catalogue of services">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #2</p>
+                        <p>Gave commonly used services greater prominence. Moved the remaining service entries to a dedicated service catalogue.</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Service-store discovery</p>
+                    <p class="lede">Making store discovery more intuitive and actionable</p>
+                  </div>
+                  <p class="muted">Redesigned the store discovery journey to help users compare service locations, find relevant information, and take action with less friction.</p>
+                  <div class="figs">
+                    <figure class="fig">
+                      <img src="/case/stores-discovery.jpg" alt="Store list, recommended store card, and map view">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #1</p>
+                        <p>Improve store discovery: Redesigned store cards with imagery, service tags, review rating, recommended indicators, and direct-call actions to make key information easier to scan and act on.</p>
+                      </figcaption>
+                    </figure>
+                    <figure class="fig">
+                      <img src="/case/stores-detail.jpg" alt="Store detail with service categories and a sticky book and queue bar">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #2</p>
+                        <p>Optimize store details: Modularized store and traffic information with segmented controls, surfaced key details on the first screen, and added a sticky bottom CTA for quick actions.</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Membership and benefits</p>
+                    <p class="lede">Making benefits more engaging and discoverable</p>
+                  </div>
+                  <p class="muted">In order to create a more visual way to communicate information such as membership levels and service status, I explored module-level solutions using graphs, lines, and icons. These designs translated information that might otherwise be presented primarily as text into more visually structured representations.</p>
+                  <div class="figs">
+                    <figure class="fig">
+                      <img src="/case/member-entry.jpg" alt="Membership screen with a redesigned path into the bonus store">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #1</p>
+                        <p>Create more visual benefit entry points: Redesigned entry for Bonus Store and Task Center to make these destinations more visually appealing and provide clearer context for exploring membership benefits.</p>
+                      </figcaption>
+                    </figure>
+                    <figure class="fig">
+                      <img src="/case/member-visual.jpg" alt="Membership rules drawn as a graph across silver, gold, and platinum">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #2</p>
+                        <p>Visualize membership benefits: Used graphs and lines to present selected membership information more visually, helping users better understand available benefits and encouraging further exploration.</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Product &amp; search experiences</p>
+                    <p class="lede">Supporting product &amp; service discovery</p>
+                  </div>
+                  <p class="muted">The product homepage organized device, accessory, and promotional content through modular UI layouts. The search experience used search history, recommended queries, and differentiated result components to structure the discovery experience.</p>
+                  <div class="figs">
+                    <figure class="fig">
+                      <img src="/case/product-home.jpg" alt="Product homepage with a tablet feature, health module, and accessory cards">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #1</p>
+                        <p>Organize product exploration: Structured devices, accessories, and promotional content into modular UI layouts, making the product homepage easier to browse.</p>
+                      </figcaption>
+                    </figure>
+                    <figure class="fig">
+                      <img src="/case/search.jpg" alt="Search with history, suggested queries, and segmented results">
+                      <figcaption>
+                        <p class="spark"><img src="/assets/icon-spark.svg" alt="">change #2</p>
+                        <p>Improve search and results discovery: Introduced search history and recommended queries, and differentiated result components by content category to support query rediscovery and easier result scanning.</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" id="outcome" data-section="outcome">
+                <div class="chunk">
+                  <h2>Outcome and reflection</h2>
+                  <p class="muted">The redesign was launched as part of the app's continued development, bringing together work across its service, membership, product, and search experiences.</p>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #1</p>
+                    <h3>Improved service discoverability</h3>
+                    <p>Informal user feedback suggested that key services were easier to find, supported by clearer visual hierarchy and more prominent entry points.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #2</p>
+                    <h3>More accessible service journeys</h3>
+                    <p>Prioritized frequently used services and refined store discovery and detail pages, helping users navigate toward relevant services and appointment options more directly.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #3</p>
+                    <h3>More consistent UI patterns</h3>
+                    <p>Established and refined reusable UI components and modular design patterns to create greater visual consistency across service, membership, product, and search experiences.</p>
+                  </article>
+                </div>
+                <p class="muted">The project reinforced the importance of designing beyond individual screens: a cohesive product experience depends on how modules connect, how users move between tasks, and how shared patterns support consistency as the platform grows.</p>
+              </section>
+            </article>
+            <article class="study" data-project="sola" hidden>
+              <h1 class="study__title">Sola Salons</h1>
+              <div class="meta">
+                <div class="meta__item">
+                  <p class="meta__label">My Role</p>
+                  <p class="meta__value">UI/UX Designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Team size</p>
+                  <p class="meta__value">3-person team</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Duration</p>
+                  <p class="meta__value">2 mos 2024</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Tools</p>
+                  <p class="meta__value">Figma, Photoshop</p>
+                </div>
+              </div>
+
+              <section class="block" data-section="overview">
+                <div class="chunk">
+                  <h2>Overview</h2>
+                  <div class="prose">
+                    <p>Sola Salons is a salon booking platform that helps customers discover nearby locations, compare salon professionals, and book appointments. The project focused on simplifying the booking journey by creating a more intuitive search experience and guiding users through a clear sequence of decisions.</p>
+                  </div>
+                </div>
+                <div class="goal">
+                  <div class="goal__head">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">the design goal</p>
+                    <p class="lede">A more seamless booking experience</p>
+                  </div>
+                  <p class="muted">Create a cohesive, efficient booking experience that helps users find the right salon, check professional availability, and book an appointment with confidence.</p>
+                  <img class="plate" src="/case/sola-hero.jpg" alt="Sola Salons logo, stylists, and the booking website">
+                </div>
+              </section>
+
+              <section class="block" data-section="challenge">
+                <div class="chunk">
+                  <h2>Design challenge</h2>
+                  <div class="prose">
+                    <p>The existing booking experience presented friction across the search and selection journey. Fragmented entry points, inconsistent information hierarchy, and unclear navigation made it difficult for users to compare salons and find suitable appointment times. The challenge was to create a more cohesive, predictable flow while making key information easier to find at each step.</p>
+                  </div>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #1</p>
+                    <h3>Fragmented search entry points</h3>
+                    <p>Salon discovery was spread across multiple entry points, including the homepage and individual salon pages. Each led to a different search path, making the experience inconsistent and creating unnecessary navigation.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #2</p>
+                    <h3>Unclear information hierarchy</h3>
+                    <p>Search results lacked a consistent UI pattern and clear information hierarchy. Important details were not organized around users’ key decisions, making it harder to scan results, compare locations, and identify relevant information.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #3</p>
+                    <h3>An unpredictable booking journey</h3>
+                    <p>The relationship between location search, filters, stylist selection, and appointment availability was unclear. Users had limited guidance on what to do next or what to expect at each step, while finding an available appointment could require unnecessary navigation.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="block" data-section="decision">
+                <div class="chunk">
+                  <h2>Design decisions</h2>
+                  <p class="muted">I organized the experience around a progressive, location-first journey, allowing users to narrow their options in a logical order—from finding a suitable salon to choosing a professional and booking an available time.</p>
+                </div>
+                <div class="cards cards--shot">
+                  <article class="card">
+                    <img src="/case/sola-location.jpg" alt="Salon building photo beside location details">
+                    <div class="card__copy">
+                      <h3>Start with Location</h3>
+                      <p>Help users discover nearby salons that offer their selected service, establishing location as the starting point for the booking journey.</p>
+                    </div>
+                  </article>
+                  <article class="card">
+                    <img src="/case/sola-map.jpg" alt="Map with two salon pins">
+                    <div class="card__copy">
+                      <h3>Make salon comparison easier</h3>
+                      <p>Present locations with a consistent info hierarchy, supported by maps, filters, and key salon details, so users can evaluate their options before moving forward.</p>
+                    </div>
+                  </article>
+                  <article class="card">
+                    <img src="/case/sola-booking.jpg" alt="Stylist booking times for November 19">
+                    <div class="card__copy">
+                      <h3>Guiding from selection to booking</h3>
+                      <p>Make stylist availability and appointment times accessible after a location is selected, reducing unnecessary navigation and clarifying the next step.</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="subs" data-section="design">
+                <h2>Design and prototype</h2>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Design Strategy</p>
+                    <p class="lede">Progressive, location-first booking</p>
+                  </div>
+                  <p class="muted">Consolidated fragmented search entry points into a more consistent journey. Users begin by finding salons that match their location and service needs, then move through location selection, professional selection, and appointment booking.</p>
+                  <div class="fig fig--clip">
+                    <video class="study-video" src="/videos/solar%20video1.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Search Result Screen</p>
+                    <p class="lede">Clear information hierarchy</p>
+                  </div>
+                  <p class="muted">Established a more consistent layout and UI pattern across search results. Prioritized essential information, such as location, service relevance, and key salon details, to help users scan results and compare options more easily. Maps and filters support exploration without competing with the primary selection task.</p>
+                  <div class="fig fig--clip">
+                    <video class="study-video" src="/videos/solar%20video2.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Salon Services Screen</p>
+                    <p class="lede">Simplified decision-making</p>
+                  </div>
+                  <p class="muted">Separated the booking process into focused steps, each supporting one primary decision: where to go, which professional to choose, and when to book. This reduces the cognitive load of evaluating multiple options at once and makes the journey more predictable.</p>
+                  <div class="fig fig--clip">
+                    <video class="study-video" src="/videos/solar%20video3.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Dev Considerations</p>
+                    <p class="lede">Efficient availability loading</p>
+                  </div>
+                  <p class="muted">Worked within the stakeholder’s technical constraint of a large stylist-availability database. Rather than loading all availability data during initial search, the flow retrieves relevant availability after a user selects a salon. This reduces unnecessary data requests and supports a more efficient, step-by-step experience.</p>
+                  <div class="fig fig--clip">
+                    <video class="study-video" src="/videos/solar%20video4.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" data-section="outcome">
+                <div class="chunk">
+                  <h2>Outcome and reflection</h2>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #1</p>
+                    <h3>A more cohesive search experience</h3>
+                    <p>Consolidating the search journey creates a consistent path from discovery to booking, replacing disconnected entry points with a more unified experience.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #2</p>
+                    <h3>Clearer decisions at each step</h3>
+                    <p>A stronger information hierarchy and progressive flow help users understand their options, compare locations, and move toward an appointment with less uncertainty.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">improvement #3</p>
+                    <h3>UX aligned with technical constraints</h3>
+                    <p>Loading availability only when needed connects the user journey with backend data constraints, demonstrating how interaction design can balance usability, performance, and system requirements.</p>
+                  </article>
+                </div>
+                <p class="muted">The project reinforced the value of designing complex workflows around users’ decisions, not just the information a system needs to display.</p>
+              </section>
+            </article>
+
+            <article class="study" data-project="banking" hidden>
+              <h1 class="study__title">AI-powered banking experience</h1>
+              <div class="meta">
+                <div class="meta__item">
+                  <p class="meta__label">My Role</p>
+                  <p class="meta__value">UI/UX Designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Team size</p>
+                  <p class="meta__value">Solo designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Duration</p>
+                  <p class="meta__value">1 week 2026</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Tools</p>
+                  <p class="meta__value">Figma, Photoshop</p>
+                </div>
+              </div>
+
+              <section class="block" data-section="overview">
+                <div class="chunk">
+                  <h2>Overview</h2>
+                  <div class="prose">
+                    <p>As part of a one-week design assignment for a mainstream bank, I explored how AI could make cross-border banking more intuitive and accessible. I researched emerging AI tools and reviewed international transfer flows across banking apps to identify opportunities to simplify complex financial tasks through conversational interaction.</p>
+                  </div>
+                </div>
+                <div class="goal">
+                  <div class="goal__head">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">the design goal</p>
+                    <p class="lede">Making cross-border banking more conversational, transparent, and effortless through AI</p>
+                  </div>
+                  <p class="muted">Design an AI-assisted transfer experience that helps users express their financial intent in natural language, understand the costs involved, and complete transactions with confidence while maintaining control over important decisions.</p>
+                  <div class="cards cards--icon">
+                    <article class="card">
+                      <img src="/case/bank-icon-people.jpg" alt="">
+                      <div class="card__copy">
+                        <h3>User group</h3>
+                        <p>Global Chinese clients living abroad who regularly manage finances across countries and currencies.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/bank-icon-check.jpg" alt="">
+                      <div class="card__copy">
+                        <h3>User need</h3>
+                        <p>A convenient and reliable way to manage cross-border transfers without navigating complex banking workflows or seeking in-person assistance.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/bank-icon-target.jpg" alt="">
+                      <div class="card__copy">
+                        <h3>Core challenge</h3>
+                        <p>International transfers involve recipient, accounts, FX, fees. Users need a simpler way to complete these tasks without sacrificing transparency or security.</p>
+                      </div>
+                    </article>
+                  </div>
+                  <img class="plate" src="/case/bank-process.jpg" alt="Design process across discovery, design, and testing">
+                </div>
+              </section>
+
+              <section class="block" data-section="challenge">
+                <div class="chunk">
+                  <h2>Design challenge</h2>
+                  <div class="prose">
+                    <p>Cross-border transfers require users to navigate financial complexity while making decisions that directly affect their money. The challenge was to reduce the effort required to complete a transfer while ensuring that AI assistance remained transparent, predictable, and trustworthy.</p>
+                  </div>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #1</p>
+                    <h3>Complex fees &amp; exchange rates</h3>
+                    <p>International transfers can involve multiple fees, exchange-rate fluctuations, and different receiving amounts. Users need to understand the total cost and expected outcome before committing to a transaction.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #2</p>
+                    <h3>Time-consuming banking workflows</h3>
+                    <p>Traditional banking flows often require users to navigate multiple screens, manually enter information, and repeatedly review details. For users managing finances across time zones, completing routine transfers should require less effort and fewer steps.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">challenge #3</p>
+                    <h3>Security &amp; trust in financial decisions</h3>
+                    <p>Financial transactions require accuracy, transparency, and explicit authorization. While AI can help interpret intent and prepare a transaction, users must be able to verify critical details, correct mistakes, and retain control over the final decision.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="block" data-section="decision">
+                <div class="chunk">
+                  <h2>Design decisions</h2>
+                  <div class="prose">
+                    <p>Rather than requiring users to navigate banking menus and complete forms from the start, I explored a conversational approach in which users express their financial goals and the AI guides them through the necessary steps.</p>
+                    <p>The broader opportunity was to help users understand and manage financial tasks through simple, contextual conversations—while using structured interfaces whenever precision and control matter most.</p>
+                  </div>
+                </div>
+                <div class="cards cards--pair cards--shot">
+                  <article class="card">
+                    <img src="/case/bank-chat.jpg" alt="Chat asking to send CAD 5000 to Shanghai">
+                    <div class="card__copy">
+                      <h3>Understand user intent</h3>
+                      <p>Allow users to express a goal naturally, such as “Send CAD 5,000 to my mother in Shanghai.” The AI interprets the request and identifies the information required to initiate the transfer.</p>
+                    </div>
+                  </article>
+                  <article class="card">
+                    <img src="/case/bank-account.jpg" alt="Confirm chequing account before continuing">
+                    <div class="card__copy">
+                      <h3>Anticipate user needs</h3>
+                      <p>Use available context, such as saved recipients and frequently used accounts, to reduce repetitive input. When information is ambiguous, ask for clarification rather than making assumptions.</p>
+                    </div>
+                  </article>
+                  <article class="card">
+                    <img src="/case/bank-listening.jpg" alt="Voice capture while the assistant is listening">
+                    <div class="card__copy">
+                      <h3>Simplify user input</h3>
+                      <p>Combine conversational interaction with quick actions and structured components, allowing users to describe their needs naturally while retaining familiar ways to select, enter, and edit financial details.</p>
+                    </div>
+                  </article>
+                  <article class="card">
+                    <img src="/case/bank-fees.jpg" alt="CAD to CNY fee and exchange-rate breakdown">
+                    <div class="card__copy">
+                      <h3>Provide contextual guide</h3>
+                      <p>Explain FX, fees, recipient details, and transfer status at relevant moments in the journey. Help users understand the implications of their choices before they authorize a transaction.</p>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="subs" data-section="design">
+                <h2>Design and prototype</h2>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">step #1</p>
+                    <p class="lede">AI landing &amp; chat interface</p>
+                  </div>
+                  <div class="prose">
+                    <p>The landing page introduces the AI assistant through quick actions and recent activities, giving users clear entry points to common banking tasks. Within the chat interface, users can express their intent naturally, while processing indicators communicate when the AI is working on a request.</p>
+                    <p>This approach lowers the barrier to starting a task without requiring users to understand the banking information architecture in advance.</p>
+                  </div>
+                  <div class="fig fig--clip">
+                    <img src="/case/bank-phones-home.jpg" alt="Home, listening, and chat screens for the banking assistant">
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">step #2</p>
+                    <p class="lede">Account, fees &amp; exchange rate</p>
+                  </div>
+                  <div class="prose">
+                    <p>A combination of conversational messages and structured UI components supports different levels of interaction. The AI can interpret requests and guide users through the process, while structured cards present account options, recipient details, transfer amounts, fees, and exchange rates in a format that is easier to scan and compare.</p>
+                    <p>This hybrid approach combines the flexibility of conversation with the precision needed for financial decisions, allowing users to review and edit transaction details before proceeding.</p>
+                  </div>
+                  <div class="fig fig--clip">
+                    <img src="/case/bank-phones-flow.jpg" alt="Account confirmation, recipient selection, and fee review">
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">step #3</p>
+                    <p class="lede">Transaction flow &amp; confirmation</p>
+                  </div>
+                  <div class="prose">
+                    <p>Before completing a transfer, users can review the transaction summary and make final adjustments to important details. Passcode authorization provides an explicit confirmation step before the transaction is submitted.</p>
+                    <p>By separating AI-assisted preparation from user authorization, the flow reduces interaction effort while keeping the user responsible for the final financial decision.</p>
+                  </div>
+                  <div class="fig fig--clip">
+                    <img src="/case/bank-phones-send.jpg" alt="Transfer summary, editable details, and passcode entry">
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" data-section="outcome">
+                <div class="chunk">
+                  <h2>Outcome and reflection</h2>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #1</p>
+                    <h3>Balancing flexibility with control</h3>
+                    <p>Conversational AI can make banking tasks more accessible, but natural language alone is not sufficient for complex transactions. The most effective interaction combines flexible conversation with structured information and clear decision points, allowing users to explore, correct, and confirm their choices.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #2</p>
+                    <h3>Designing for confidence &amp; security</h3>
+                    <p>Trust depends on more than a helpful AI response. Users need to understand what the system has interpreted, which details it has retrieved, what costs are involved, and what will happen next. For high-stakes tasks, the interface should make critical information visible and require explicit authorization before execution.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #3</p>
+                    <h3>Trust takes more than seamless UX</h3>
+                    <p>Financial tasks involve established habits, perceived risk, and a strong need for reliability. A smoother interface is only the starting point; users also need consistent behavior, clear feedback, and predictable recovery when information is missing or incorrect.</p>
+                  </article>
+                </div>
+                <p class="muted">As a one-week concept assignment, this project focused on exploring the interaction model and translating it into a prototype. The next step would be to validate whether users understand the AI’s suggestions, feel confident reviewing transaction details, and can recover easily when the system misunderstands their intent.</p>
+              </section>
+            </article>
+            <article class="study" data-project="website" hidden>
+              <h1 class="study__title">Honor 90 product detail page</h1>
+              <div class="meta">
+                <div class="meta__item">
+                  <p class="meta__label">My Role</p>
+                  <p class="meta__value">UI/UX Designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Team size</p>
+                  <p class="meta__value">4-person team</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Duration</p>
+                  <p class="meta__value">3 mos 2023</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Tools</p>
+                  <p class="meta__value">Figma, Photoshop</p>
+                </div>
+              </div>
+
+              <section class="block" data-section="overview">
+                <div class="chunk">
+                  <h2>Overview</h2>
+                  <div class="prose">
+                    <p>The HONOR 90 product page translates the device’s refined industrial design and functional advancement into an immersive digital experience. My focus was on elevating product storytelling through elegant visuals, motion, and interactive exploration.</p>
+                    <p>Using Figma for both static design and interactive prototyping, I explored transitions, animations, and interaction patterns to bring the product’s visual qualities to life.</p>
+                  </div>
+                </div>
+                <div class="goal">
+                  <div class="goal__head">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">the design goal</p>
+                    <p class="lede">Craft an immersive web experience</p>
+                  </div>
+                  <p class="muted">Create a visually engaging journey that invites users to explore the HONOR 90 beyond a conventional product page.</p>
+                  <div class="cards cards--icon">
+                    <article class="card">
+                      <img src="/case/honor-icon-motion.jpg" alt="Motion line">
+                      <div class="card__copy">
+                        <h3>Motion-first experience</h3>
+                        <p>Use purposeful animation and transitions to create continuity between sections and make product features feel dynamic.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/honor-icon-story.jpg" alt="Layered frames">
+                      <div class="card__copy">
+                        <h3>Visual storytelling</h3>
+                        <p>Translate the device’s design details, materials, and features into a cohesive visual narrative.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/honor-icon-touch.jpg" alt="Hand tapping a surface">
+                      <div class="card__copy">
+                        <h3>Responsive interaction</h3>
+                        <p>Make product exploration intuitive and engaging through interactive elements that encourage users to discover more.</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" data-section="concept">
+                <div class="chunk">
+                  <h2>Creative concept</h2>
+                  <p class="muted">The concept centered on turning product discovery into a visual journey. Rather than presenting specifications as isolated information, the page uses cinematic layouts, carefully paced transitions, and interactive moments to connect product details with the overall brand experience.</p>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Gallery experience</h3>
+                    <p>Designed an immersive gallery journey through carefully composed layouts, smooth transitions, and motion. Each section builds on the previous one, creating a cohesive experience that guides users through the product’s design and features.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Enhanced interaction</h3>
+                    <p>Introduced interactive moments that encourage active exploration, including zooming into product details and triggering interactions with the 3D phone model. These interactions give users a closer look at the device while making product discovery more engaging.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Premium visual language</h3>
+                    <p>Used refined typography, generous spacing, high-quality product imagery, and controlled motion to reinforce the HONOR 90’s premium positioning. Visual consistency across sections helps create a polished, cohesive experience.</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="subs" data-section="design">
+                <h2>Design and prototype</h2>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">static mockup</p>
+                    <p class="lede">Static UI design</p>
+                  </div>
+                  <p class="muted">Developed high-fidelity screens in Figma to establish the visual direction, layout hierarchy, typography, and composition. The static designs provided a clear foundation for evaluating the page’s overall look and feel.</p>
+                  <div class="fig fig--clip">
+                    <img src="/case/honor-mockup.jpg" alt="HONOR 90 product page screens for color, materials, display, and camera">
+                  </div>
+                </div>
+                <div class="sub">
+                  <div class="sub__copy">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">interactive prototype</p>
+                    <p class="lede">Interactive prototyping</p>
+                  </div>
+                  <p class="muted">Built interactive prototypes in Figma to communicate the creative concept and demonstrate transitions, animations, and key interactions. The prototypes supported stakeholder alignment, design iteration, and creative sign-off, while providing a reference for development handoff and implementation discussions.</p>
+                  <div class="fig fig--clip">
+                    <video class="study-video" src="/videos/honor%20video1.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" data-section="outcome">
+                <div class="chunk">
+                  <h2>Outcome and reflection</h2>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Outcome #1</p>
+                    <h3>Stronger visual storytelling</h3>
+                    <p>Connected product details, imagery, and motion into a more cohesive digital narrative.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Outcome #2</p>
+                    <h3>Elevated brand perception</h3>
+                    <p>Used refined visual design and purposeful interactions to support the HONOR 90’s premium product positioning.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Outcome #3</p>
+                    <h3>A more engaging product journey</h3>
+                    <p>Explored ways to move beyond passive browsing, allowing users to interact with the product and discover its details.</p>
+                  </article>
+                </div>
+              </section>
+            </article>
+            <article class="study" data-project="experiment" hidden>
+              <h1 class="study__title">Experimental interaction exploration</h1>
+              <div class="meta">
+                <div class="meta__item">
+                  <p class="meta__label">My Role</p>
+                  <p class="meta__value">UI/UX Designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Team size</p>
+                  <p class="meta__value">Solo designer</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Duration</p>
+                  <p class="meta__value">5 mos 2026</p>
+                </div>
+                <div class="meta__item">
+                  <p class="meta__label">Tools</p>
+                  <p class="meta__value">Figma, AI, Blender</p>
+                </div>
+              </div>
+
+              <section class="block" data-section="overview">
+                <div class="chunk">
+                  <h2>Overview</h2>
+                  <div class="prose">
+                    <p>I experiment with emerging technologies to explore interaction beyond conventional screens and input methods. Through physical computing, gesture recognition, AR, and AI-assisted prototyping, I investigate how technology can create more intuitive, expressive, and immersive experiences.</p>
+                  </div>
+                </div>
+                <div class="goal">
+                  <div class="goal__head">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">the design goal</p>
+                    <p class="lede">Explore new ways for humans and technology to interact</p>
+                  </div>
+                  <p class="muted">Experiment with alternative interaction methods that move beyond conventional clicks and taps to create more expressive digital experiences.</p>
+                  <div class="cards cards--icon">
+                    <article class="card">
+                      <img src="/case/experiment-embodied.jpg" alt="A hand in front of a pink lunar-new-year projection">
+                      <div class="card__copy">
+                        <h3>Embodied interaction</h3>
+                        <p>Explore how physical movement, sensory perception, and environmental context can become integral parts of the interaction.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/experiment-gesture.jpg" alt="A hand drawing above a laptop showing Watered Lotus">
+                      <div class="card__copy">
+                        <h3>Gesture interaction</h3>
+                        <p>Investigate how gestures and movements can serve as intuitive inputs, connecting physical actions with digital responses.</p>
+                      </div>
+                    </article>
+                    <article class="card">
+                      <img src="/case/experiment-ai.jpg" alt="A night scene of a pavilion with a physical computing inset">
+                      <div class="card__copy">
+                        <h3>AI prototyping</h3>
+                        <p>Leverage AI tools and creative coding to rapidly explore concepts, test interactions, and bring experimental ideas to life.</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section class="block" data-section="project-1">
+                <div class="chunk">
+                  <h2>Sentimental Objects</h2>
+                  <p class="muted">Sentimental Objects is a personal project exploring the intersection of storytelling and immersive design. Centered on ordinary objects that hold personal meaning, the experience invites users to discover the memories and stories behind them through an interactive multimedia interface.</p>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Story-driven narrative</h3>
+                    <p>Connect audiences with personal memories through original stories and meaningful objects.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Environmental design</h3>
+                    <p>Create an evocative atmosphere through lighting, materials, and spatial composition.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Multimedia experience</h3>
+                    <p>Blend visuals, music, and narration into a cohesive storytelling experience.</p>
+                  </article>
+                </div>
+                <div class="fig fig--clip">
+                  <video class="study-video" src="/videos/sentimental-video.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                </div>
+              </section>
+
+              <section class="block" data-section="project-2">
+                <div class="chunk">
+                  <h2>Little Pond</h2>
+                  <p class="muted">Inspired by the classical Chinese poem Little Pond, this interactive web experience explores how bodily movement can foster a sensory connection with nature. Through gesture-based interactions, 3D visuals, and environmental sound, the experience invites users to engage with the rhythms and subtle details of the natural world.</p>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Gesture recognition</h3>
+                    <p>Use MediaPipe hand tracking to translate physical gestures into digital input.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Immersive environment</h3>
+                    <p>Combine interactive 3D scenes with environmental sound to evoke a sense of presence in nature.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">Creative concept</p>
+                    <h3>Real-time feedback</h3>
+                    <p>Connect movement and sound with dynamic visual responses, making the environment feel alive and responsive.</p>
+                  </article>
+                </div>
+                <div class="fig fig--clip">
+                  <video class="study-video" src="/videos/pond%20video.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback></video>
+                </div>
+              </section>
+
+              <section class="block" data-section="outcome">
+                <div class="chunk">
+                  <h2>Outcome and reflection</h2>
+                </div>
+                <div class="cols">
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #1</p>
+                    <h3>Interaction beyond the screen</h3>
+                    <p>Explored alternative ways of engaging with digital content through gestures, physical movement, and sensory experiences.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #2</p>
+                    <h3>More engaging task flow</h3>
+                    <p>Investigated how interactive feedback, narrative, and multimodal design can encourage exploration rather than passive consumption.</p>
+                  </article>
+                  <article class="col">
+                    <p class="spark"><img src="/assets/icon-spark.svg" alt="">reflection #3</p>
+                    <h3>The body as a data input</h3>
+                    <p>Explored how hands and bodily movement can become meaningful input channels, expanding the possibilities for more natural human–computer interaction.</p>
+                  </article>
+                </div>
+              </section>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sketch" id="sketch" data-drag hidden aria-label="Note">
+        <header class="sketch__bar">
+          <p class="kicker kicker--note"><img src="/assets/icon-note.svg" alt="">note</p>
+          <button class="sketch__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+        </header>
+        <canvas id="sketch-canvas"></canvas>
+        <footer class="sketch__foot">
+          <button class="sketch__clear" type="button">
+            <img src="/assets/icon-clear.svg" alt="">
+            <span class="sketch__rule"></span>
+            clear
+          </button>
+          <div class="swatches">
+            <button class="swatch" type="button" data-color="#343019" aria-label="Ink"></button>
+            <button class="swatch is-on" type="button" data-color="#FD882B" aria-label="Orange"></button>
+            <button class="swatch" type="button" data-color="#926956" aria-label="Clay"></button>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+    <img class="pointer" id="pointer" src="/assets/cursor.svg" alt="" hidden>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
