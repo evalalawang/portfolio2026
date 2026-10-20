@@ -1,0 +1,398 @@
+const EXACT = new Map([
+  ["/ Available for work", "/ 接受新机会"],
+  ["Memory folder", "记忆相册"],
+  ["Portfolio folder", "作品集"],
+  ["Music folder", "我的音乐"],
+  ["memory folder", "记忆相册"],
+  ["music folder", "我的音乐"],
+  ["favorites", "个人收藏"],
+  ["Portfolio", "作品集"],
+  ["music", "音乐"],
+  ["memory", "相册"],
+  ["Memory", "记忆相册"],
+  ["My projects", "我的项目"],
+  ["default", "初始状态"],
+  ["note", "随写"],
+  ["clear", "清除"],
+  ["back to folder", "回到文件夹"],
+  ["Connect", "联系我"],
+  ["back to projects", "返回项目"],
+  ["About", "简介"],
+  ["about me", "关于我"],
+  ["what I do", "工作经历"],
+  ["Beyond Design", "设计之外"],
+  ["About me", "关于我"],
+  ["What I do", "工作经历"],
+  ["Beyond design", "设计之外"],
+  ["I’m an interaction designer who cares deeply about making digital experiences clear, useful, and delightful. I enjoy solving problems through research and by bringing together product thinking, visual systems, and emerging technologies.", "我是一名交互设计师，始终致力于打造清晰、实用且令人愉悦的数字产品体验。我喜欢通过用户研究发现问题，并结合产品思维、视觉设计体系与新兴技术，探索更好的解决方案。"],
+  ["With 8 years of design experience across apps, web platforms, and interactive experiences, I work across both the details of everyday product workflows and the possibilities of new forms of human–technology interaction.", "拥有 8 年数字产品设计经验，涵盖移动应用、Web 平台与交互体验。我既关注日常产品流程中的细节与易用性，也热衷于探索人与技术互动的更多可能。"],
+  ["currently exploring:", "目前正在探索"],
+  ["AI-enabled products", "AI 驱动的产品"],
+  ["Multimodal interaction", "多模态交互"],
+  ["Intelligent workflows", "智能工作流"],
+  ["My most current experiences:", "我最近的工作经验包括"],
+  ["I’ve also worked for tech startup and companies include ", "此外我更早的工作经历包括有科技平台如"],
+  [" and ", "以及"],
+  ["In my free time, I love biking around the city ", "工作之余，我喜欢骑着自行车在城市里穿梭 "],
+  [", hanging out with my cats ", "，和家人以及家里的猫咪们待在一起 "],
+  [" and family, checking out new places and good food ", "，探索新的地方、寻找好吃的美食 "],
+  [", doodling, going for city walks, and hitting the badminton or tennis court ", "，随手涂鸦、在城市里散步，也喜欢去羽毛球场或网球场挥上几拍 "],
+  ["I care about user, craft and experience.", "我始终关注用户、设计品质与体验本身。"],
+  ["Korea trip", "韩国之旅"],
+  ["Shaoxing trip", "绍兴之旅"],
+  ["Japan trip", "日本之行"],
+  ["Jun 2026", "2026/06"],
+  ["Dec 2025", "2025/12"],
+  ["Jul 2025", "2025/07"],
+  ["May 2025", "2025/05"],
+  ["Korea", "韩国之旅"],
+  ["Shaoxing", "绍兴之旅"],
+  ["Japan", "日本之行"],
+  ["My Role", "我的角色"],
+  ["Team size", "团队规模"],
+  ["Duration", "项目周期"],
+  ["Tools", "设计工具"],
+  ["4-person team", "4 人团队"],
+  ["5 mos 2023", "2023 年，5 个月"],
+  ["Figma, Photoshop", "Figma、Photoshop"],
+  ["Overview", "项目概述"],
+  ["Design challenge", "设计挑战"],
+  ["Design decisions", "设计决策"],
+  ["Outcome and reflection", "项目成果与反思"],
+  ["Before", "更新前"],
+  ["After", "更新后"],
+  ["the design goal", "设计目标"],
+  ["challenge #1", "挑战 #1"],
+  ["challenge #2", "挑战 #2"],
+  ["challenge #3", "挑战 #3"],
+  ["decision #1", "决策 #1"],
+  ["decision #2", "决策 #2"],
+  ["decision #3", "决策 #3"],
+  ["change #1", "改动 #1"],
+  ["change #2", "改动 #2"],
+  ["improvement #1", "改进 #1"],
+  ["improvement #2", "改进 #2"],
+  ["improvement #3", "改进 #3"],
+  ["My Honor app redesign", "My HONOR App 改版设计"],
+  ["My HONOR is a service platform for HONOR device owners, connecting device management, after-sales support, membership benefits, and product discovery.", "My HONOR 是面向荣耀设备用户的服务平台，整合了设备管理、售后服务、会员权益与产品选购等功能。"],
+  ["As the app evolved to support a broader range of services and business needs, I worked on redesigning its UI and interactions to create clearer content hierarchy, more accessible service entry points, and more consistent patterns across modules.", "随着应用不断拓展服务内容，并承载更多业务需求，我参与了产品界面与交互体验的改版，重点优化内容层级、服务入口的可发现性，以及不同功能模块之间的设计一致性。"],
+  ["My role:", "我的职责："],
+  [" UI design, interaction design, module-level information hierarchy, visual direction, and shared component development.", " UI 设计、交互设计、模块级信息层级规划、视觉方向探索，以及通用组件的设计与开发。"],
+  ["I collaborated with UX designer on user flows, partnered with another UI designer to develop and synchronize shared components, and worked with stakeholders to align design goals and modular UI patterns.", "项目中，我与 UX 设计师协作梳理用户流程，与另一位 UI 设计师共同完善和同步通用组件，并与相关团队沟通，确保设计目标与模块化 UI 规范保持一致。"],
+  ["Making a growing service ecosystem more visual, scannable, and cohesive", "让不断扩展的服务生态更直观、更易浏览，也更具整体一致性"],
+  ["The service ecosystem of My Honor App is comprised of:", "My HONOR App 的服务生态主要包含三个方向："],
+  ["Service flow", "服务流程"],
+  ["A portal for all-around services", "一站式服务入口"],
+  ["Membership flow", "会员流程"],
+  ["An access to exclusive offers and benefits", "获取专属优惠与会员权益"],
+  ["Product flow", "产品流程"],
+  ["A platform for purchasing new products", "浏览并购买荣耀产品"],
+  ["The app brought together different user needs, from checking device information and finding after-sales services to exploring membership benefits and new products. However, many screens relied on similar text-and-icon layouts, making different types of information and actions visually indistinct.", "My HONOR App 需要满足多样化的用户需求，既要支持用户查看设备信息、寻找售后服务，也要帮助他们了解会员权益、探索新产品。然而，许多页面都采用相似的文字与图标布局，导致不同类型的信息和操作在视觉上缺乏区分，用户难以快速识别重点。"],
+  ["I focused on three design challenges:", "我主要聚焦于以下三个设计挑战。"],
+  ["Making service info easier to scan", "让服务信息更易浏览"],
+  ["The service homepage relied on text labels and similarly styled icons, making offerings difficult to distinguish at a glance. A clearer visual hierarchy was needed to differentiate key services from secondary options.", "服务首页主要依靠文字标签和风格相近的图标呈现功能入口，用户难以快速区分不同服务。我们需要建立更清晰的视觉层级，突出核心服务，同时合理组织次要选项。"],
+  ["Streamlining navigation and interaction", "简化导航与交互流程"],
+  ["Across service support, membership benefits, and product discovery, interaction patterns needed to be more consistent and actions easier to reach. The challenge was to reduce unnecessary navigation steps and bring relevant actions closer to the information users needed.", "在服务支持、会员权益和产品探索等场景中，交互模式需要更加统一，关键操作也应更容易触达。设计的重点在于减少不必要的页面跳转，让用户能够更直接地找到所需信息并完成操作。"],
+  ["Creating consistency across modules", "建立跨模块的一致性"],
+  ["Different flows needed to support distinct content and functions while maintaining a coherent visual language. Shared components and modular design patterns were important to keeping the experience consistent as different areas evolved.", "不同功能流程需要满足各自的内容与业务需求，同时保持统一的视觉语言。通过建立可复用组件和模块化设计模式，可以在各个功能板块持续迭代的过程中，维持整体体验的一致性。"],
+  ["Three areas of focus are as follows:", "围绕上述挑战，我从三个方向展开设计。"],
+  ["Bring information and actions closer together", "让信息与操作更紧密地结合"],
+  ["I shifted service modules beyond simple entry points by surfacing relevant information and actions directly within the page. By combining visual content, concise descriptions, and contextual CTAs, users could better understand service offerings and access relevant actions without always entering a separate flow.", "我不再将服务模块局限于简单的功能入口，而是尝试将相关信息与操作直接呈现在页面中。通过结合视觉内容、简洁的文字说明和场景化操作按钮（CTA），帮助用户更好地理解各项服务，并在无需进入独立流程的情况下，直接找到相关操作。"],
+  ["Create a clearer hierarchy and more direct paths to action", "清晰的信息层级，让操作路径更直接"],
+  ["I differentiated components through visual hierarchy and established clearer patterns for prioritizing services, presenting key info, and guiding users toward next steps. This included giving key services greater prominence, separating secondary options into a dedicated catalogue, and making service discovery and actions more accessible.", "我通过视觉层级区分不同组件，并建立更清晰的内容组织方式，突出重点服务、呈现关键信息，引导用户完成下一步操作。具体包括提升核心服务的视觉优先级，将次要选项整合到独立的服务目录中，并优化服务发现与操作入口，让用户更容易找到所需功能。"],
+  ["Build consistency across the app ecosystem", "建立贯穿整个应用的统一设计模式"],
+  ["I collaborated with another designer to refine and synchronize shared components across multiple flows, aligning visual patterns and interaction details. We also conducted a UI/UX audit to identify inconsistencies and opportunities for improvement.", "我与另一位设计师协作，梳理并同步多个功能流程中的通用组件，统一视觉规范与交互细节。同时，我们开展了 UI/UX 设计审查，识别不同模块之间的不一致之处，并寻找进一步优化的机会。"],
+  ["Service homepage", "服务首页"],
+  ["Bringing information and actions forward", "让重要信息与操作更直观"],
+  ["The service homepage was redesigned to present device information and support options through more visual, informative modules. Instead of relying exclusively on text-and-icon entry points, the new layouts surfaced selected service details and relevant actions directly on the page.", "我重新设计了服务首页，通过更具视觉表现力、信息更完整的模块展示设备信息与服务选项。相比过去主要依赖文字和图标作为入口的方式，新版布局将部分服务详情和相关操作直接呈现在首页，让用户能够更快地了解服务内容，并找到下一步操作。"],
+  ["Introduced smaller visual modules for selected service offerings.", "将部分服务入口设计为更精简、直观的视觉模块，让不同服务更容易被识别和浏览。"],
+  ["Gave commonly used services greater prominence. Moved the remaining service entries to a dedicated service catalogue.", "提升常用服务的优先级，并将其余服务入口整合到独立的服务目录中，帮助用户更快找到重点功能。"],
+  ["Service-store discovery", "服务网点探索"],
+  ["Making store discovery more intuitive and actionable", "让查找与预约更简单"],
+  ["Redesigned the store discovery journey to help users compare service locations, find relevant information, and take action with less friction.", "我重新梳理了服务网点的探索流程，帮助用户更方便地比较不同网点、查看相关信息，并直接采取下一步行动。"],
+  ["Improve store discovery: Redesigned store cards with imagery, service tags, review rating, recommended indicators, and direct-call actions to make key information easier to scan and act on.", "优化网点发现体验：重新设计网点卡片，加入图片、服务标签、用户评分、推荐标识和直接拨打电话的操作入口，让关键信息更易浏览，也方便用户快速采取行动。"],
+  ["Optimize store details: Modularized store and traffic information with segmented controls, surfaced key details on the first screen, and added a sticky bottom CTA for quick actions.", "优化网点详情页：通过分段控件组织网点信息与客流信息，将关键内容优先呈现在首屏，并增加固定在页面底部的操作栏，让用户能够快速进行相关操作。"],
+  ["Membership and benefits", "会员与权益"],
+  ["Making benefits more engaging and discoverable", "让会员福利更容易发现"],
+  ["In order to create a more visual way to communicate information such as membership levels and service status, I explored module-level solutions using graphs, lines, and icons. These designs translated information that might otherwise be presented primarily as text into more visually structured representations.", "为了更直观地呈现会员等级、服务状态等信息，我尝试通过图表、线条和图标优化模块的视觉表达，将原本主要依赖文字展示的信息转化为更具结构性的视觉内容。"],
+  ["Create more visual benefit entry points: Redesigned entry for Bonus Store and Task Center to make these destinations more visually appealing and provide clearer context for exploring membership benefits.", "打造更直观的权益入口：重新设计积分商城与任务中心的入口，通过更具吸引力的视觉呈现和更清晰的内容提示，引导用户进一步探索会员权益。"],
+  ["Visualize membership benefits: Used graphs and lines to present selected membership information more visually, helping users better understand available benefits and encouraging further exploration.", "将会员权益可视化：运用图表与线条呈现部分会员等级及权益信息，帮助用户更直观地理解可享受的福利，并激发进一步探索的兴趣。"],
+  ["Product & search experiences", "产品与搜索体验"],
+  ["Supporting product & service discovery", "优化产品及服务的发现路径"],
+  ["The product homepage organized device, accessory, and promotional content through modular UI layouts. The search experience used search history, recommended queries, and differentiated result components to structure the discovery experience.", "产品首页采用模块化布局组织设备、配件与推广内容，让不同类别的信息更有条理。搜索体验则结合搜索历史、推荐搜索词与分类化的结果组件，帮助用户更高效地发现所需内容。"],
+  ["Organize product exploration: Structured devices, accessories, and promotional content into modular UI layouts, making the product homepage easier to browse.", "优化产品内容的组织方式：将设备、配件和推广内容整合到模块化布局中，让产品首页的内容结构更加清晰，方便用户浏览和探索。"],
+  ["Improve search and results discovery: Introduced search history and recommended queries, and differentiated result components by content category to support query rediscovery and easier result scanning.", "优化搜索与结果浏览体验：引入搜索历史与推荐搜索词，帮助用户快速找回之前的搜索内容或发现新的搜索方向。同时，根据内容类别区分搜索结果组件，让结果更易识别和浏览。"],
+  ["The redesign was launched as part of the app's continued development, bringing together work across its service, membership, product, and search experiences.", "此次改版随着应用的持续迭代正式上线，涵盖服务、会员、产品和搜索等多个体验板块。"],
+  ["Improved service discoverability", "提升服务入口的可发现性"],
+  ["Informal user feedback suggested that key services were easier to find, supported by clearer visual hierarchy and more prominent entry points.", "非正式用户反馈表明，通过更清晰的视觉层级和更突出的功能入口，用户能够更容易地找到关键服务。"],
+  ["More accessible service journeys", "让服务流程更直接"],
+  ["Prioritized frequently used services and refined store discovery and detail pages, helping users navigate toward relevant services and appointment options more directly.", "通过突出常用服务，并优化网点探索与详情页面，帮助用户更直接地找到相关服务和预约选项。"],
+  ["More consistent UI patterns", "提升跨模块的设计一致性"],
+  ["Established and refined reusable UI components and modular design patterns to create greater visual consistency across service, membership, product, and search experiences.", "建立并完善可复用的 UI 组件与模块化设计模式，增强服务、会员、产品和搜索等不同体验板块之间的视觉一致性。"],
+  ["The project reinforced the importance of designing beyond individual screens: a cohesive product experience depends on how modules connect, how users move between tasks, and how shared patterns support consistency as the platform grows.", "这个项目让我进一步认识到，产品设计不能只关注单个页面的优化。真正连贯的产品体验，还取决于不同模块之间如何衔接、用户如何在不同任务之间流转，以及统一的设计模式如何支撑平台的持续扩展。"],
+  ["Sunny", "晴"],
+  ["Clear night", "晴夜"],
+  ["Partly cloudy", "多云"],
+  ["Clear at times", "间晴"],
+  ["Cloudy", "阴"],
+  ["Fog", "雾"],
+  ["Drizzle", "毛毛雨"],
+  ["Sleet", "雨夹雪"],
+  ["Rain", "雨"],
+  ["Heavy rain", "大雨"],
+  ["Snow", "雪"],
+  ["Blizzard", "暴雪"],
+  ["Scattered showers", "阵雨"],
+  ["Blowing snow", "风雪"],
+  ["Scattered thunderstorm", "雷阵雨"],
+  ["Hail", "冰雹"],
+  ["Severe thunderstorm", "强雷暴"],
+  ["Vancouver", "温哥华"],
+  ["Vancouver, Canada", "温哥华, Canada"],
+  ["3-person team", "3 人团队"],
+  ["2 mos 2024", "2024 年，2 个月"],
+  ["Sola Salons is a salon booking platform that helps customers discover nearby locations, compare salon professionals, and book appointments. The project focused on simplifying the booking journey by creating a more intuitive search experience and guiding users through a clear sequence of decisions.", "Sola Salons 是一个美发沙龙预约平台，帮助用户查找附近的沙龙、比较不同的美发师，并预约服务。本项目旨在简化用户的预约流程，通过更直观的搜索体验和清晰的决策路径，引导用户逐步找到合适的沙龙与美发师，并完成预约。"],
+  ["A more seamless booking experience", "打造更流畅的预约体验"],
+  ["Create a cohesive, efficient booking experience that helps users find the right salon, check professional availability, and book an appointment with confidence.", "建立连贯、高效的预约流程，帮助用户找到合适的沙龙、查看美发师的可预约时间，并更有信心地完成预约。"],
+  ["The existing booking experience presented friction across the search and selection journey. Fragmented entry points, inconsistent information hierarchy, and unclear navigation made it difficult for users to compare salons and find suitable appointment times. The challenge was to create a more cohesive, predictable flow while making key information easier to find at each step.", "现有的预约体验在搜索与选择过程中存在多个痛点。分散的搜索入口、不一致的信息层级以及不清晰的导航，让用户难以比较不同沙龙，也不容易找到合适的预约时间。本项目的挑战在于整合零散的流程，建立更连贯、可预期的用户旅程，并确保用户在每个步骤都能轻松找到关键信息。"],
+  ["Fragmented search entry points", "搜索入口分散"],
+  ["Salon discovery was spread across multiple entry points, including the homepage and individual salon pages. Each led to a different search path, making the experience inconsistent and creating unnecessary navigation.", "用户可以从首页或单个沙龙详情页等不同入口开始搜索，但这些入口会引导用户进入不同的搜索路径，导致体验不一致，也增加了不必要的页面跳转。"],
+  ["Unclear information hierarchy", "信息层级不清晰"],
+  ["Search results lacked a consistent UI pattern and clear information hierarchy. Important details were not organized around users’ key decisions, making it harder to scan results, compare locations, and identify relevant information.", "搜索结果缺乏统一的 UI 模式与清晰的信息层级。关键信息没有围绕用户的核心决策进行组织，导致用户难以快速浏览结果、比较不同地点，并找到自己关注的内容。"],
+  ["An unpredictable booking journey", "预约流程缺乏连贯性"],
+  ["The relationship between location search, filters, stylist selection, and appointment availability was unclear. Users had limited guidance on what to do next or what to expect at each step, while finding an available appointment could require unnecessary navigation.", "地点搜索、筛选条件、美发师选择与预约时间之间的关系不够清晰。用户不容易判断下一步该做什么，也难以预期接下来会看到哪些信息。此外，寻找可预约的时间往往需要经过不必要的页面跳转。"],
+  ["I organized the experience around a progressive, location-first journey, allowing users to narrow their options in a logical order—from finding a suitable salon to choosing a professional and booking an available time.", "我以地点为起点，将预约流程拆解为循序渐进的几个步骤，引导用户按照清晰的顺序缩小选择范围：先找到合适的沙龙，再选择美发师，最后预约合适的时间。"],
+  ["Start with Location", "从地点开始"],
+  ["Help users discover nearby salons that offer their selected service, establishing location as the starting point for the booking journey.", "以地点作为预约流程的起点，帮助用户发现附近提供所需服务的沙龙，让搜索结果更贴合用户的位置与服务需求。"],
+  ["Make salon comparison easier", "让沙龙比较更直观"],
+  ["Present locations with a consistent info hierarchy, supported by maps, filters, and key salon details, so users can evaluate their options before moving forward.", "通过统一的信息层级呈现不同沙龙，并结合地图、筛选功能和关键沙龙信息，帮助用户在进入下一步之前更轻松地评估和比较选项。"],
+  ["Guiding from selection to booking", "从选择自然过渡到预约"],
+  ["Make stylist availability and appointment times accessible after a location is selected, reducing unnecessary navigation and clarifying the next step.", "在用户选定沙龙后，再展示对应美发师的可预约时间，减少不必要的页面跳转，并让下一步操作更加明确。"],
+  ["Design and prototype", "设计与原型"],
+  ["Design Strategy", "设计策略"],
+  ["Progressive, location-first booking", "循序渐进，以地点为起点"],
+  ["Consolidated fragmented search entry points into a more consistent journey. Users begin by finding salons that match their location and service needs, then move through location selection, professional selection, and appointment booking.", "整合原本分散的搜索入口，建立更统一的预约路径。用户首先查找符合地点与服务需求的沙龙，再依次完成地点选择、美发师选择和时间预约，让整个流程更加连贯。"],
+  ["Search Result Screen", "搜索结果页"],
+  ["Clear information hierarchy", "建立清晰的信息层级"],
+  ["Established a more consistent layout and UI pattern across search results. Prioritized essential information, such as location, service relevance, and key salon details, to help users scan results and compare options more easily. Maps and filters support exploration without competing with the primary selection task.", "统一搜索结果的页面布局与 UI 模式，优先呈现地点、服务匹配度及沙龙关键信息，帮助用户快速浏览并比较不同选项。同时，通过地图和筛选功能支持用户探索，而不让这些辅助功能干扰主要的选择任务。"],
+  ["Salon Services Screen", "沙龙服务页"],
+  ["Simplified decision-making", "简化决策过程"],
+  ["Separated the booking process into focused steps, each supporting one primary decision: where to go, which professional to choose, and when to book. This reduces the cognitive load of evaluating multiple options at once and makes the journey more predictable.", "将预约流程拆分为几个重点明确的步骤，每个步骤聚焦一个核心决策：去哪里、选择哪位美发师，以及什么时候预约。这种设计减少了用户同时评估多个选项所带来的认知负担，也让整个预约流程更清晰、更容易预期。"],
+  ["Dev Considerations", "开发考量"],
+  ["Efficient availability loading", "高效加载可预约时间"],
+  ["Worked within the stakeholder’s technical constraint of a large stylist-availability database. Rather than loading all availability data during initial search, the flow retrieves relevant availability after a user selects a salon. This reduces unnecessary data requests and supports a more efficient, step-by-step experience.", "考虑到项目利益相关方提出的技术限制，即美发师预约数据量庞大——设计方案没有在用户初次搜索时加载所有可预约时间，而是在用户选定沙龙后，再获取对应的预约信息。这种按需加载的方式减少了不必要的数据请求，也让用户能够按照清晰的步骤逐步完成预约。"],
+  ["A more cohesive search experience", "建立更连贯的搜索体验"],
+  ["Consolidating the search journey creates a consistent path from discovery to booking, replacing disconnected entry points with a more unified experience.", "整合搜索流程，为用户建立从发现沙龙到完成预约的统一路径，取代原本相互割裂的搜索入口，让整体体验更加一致。"],
+  ["Clearer decisions at each step", "让每一步决策更加清晰"],
+  ["A stronger information hierarchy and progressive flow help users understand their options, compare locations, and move toward an appointment with less uncertainty.", "通过优化信息层级与采用循序渐进的流程，帮助用户理解可选方案、比较不同沙龙，并更明确地朝预约目标前进，减少选择过程中的不确定感。"],
+  ["UX aligned with technical constraints", "让用户体验与技术限制相协调"],
+  ["Loading availability only when needed connects the user journey with backend data constraints, demonstrating how interaction design can balance usability, performance, and system requirements.", "仅在用户需要时加载预约信息，将用户操作流程与后端数据处理的限制相结合，体现了交互设计如何在易用性、性能与系统需求之间取得平衡。"],
+  ["The project reinforced the value of designing complex workflows around users’ decisions, not just the information a system needs to display.", "这个项目让我进一步认识到，设计复杂的业务流程时，应该围绕用户需要做出的决策来组织体验，而不只是按照系统需要展示的信息来安排页面。"],
+  ["AI-powered banking experience", "AI 驱动的智能银行体验"],
+  ["Solo designer", "独立设计"],
+  ["1 week 2026", "2026 年，1 周"],
+  ["As part of a one-week design assignment for a mainstream bank, I explored how AI could make cross-border banking more intuitive and accessible. I researched emerging AI tools and reviewed international transfer flows across banking apps to identify opportunities to simplify complex financial tasks through conversational interaction.", "在一次为期一周的主流银行设计测试中，我探索了 AI 如何让跨境银行业务变得更加直观、易用。我研究了新兴 AI 工具，并分析了不同银行 App 的国际转账流程，寻找通过对话式交互简化复杂金融操作的机会。"],
+  ["Making cross-border banking more conversational, transparent, and effortless through AI", "借助 AI，让跨境银行业务更自然、透明、高效"],
+  ["Design an AI-assisted transfer experience that helps users express their financial intent in natural language, understand the costs involved, and complete transactions with confidence while maintaining control over important decisions.", "设计一套 AI 辅助的跨境转账体验，让用户能够通过自然语言表达金融需求，清楚了解相关费用，并在保有关键决策权的前提下，更安心地完成交易。"],
+  ["User group", "目标用户"],
+  ["Global Chinese clients living abroad who regularly manage finances across countries and currencies.", "长期居住海外、需要在不同国家和货币之间管理资金的华人用户。"],
+  ["User need", "用户需求"],
+  ["A convenient and reliable way to manage cross-border transfers without navigating complex banking workflows or seeking in-person assistance.", "一种便捷、可靠的跨境转账方式，让用户无需经历复杂的银行操作流程，也不必亲自前往线下网点，就能完成转账。"],
+  ["Core challenge", "核心挑战"],
+  ["International transfers involve recipient, accounts, FX, fees. Users need a simpler way to complete these tasks without sacrificing transparency or security.", "跨境转账涉及收款人、转出账户、汇率、手续费等多个环节。如何在不牺牲透明度与安全性的前提下，降低操作复杂度，让用户更轻松地完成转账，是本项目的核心挑战。"],
+  ["Cross-border transfers require users to navigate financial complexity while making decisions that directly affect their money. The challenge was to reduce the effort required to complete a transfer while ensuring that AI assistance remained transparent, predictable, and trustworthy.", "跨境转账不仅流程复杂，也涉及直接影响用户资金的关键决策。本项目需要在降低操作成本的同时，确保 AI 辅助过程足够透明、可预期且值得信赖。"],
+  ["Complex fees & exchange rates", "复杂的手续费与汇率"],
+  ["International transfers can involve multiple fees, exchange-rate fluctuations, and different receiving amounts. Users need to understand the total cost and expected outcome before committing to a transaction.", "国际转账可能涉及多项费用、汇率波动，以及不同的到账金额。用户需要在确认交易前，清楚了解总成本和预期到账结果，才能做出知情决策。"],
+  ["Time-consuming banking workflows", "繁琐的银行操作流程"],
+  ["Traditional banking flows often require users to navigate multiple screens, manually enter information, and repeatedly review details. For users managing finances across time zones, completing routine transfers should require less effort and fewer steps.", "传统银行流程往往要求用户在多个页面之间切换、手动填写信息，并反复核对交易详情。对于需要跨时区管理资金的用户而言，日常转账应该更简单、更高效，减少不必要的操作步骤。"],
+  ["Security & trust in financial decisions", "金融决策中的安全与信任"],
+  ["Financial transactions require accuracy, transparency, and explicit authorization. While AI can help interpret intent and prepare a transaction, users must be able to verify critical details, correct mistakes, and retain control over the final decision.", "金融交易对准确性、透明度和明确授权有着很高的要求。AI 可以帮助用户理解需求、准备交易，但用户仍需要能够核对关键信息、纠正错误，并掌握最终的决策权。"],
+  ["Rather than requiring users to navigate banking menus and complete forms from the start, I explored a conversational approach in which users express their financial goals and the AI guides them through the necessary steps.", "我尝试采用对话式交互，让用户不必一开始就浏览复杂的银行菜单或填写表单，而是直接表达自己的金融需求，再由 AI 引导完成必要步骤。"],
+  ["The broader opportunity was to help users understand and manage financial tasks through simple, contextual conversations—while using structured interfaces whenever precision and control matter most.", "更重要的机会在于，通过简单、贴合情境的对话，帮助用户理解并管理金融事务；而当操作涉及精确信息与关键决策时，则通过结构化界面提供清晰的信息和控制方式。"],
+  ["Understand user intent", "理解用户意图"],
+  ["Allow users to express a goal naturally, such as “Send CAD 5,000 to my mother in Shanghai.” The AI interprets the request and identifies the information required to initiate the transfer.", "允许用户通过自然语言表达需求，例如：“给我在上海的妈妈转 5,000 加元。”AI 负责理解用户的请求，并识别发起转账所需的信息，从而减少用户对复杂操作流程的依赖。"],
+  ["Use available context, such as saved recipients and frequently used accounts, to reduce repetitive input. When information is ambiguous, ask for clarification rather than making assumptions.", "利用已有的上下文信息，例如已保存的收款人和常用账户，减少重复输入。当用户提供的信息存在歧义时，AI 应主动询问并确认，而不是自行猜测或擅自做出决定。"],
+  ["Anticipate user needs", "预判用户需求"],
+  ["Simplify user input", "简化信息输入"],
+  ["Combine conversational interaction with quick actions and structured components, allowing users to describe their needs naturally while retaining familiar ways to select, enter, and edit financial details.", "将对话式交互与快捷操作、结构化组件相结合。用户既可以自然地描述需求，也能通过熟悉的界面选择、填写和修改金融信息。"],
+  ["Provide contextual guide", "提供情境化指引"],
+  ["Explain FX, fees, recipient details, and transfer status at relevant moments in the journey. Help users understand the implications of their choices before they authorize a transaction.", "在合适的操作节点，解释汇率、手续费、收款人信息和转账状态等内容，帮助用户理解不同选择的影响，并在授权交易前做出充分判断。"],
+  ["step #1", "步骤 #1"],
+  ["AI landing & chat interface", "AI 首页与对话界面"],
+  ["The landing page introduces the AI assistant through quick actions and recent activities, giving users clear entry points to common banking tasks. Within the chat interface, users can express their intent naturally, while processing indicators communicate when the AI is working on a request.", "首页通过快捷操作和近期活动介绍 AI 助手，为常见银行业务提供清晰的入口。在对话界面中，用户可以直接用自然语言表达需求，而处理状态提示则让用户了解 AI 正在处理请求。"],
+  ["This approach lowers the barrier to starting a task without requiring users to understand the banking information architecture in advance.", "这种设计降低了任务的启动门槛，让用户无需事先理解复杂的银行功能架构，也能开始办理业务。"],
+  ["step #2", "步骤 #2"],
+  ["Account, fees & exchange rate", "账户选择、手续费与汇率"],
+  ["A combination of conversational messages and structured UI components supports different levels of interaction. The AI can interpret requests and guide users through the process, while structured cards present account options, recipient details, transfer amounts, fees, and exchange rates in a format that is easier to scan and compare.", "通过对话消息与结构化 UI 组件的结合，满足不同阶段的交互需求。AI 负责理解请求并引导用户完成流程，结构化卡片则清晰呈现账户选项、收款人信息、转账金额、手续费和汇率，方便用户快速浏览与比较。"],
+  ["This hybrid approach combines the flexibility of conversation with the precision needed for financial decisions, allowing users to review and edit transaction details before proceeding.", "这种混合式交互兼顾了对话的灵活性与金融决策所需的精确性，让用户能够在继续操作前核对并修改交易信息。"],
+  ["step #3", "步骤 #3"],
+  ["Transaction flow & confirmation", "交易流程与确认"],
+  ["Before completing a transfer, users can review the transaction summary and make final adjustments to important details. Passcode authorization provides an explicit confirmation step before the transaction is submitted.", "在完成转账前，用户可以查看交易摘要，并对重要信息进行最后调整。通过密码验证，用户需要在交易提交前明确完成授权。"],
+  ["By separating AI-assisted preparation from user authorization, the flow reduces interaction effort while keeping the user responsible for the final financial decision.", "将 AI 辅助准备与用户最终授权分开，既能减少操作负担，也能确保最终的金融决策权始终掌握在用户手中。"],
+  ["reflection #1", "反思 #1"],
+  ["Balancing flexibility with control", "在灵活交互与用户控制之间取得平衡"],
+  ["Conversational AI can make banking tasks more accessible, but natural language alone is not sufficient for complex transactions. The most effective interaction combines flexible conversation with structured information and clear decision points, allowing users to explore, correct, and confirm their choices.", "对话式 AI 可以让银行业务更容易使用，但对于复杂交易而言，自然语言本身并不足够。更有效的交互方式，是将灵活的对话与结构化信息、清晰的决策节点结合起来，让用户能够探索选项、纠正错误，并确认自己的选择。"],
+  ["reflection #2", "反思 #2"],
+  ["Designing for confidence & security", "以信心与安全感为核心进行设计"],
+  ["Trust depends on more than a helpful AI response. Users need to understand what the system has interpreted, which details it has retrieved, what costs are involved, and what will happen next. For high-stakes tasks, the interface should make critical information visible and require explicit authorization before execution.", "建立信任不能仅依赖 AI 给出有帮助的回答。用户需要了解系统如何理解自己的需求、获取了哪些信息、涉及哪些费用，以及接下来会发生什么。对于涉及资金等高风险的任务，界面必须清晰呈现关键信息，并在执行交易前要求用户明确授权。"],
+  ["reflection #3", "反思 #3"],
+  ["Trust takes more than seamless UX", "流畅的体验并不等于真正的信任"],
+  ["Financial tasks involve established habits, perceived risk, and a strong need for reliability. A smoother interface is only the starting point; users also need consistent behavior, clear feedback, and predictable recovery when information is missing or incorrect.", "金融操作涉及用户长期形成的习惯、对风险的感知，以及对可靠性的高度要求。更流畅的界面只是第一步。用户还需要一致、可预期的系统行为，清晰的操作反馈，以及在信息缺失或 AI 理解错误时，能够顺利纠正和恢复操作的机制。"],
+  ["As a one-week concept assignment, this project focused on exploring the interaction model and translating it into a prototype. The next step would be to validate whether users understand the AI’s suggestions, feel confident reviewing transaction details, and can recover easily when the system misunderstands their intent.", "作为一个为期一周的概念设计项目，我主要探索了 AI 辅助金融业务的交互模式，并将其转化为可交互原型。下一步，我希望通过用户测试验证：用户是否能正确理解 AI 提供的建议，是否有信心核对交易详情，以及当 AI 误解用户意图时，是否能够轻松纠正问题并继续完成任务。"],
+  ["Honor 90 product detail page", "HONOR 90 产品详情页设计"],
+  ["3 mos 2023", "2023 年，3 个月"],
+  ["The HONOR 90 product page translates the device’s refined industrial design and functional advancement into an immersive digital experience. My focus was on elevating product storytelling through elegant visuals, motion, and interactive exploration.", "HONOR 90 产品详情页旨在将设备精致的工业设计与先进的产品功能，转化为沉浸式的数字体验。我主要通过精致的视觉呈现、动态效果与交互式探索，提升产品的叙事表现力。"],
+  ["Using Figma for both static design and interactive prototyping, I explored transitions, animations, and interaction patterns to bring the product’s visual qualities to life.", "我使用 Figma 完成静态界面设计与交互原型制作，探索不同的页面转场、动画效果和交互模式，让产品的视觉特质在数字体验中得到更生动的呈现。"],
+  ["Craft an immersive web experience", "打造沉浸式网页体验"],
+  ["Create a visually engaging journey that invites users to explore the HONOR 90 beyond a conventional product page.", "创造富有视觉吸引力的浏览旅程，引导用户深入探索 HONOR 90 的设计与功能，而不只是浏览传统的产品详情页。"],
+  ["Motion-first experience", "以动效为核心的体验"],
+  ["Use purposeful animation and transitions to create continuity between sections and make product features feel dynamic.", "通过有目的的动画与页面转场，建立不同内容板块之间的连贯性，让产品功能的展示更具动态感。"],
+  ["Visual storytelling", "视觉叙事"],
+  ["Translate the device’s design details, materials, and features into a cohesive visual narrative.", "将设备的设计细节、材质质感与产品功能融入统一的视觉叙事，打造连贯的产品展示体验。"],
+  ["Responsive interaction", "灵活直观的交互"],
+  ["Make product exploration intuitive and engaging through interactive elements that encourage users to discover more.", "通过鼓励用户主动探索的交互元素，让产品浏览更加直观、有趣，并激发用户进一步了解产品的兴趣。"],
+  ["Creative concept", "创意概念"],
+  ["The concept centered on turning product discovery into a visual journey. Rather than presenting specifications as isolated information, the page uses cinematic layouts, carefully paced transitions, and interactive moments to connect product details with the overall brand experience.", "本项目的核心概念，是将产品探索转化为一段视觉旅程。不同于将产品规格与功能拆分成独立的信息模块，页面采用具有电影感的视觉布局、节奏经过精心设计的转场，以及富有互动感的体验节点，将产品细节与整体品牌体验串联起来。"],
+  ["Gallery experience", "沉浸式画廊体验"],
+  ["Designed an immersive gallery journey through carefully composed layouts, smooth transitions, and motion. Each section builds on the previous one, creating a cohesive experience that guides users through the product’s design and features.", "通过精心编排的页面布局、流畅的转场与动态效果，打造沉浸式的产品展示旅程。每个内容板块都承接前一部分的体验，引导用户逐步了解产品的设计与功能，形成连贯的浏览节奏。"],
+  ["Enhanced interaction", "增强交互体验"],
+  ["Introduced interactive moments that encourage active exploration, including zooming into product details and triggering interactions with the 3D phone model. These interactions give users a closer look at the device while making product discovery more engaging.", "加入能够激发用户主动探索的交互设计，例如放大查看产品细节，以及与 3D 手机模型进行互动。这些交互让用户能够更近距离地观察设备，同时提升产品探索过程的参与感与趣味性。"],
+  ["Premium visual language", "高端品牌视觉语言"],
+  ["Used refined typography, generous spacing, high-quality product imagery, and controlled motion to reinforce the HONOR 90’s premium positioning. Visual consistency across sections helps create a polished, cohesive experience.", "通过精致的字体设计、充足的留白、高品质的产品视觉素材，以及克制而恰当的动态效果，强化 HONOR 90 的高端产品定位。各个页面板块保持统一的视觉语言，共同营造精致、完整且协调的浏览体验。"],
+  ["static mockup", "静态界面"],
+  ["Static UI design", "静态 UI 设计"],
+  ["Developed high-fidelity screens in Figma to establish the visual direction, layout hierarchy, typography, and composition. The static designs provided a clear foundation for evaluating the page’s overall look and feel.", "我使用 Figma 制作高保真界面，确立整体视觉方向、布局层级、字体运用与画面构成。静态设计为评估页面整体的视觉风格与体验基调提供了清晰的基础，也为后续的交互原型探索奠定了方向。"],
+  ["interactive prototype", "交互原型"],
+  ["Interactive prototyping", "交互原型设计"],
+  ["Built interactive prototypes in Figma to communicate the creative concept and demonstrate transitions, animations, and key interactions. The prototypes supported stakeholder alignment, design iteration, and creative sign-off, while providing a reference for development handoff and implementation discussions.", "我通过 Figma 构建交互原型，呈现创意概念，并演示关键的页面转场、动画效果与交互方式。这些原型支持了团队与相关方之间的设计共识、方案迭代与创意确认，同时也为后续开发交接及实现方案的讨论提供了参考。"],
+  ["Outcome #1", "成果 #1"],
+  ["Stronger visual storytelling", "强化产品视觉叙事"],
+  ["Connected product details, imagery, and motion into a more cohesive digital narrative.", "将产品细节、视觉素材与动态效果融入更连贯的数字叙事，让产品展示更具整体性。"],
+  ["Outcome #2", "成果 #2"],
+  ["Elevated brand perception", "提升品牌质感"],
+  ["Used refined visual design and purposeful interactions to support the HONOR 90’s premium product positioning.", "通过精致的视觉设计与有目的的交互体验，进一步强化 HONOR 90 的高端产品定位。"],
+  ["Outcome #3", "成果 #3"],
+  ["A more engaging product journey", "打造更具吸引力的产品探索体验"],
+  ["Explored ways to move beyond passive browsing, allowing users to interact with the product and discover its details.", "探索超越被动浏览的产品展示方式，让用户能够主动与产品互动、深入了解产品细节，从而获得更具参与感的浏览体验。"],
+  ["Experimental interaction exploration", "实验性交互探索"],
+  ["5 mos 2026", "5 个月 · 2026 年"],
+  ["Figma, AI, Blender", "Figma、AI、Blender"],
+  ["I experiment with emerging technologies to explore interaction beyond conventional screens and input methods. Through physical computing, gesture recognition, AR, and AI-assisted prototyping, I investigate how technology can create more intuitive, expressive, and immersive experiences.", "我通过探索新兴技术，尝试突破传统屏幕与输入方式的限制，发掘更多元的人机交互可能性。借助实体计算、手势识别、增强现实（AR）及 AI 辅助原型设计，我探索技术如何创造更直觉、更具表现力与沉浸感的体验。"],
+  ["Explore new ways for humans and technology to interact", "探索人与技术交互的新方式"],
+  ["Experiment with alternative interaction methods that move beyond conventional clicks and taps to create more expressive digital experiences.", "突破传统点击与触控的交互边界，尝试更多元、更具表现力的交互方式，拓展数字体验的可能性。"],
+  ["Embodied interaction", "具身交互"],
+  ["Explore how physical movement, sensory perception, and environmental context can become integral parts of the interaction.", "探索如何将身体动作、感官体验与环境情境融入交互过程，让人与数字内容的连接不再局限于屏幕之内。"],
+  ["Gesture interaction", "手势交互"],
+  ["Investigate how gestures and movements can serve as intuitive inputs, connecting physical actions with digital responses.", "研究如何将手势与身体动作转化为直觉的输入方式，让现实中的动作能够自然地触发数字反馈。"],
+  ["AI prototyping", "AI 辅助原型探索"],
+  ["Leverage AI tools and creative coding to rapidly explore concepts, test interactions, and bring experimental ideas to life.", "借助 AI 工具与创意编程，快速探索设计概念、验证交互方式，并将实验性创意转化为可体验的原型。"],
+  ["Sentimental Objects", "情感物件（Sentimental Objects）"],
+  ["Sentimental Objects is a personal project exploring the intersection of storytelling and immersive design. Centered on ordinary objects that hold personal meaning, the experience invites users to discover the memories and stories behind them through an interactive multimedia interface.", "Sentimental Objects 是一个探索叙事与沉浸式设计的个人项目。项目以承载个人情感的日常物件为切入点，通过互动式多媒体体验，引导用户发现物件背后的记忆与故事，在熟悉的事物中重新感受情感与时间留下的痕迹。"],
+  ["Story-driven narrative", "以故事为核心的叙事体验"],
+  ["Connect audiences with personal memories through original stories and meaningful objects.", "以具有情感意义的物件为媒介，通过原创故事连接观众与个人记忆，让平凡的日常物件成为承载情感与回忆的载体。"],
+  ["Environmental design", "沉浸式环境设计"],
+  ["Create an evocative atmosphere through lighting, materials, and spatial composition.", "通过光影、材质与空间布局的编排，营造富有感染力的氛围，引导观众自然地进入故事情境。"],
+  ["Multimedia experience", "多媒体叙事体验"],
+  ["Blend visuals, music, and narration into a cohesive storytelling experience.", "融合视觉画面、音乐与旁白，将多种感官元素整合为连贯的叙事体验，增强故事的情感表达与沉浸感。"],
+  ["Little Pond", "小池（Little Pond）"],
+  ["Inspired by the classical Chinese poem Little Pond, this interactive web experience explores how bodily movement can foster a sensory connection with nature. Through gesture-based interactions, 3D visuals, and environmental sound, the experience invites users to engage with the rhythms and subtle details of the natural world.", "灵感源自中国古典诗词《小池》，这是一个探索身体动作如何建立人与自然之间感官连接的交互式网页体验。项目结合手势交互、3D 视觉与环境音效，引导用户通过身体参与，感受自然的节奏与细微变化，在互动中重新发现自然的灵动之美。"],
+  ["Gesture recognition", "手势识别"],
+  ["Use MediaPipe hand tracking to translate physical gestures into digital input.", "利用 MediaPipe 手部追踪技术，将现实中的手势转化为数字输入，让用户通过自然的身体动作与虚拟环境互动。"],
+  ["Immersive environment", "沉浸式环境"],
+  ["Combine interactive 3D scenes with environmental sound to evoke a sense of presence in nature.", "结合可交互的 3D 场景与环境音效，营造身临其境的自然氛围，让用户仿佛置身于充满生命力的自然空间。"],
+  ["Real-time feedback", "实时交互反馈"],
+  ["Connect movement and sound with dynamic visual responses, making the environment feel alive and responsive.", "将身体动作与声音、动态视觉效果相连接，让环境能够即时响应用户的行为，打造自然、生动且富有反馈感的互动体验。"],
+  ["Interaction beyond the screen", "超越屏幕的交互方式"],
+  ["Explored alternative ways of engaging with digital content through gestures, physical movement, and sensory experiences.", "通过手势、身体动作与多感官体验，探索数字内容与用户之间更多元的连接方式，拓展传统屏幕交互的边界。"],
+  ["More engaging task flow", "更具参与感的体验流程"],
+  ["Investigated how interactive feedback, narrative, and multimodal design can encourage exploration rather than passive consumption.", "探索如何通过即时反馈、叙事设计与多模态交互，激发用户主动探索的意愿，让体验从被动的信息接收转向主动参与。"],
+  ["The body as a data input", "身体作为交互输入"],
+  ["Explored how hands and bodily movement can become meaningful input channels, expanding the possibilities for more natural human–computer interaction.", "探索如何将手部动作与身体运动转化为有意义的输入信号，拓展人机交互的可能性，让人与技术之间的互动更加自然、直觉。"],
+]);
+
+const SPECIFIC = [
+  { selector: ".projects__nav [data-jump='overview']", en: "Overview", zh: "概述" },
+  { selector: ".projects__nav [data-jump='challenge']", en: "Challenge", zh: "挑战" },
+  { selector: ".projects__nav [data-jump='decision']", en: "Decision", zh: "决策" },
+  { selector: ".projects__nav [data-jump='design']", en: "Design", zh: "设计" },
+  { selector: ".projects__nav [data-jump='outcome']", en: "Outcome", zh: "成果" },
+  { selector: ".trip__name, .finder__crumb-name, .weather__city", en: "Vancouver", zh: "温哥华" },
+  { selector: ".facts", en: "Vancouver, Canada", zh: "温哥华, Canada" },
+  { selector: ".study:not([data-project='honor']) .meta__value", en: "UI/UX Designer", zh: "UI/UX 设计师" },
+  { selector: "[data-project='banking'] h2", en: "Outcome and reflection", zh: "项目反思" },
+  { selector: ".beyond, .work__more", en: ".", zh: "。" },
+];
+
+const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .socials, .contact__name, .handle, #time-clock, .file";
+
+const originals = new WeakMap();
+const listeners = [];
+let lang = "en";
+let nodes = [];
+
+function translated(node, raw) {
+  const parent = node.parentElement;
+  if (!parent) return null;
+  for (const rule of SPECIFIC) {
+    if (rule.en === raw.trim() && parent.closest(rule.selector)) return rule.zh;
+  }
+  if (EXACT.has(raw)) return EXACT.get(raw);
+  if (EXACT.has(raw.trim())) return raw.replace(raw.trim(), EXACT.get(raw.trim()));
+  return null;
+}
+
+function stamp() {
+  nodes = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if (parent.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  while (walker.nextNode()) {
+    if (!originals.has(walker.currentNode)) originals.set(walker.currentNode, walker.currentNode.nodeValue);
+    nodes.push(walker.currentNode);
+  }
+}
+
+function paintCopy() {
+  nodes.forEach((node) => {
+    if (!node.isConnected) return;
+    const raw = originals.get(node);
+    if (raw == null) return;
+    const zh = translated(node, raw);
+    node.nodeValue = lang === "zh" && zh ? zh : raw;
+  });
+}
+
+export function language() {
+  return lang;
+}
+
+export function phrase(english) {
+  if (lang !== "zh" || english == null) return english;
+  return EXACT.get(english) || english;
+}
+
+export function onLanguage(listener) {
+  listeners.push(listener);
+}
+
+export function setLanguage(next) {
+  lang = next === "zh" ? "zh" : "en";
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  stamp();
+  paintCopy();
+  document.querySelectorAll(".lang [data-lang]").forEach((button) => {
+    const on = button.dataset.lang === lang;
+    button.classList.toggle("lang__on", on);
+    button.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  listeners.forEach((listener) => listener(lang));
+}
+
+document.querySelectorAll(".lang [data-lang]").forEach((button) => {
+  button.addEventListener("click", () => setLanguage(button.dataset.lang));
+});

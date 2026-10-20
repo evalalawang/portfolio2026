@@ -23,6 +23,14 @@
 }
 
 @font-face {
+  font-family: "Source Han Sans SC";
+  src: url("/fonts/SourceHanSansSC-Normal.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Reddit Mono";
   src: url("/fonts/RedditMono-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -282,13 +290,13 @@ img {
 
 .about__body > [data-panel="work"],
 .about__body > [data-panel="beyond"] {
-  gap: 12px;
+  gap: 20px;
 }
 
 .about__copy {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
 .about__body h2 {
@@ -401,8 +409,11 @@ img {
 }
 
 .emoji {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
   font-size: 16px;
+  font-weight: 400;
   line-height: 18px;
+  font-style: normal;
 }
 
 .right-widget {
@@ -592,9 +603,10 @@ img {
 .bio {
   color: #343019;
   font-family: Inter, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 16px;
+  letter-spacing: -0.13px;
 }
 
 .facts {
@@ -675,7 +687,7 @@ img {
 }
 
 .player__artist {
-  margin-top: 11px;
+  margin-top: 6px;
   overflow: hidden;
   color: #fffdf4;
   font-family: Inter, sans-serif;
@@ -802,7 +814,7 @@ img {
   color: #fffdf4;
   font-family: Inter, sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 16px;
 }
 
@@ -876,7 +888,7 @@ img {
 
 .finder.is-lightbox {
   background: #343019;
-  border-color: rgba(255, 253, 244, 0.13);
+  border: 1px solid rgba(52, 48, 25, 0.13);
 }
 
 .finder__crumb {
@@ -1019,7 +1031,7 @@ img {
   align-items: center;
   gap: 6px;
   height: 28px;
-  padding: 2px 8px;
+  padding: 1px 8px 2px 8px;
   background: #343019;
   border: 1px solid rgba(255, 253, 244, 0.23);
   border-radius: 6px;
@@ -1229,6 +1241,10 @@ img {
   object-position: center;
 }
 
+.trip__pic--phone {
+  display: none;
+}
+
 .trip__shade {
   position: absolute;
   top: 0;
@@ -1322,23 +1338,29 @@ img {
 
 .lang {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 4px;
   flex: none;
+  height: 28px;
   padding: 2px;
   border: 1px solid rgba(52, 48, 25, 0.13);
   border-radius: 6px;
 }
 
-.lang span {
+.lang button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 31px;
-  padding: 4px 8px;
+  height: 100%;
+  margin: 0;
+  padding: 0 8px;
+  background: transparent;
+  border: 0;
   color: #343019;
   font-family: "Reddit Mono", monospace;
   font-size: 11px;
+  line-height: 1;
   letter-spacing: -0.11px;
   text-transform: uppercase;
   border-radius: 4px;
@@ -1689,12 +1711,12 @@ button.dock__slot {
 .projects {
   position: absolute;
   z-index: 30;
-  top: 56px;
+  top: 52px;
   left: 50%;
   display: flex;
   flex-direction: column;
   width: min(1280px, calc(100% - 24px));
-  height: calc(100% - 150px);
+  height: calc(100% - 142px);
   overflow: hidden;
   background: #fffdf4;
   border: 1px solid rgba(52, 48, 25, 0.13);
@@ -1988,6 +2010,11 @@ button.dock__slot {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.card picture {
+  display: block;
+  width: 100%;
+}
+
 .cards--shot .card img {
   height: 192px;
 }
@@ -2011,7 +2038,7 @@ button.dock__slot {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   padding: 5px;
   border: 1px solid rgba(52, 48, 25, 0.13);
   border-radius: 8px;
@@ -2053,13 +2080,17 @@ button.dock__slot {
   border-radius: 8px;
 }
 
-.compare__before {
+.compare__before,
+.compare__after {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
 }
 
-.compare__before img,
-.compare__after {
+.compare__before img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -2069,19 +2100,20 @@ button.dock__slot {
 }
 
 .compare__after {
-  display: none;
+  transform: translateX(100%);
 }
 
 .compare[data-mode="after"] .compare__before {
-  display: none;
+  transform: translateX(-100%);
 }
 
 .compare[data-mode="after"] .compare__after {
-  display: block;
+  transform: translateX(0);
 }
 
 .compare__switch {
   position: absolute;
+  z-index: 2;
   right: 12px;
   bottom: 15px;
   display: flex;
@@ -2137,8 +2169,9 @@ button.dock__slot {
 .study-video {
   display: block;
   width: 100%;
-  height: 450px;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   background: #f6f4ea;
   border-radius: 4px;
   pointer-events: none;
@@ -2152,7 +2185,9 @@ button.dock__slot {
   -webkit-appearance: none;
 }
 
-.fig > img {
+.fig > img,
+.fig picture,
+.fig picture img {
   display: block;
   width: 100%;
   height: auto;
@@ -2163,7 +2198,7 @@ button.dock__slot {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 12px 16px 16px;
+  padding: 16px 16px 16px;
 }
 
 .sketch {
@@ -2299,7 +2334,7 @@ button.dock__slot {
 
 .phone-studies__shot {
   display: block;
-  height: 148px;
+  aspect-ratio: 340 / 225;
   overflow: hidden;
   background: #f3f0e4;
   border-radius: 4px;
@@ -2347,6 +2382,20 @@ button.dock__slot {
     overflow: hidden;
   }
 
+  .pointer {
+    display: none;
+  }
+
+  html,
+  body,
+  *,
+  *::before,
+  *::after,
+  button,
+  a {
+    cursor: auto;
+  }
+
   .pager__track {
     display: flex;
     height: 100%;
@@ -2361,6 +2410,7 @@ button.dock__slot {
     padding: calc(16 / 402 * 100vw) calc(17 / 402 * 100vw) 84px;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 
   .pager__view::-webkit-scrollbar {
@@ -2421,6 +2471,7 @@ button.dock__slot {
     width: 100%;
     opacity: 1;
     transform: none;
+    transition: none;
   }
 
   .contact {
@@ -2661,15 +2712,34 @@ button.dock__slot {
   }
 
   .study .fig > img,
+  .study .fig picture img,
   .study .card img,
-  .study .study-video {
-    height: 160px;
-    object-fit: cover;
-    opacity: 0;
+  .study .cards--shot .card img,
+  .study .cards--icon .card img,
+  .study .study-video,
+  .study .plate {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 1;
+  }
+
+  .study .compare {
+    height: auto;
+    aspect-ratio: 1840 / 624;
   }
 
   .study .fig,
   .study .card {
+    background: transparent;
+  }
+
+  .study .card img,
+  .study .fig > img,
+  .study .fig picture img,
+  .study .compare,
+  .study .study-video,
+  .study .plate {
     background: #f6f4ea;
   }
 
@@ -2715,10 +2785,25 @@ button.dock__slot {
     grid-template-columns: 1fr 1fr;
   }
 
-  .trip__photo,
-  .trip__pic {
+  .trip__photo {
     width: 100%;
-    height: 120px;
+    height: auto;
+  }
+
+  .trip__pic {
+    display: none;
+  }
+
+  .trip__pic--phone {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 336 / 260;
+    object-fit: cover;
+  }
+
+  .trip__shade {
+    display: none;
   }
 
   .trip__count {
@@ -2785,4 +2870,95 @@ html.is-gated .pager-dots {
 html.is-in .phone-apps,
 html.is-in .pager-dots {
   transition: opacity 0.7s ease;
+}
+
+html[lang="zh-CN"] .kicker,
+html[lang="zh-CN"] .tab,
+html[lang="zh-CN"] .about__body,
+html[lang="zh-CN"] .about__body h2,
+html[lang="zh-CN"] .bio,
+html[lang="zh-CN"] .folder > span:last-child,
+html[lang="zh-CN"] .topbar__avail,
+html[lang="zh-CN"] .restart,
+html[lang="zh-CN"] .side,
+html[lang="zh-CN"] .finder__title,
+html[lang="zh-CN"] .finder__crumb,
+html[lang="zh-CN"] .trip__copy,
+html[lang="zh-CN"] .lightbox__back,
+html[lang="zh-CN"] .sketch__bar,
+html[lang="zh-CN"] .sketch__clear,
+html[lang="zh-CN"] .projects__name,
+html[lang="zh-CN"] .study-back,
+html[lang="zh-CN"] .study,
+html[lang="zh-CN"] .study__title,
+html[lang="zh-CN"] .study h2,
+html[lang="zh-CN"] .study h3,
+html[lang="zh-CN"] .lede,
+html[lang="zh-CN"] .spark,
+html[lang="zh-CN"] .meta,
+html[lang="zh-CN"] .projects__nav,
+html[lang="zh-CN"] .weather__label,
+html[lang="zh-CN"] .phone-app,
+html[lang="zh-CN"] .compare__switch button,
+html[lang="zh-CN"] #time-date {
+  font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+html[lang="zh-CN"] .emoji {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+html[lang="zh-CN"] .lightbox__back > span:last-child {
+  line-height: 1;
+}
+
+html[lang="zh-CN"] .connect,
+html[lang="zh-CN"] .about__prose p,
+html[lang="zh-CN"] .beyond,
+html[lang="zh-CN"] .work__lead,
+html[lang="zh-CN"] .work__more,
+html[lang="zh-CN"] .work__row,
+html[lang="zh-CN"] .exploring p,
+html[lang="zh-CN"] .exploring li,
+html[lang="zh-CN"] .bio,
+html[lang="zh-CN"] .facts,
+html[lang="zh-CN"] .weather__city,
+html[lang="zh-CN"] .trip__name,
+html[lang="zh-CN"] .trip__date,
+html[lang="zh-CN"] .side__label,
+html[lang="zh-CN"] .side__item,
+html[lang="zh-CN"] .meta__label,
+html[lang="zh-CN"] .meta__value,
+html[lang="zh-CN"] .prose p,
+html[lang="zh-CN"] .muted,
+html[lang="zh-CN"] .col > p:not(.spark),
+html[lang="zh-CN"] .col h3,
+html[lang="zh-CN"] .card h3,
+html[lang="zh-CN"] .card p,
+html[lang="zh-CN"] .fig figcaption > p:last-child {
+  font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+html[lang="zh-CN"] .connect {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 16px;
+  text-box-edge: auto;
+  text-box-trim: none;
+}
+
+html[lang="zh-CN"] .about__prose p,
+html[lang="zh-CN"] .beyond,
+html[lang="zh-CN"] .work__more,
+html[lang="zh-CN"] .prose p,
+html[lang="zh-CN"] .muted,
+html[lang="zh-CN"] .col > p:not(.spark),
+html[lang="zh-CN"] .card p,
+html[lang="zh-CN"] .fig figcaption > p:last-child,
+html[lang="zh-CN"] .meta__value {
+  line-height: 20px;
+}
+
+html[lang="zh-CN"] .about__gap {
+  height: 20px;
 }

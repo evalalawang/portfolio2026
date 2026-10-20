@@ -307,6 +307,7 @@
             <button class="trip" type="button" data-trip="korea">
               <span class="trip__photo">
                 <img class="trip__pic" src="/assets/trip-korea.png" alt="">
+                <img class="trip__pic trip__pic--phone" src="/trips/mobile/korea.png" alt="">
                 <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
                 <span class="trip__count"><img src="/assets/icon-count.svg" alt="">9</span>
               </span>
@@ -318,6 +319,7 @@
             <button class="trip" type="button" data-trip="shaoxing">
               <span class="trip__photo">
                 <img class="trip__pic" src="/assets/trip-shaoxing.png" alt="">
+                <img class="trip__pic trip__pic--phone" src="/trips/mobile/shaoxing.png" alt="">
                 <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
                 <span class="trip__count"><img src="/assets/icon-count.svg" alt="">7</span>
               </span>
@@ -329,6 +331,7 @@
             <button class="trip" type="button" data-trip="vancouver">
               <span class="trip__photo">
                 <img class="trip__pic" src="/assets/trip-vancouver.png" alt="">
+                <img class="trip__pic trip__pic--phone" src="/trips/mobile/vancouver.png" alt="">
                 <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
                 <span class="trip__count"><img src="/assets/icon-count.svg" alt="">5</span>
               </span>
@@ -340,6 +343,7 @@
             <button class="trip" type="button" data-trip="japan">
               <span class="trip__photo">
                 <img class="trip__pic" src="/assets/trip-japan.png" alt="">
+                <img class="trip__pic trip__pic--phone" src="/trips/mobile/japan.png" alt="">
                 <img class="trip__shade" src="/assets/trip-shade.svg" alt="">
                 <span class="trip__count"><img src="/assets/icon-count.svg" alt="">8</span>
               </span>
@@ -394,9 +398,9 @@
           <p>Yifan Wang</p>
           <p class="topbar__avail">/ Available for work</p>
         </div>
-        <div class="lang" aria-hidden="true">
-          <span class="lang__on">EN</span>
-          <span>中</span>
+        <div class="lang" role="group" aria-label="Language">
+          <button class="lang__on" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">中</button>
         </div>
         <div class="socials">
           <a href="https://www.linkedin.com/in/iamyifanwang" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="/assets/icon-linkedin.svg" alt=""></a>
@@ -472,11 +476,11 @@
         </button>
         <div class="projects__stage">
           <div class="phone-studies">
-            <button type="button" data-study="honor"><span class="phone-studies__shot"><img src="/projects/honor-app.jpg" alt=""></span><span>Honor app</span></button>
-            <button type="button" data-study="sola"><span class="phone-studies__shot"><img src="/projects/sola.jpg" alt=""></span><span>Sola Salon</span></button>
-            <button type="button" data-study="banking"><span class="phone-studies__shot"><img src="/projects/banking.jpg" alt=""></span><span>AI Banking</span></button>
-            <button type="button" data-study="website"><span class="phone-studies__shot"><img src="/projects/honor-90.jpg" alt=""></span><span>Honor 90</span></button>
-            <button type="button" data-study="experiment"><span class="phone-studies__shot"><img src="/projects/experiment.jpg" alt=""></span><span>Experiment</span></button>
+            <button type="button" data-study="honor"><span class="phone-studies__shot"><img src="/projects/mobile/honor-app.png" alt=""></span><span>Honor app</span></button>
+            <button type="button" data-study="sola"><span class="phone-studies__shot"><img src="/projects/mobile/sola.png" alt=""></span><span>Sola Salon</span></button>
+            <button type="button" data-study="banking"><span class="phone-studies__shot"><img src="/projects/mobile/banking.png" alt=""></span><span>AI Banking</span></button>
+            <button type="button" data-study="website"><span class="phone-studies__shot"><img src="/projects/mobile/honor-90.png" alt=""></span><span>Honor 90</span></button>
+            <button type="button" data-study="experiment"><span class="phone-studies__shot"><img src="/projects/mobile/experiment.png" alt=""></span><span>Experiment</span></button>
           </div>
           <nav class="projects__nav" aria-label="In this project">
             <button type="button" class="is-on" data-jump="overview"><i></i>Overview</button>
@@ -801,21 +805,30 @@
                 </div>
                 <div class="cards cards--shot">
                   <article class="card">
-                    <img src="/case/sola-location.jpg" alt="Salon building photo beside location details">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/sola-location.png">
+                      <img src="/case/sola-location.jpg" alt="Salon building photo beside location details">
+                    </picture>
                     <div class="card__copy">
                       <h3>Start with Location</h3>
                       <p>Help users discover nearby salons that offer their selected service, establishing location as the starting point for the booking journey.</p>
                     </div>
                   </article>
                   <article class="card">
-                    <img src="/case/sola-map.jpg" alt="Map with two salon pins">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/sola-map.png">
+                      <img src="/case/sola-map.jpg" alt="Map with two salon pins">
+                    </picture>
                     <div class="card__copy">
                       <h3>Make salon comparison easier</h3>
                       <p>Present locations with a consistent info hierarchy, supported by maps, filters, and key salon details, so users can evaluate their options before moving forward.</p>
                     </div>
                   </article>
                   <article class="card">
-                    <img src="/case/sola-booking.jpg" alt="Stylist booking times for November 19">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/sola-booking.png">
+                      <img src="/case/sola-booking.jpg" alt="Stylist booking times for November 19">
+                    </picture>
                     <div class="card__copy">
                       <h3>Guiding from selection to booking</h3>
                       <p>Make stylist availability and appointment times accessible after a location is selected, reducing unnecessary navigation and clarifying the next step.</p>
@@ -929,21 +942,30 @@
                   <p class="muted">Design an AI-assisted transfer experience that helps users express their financial intent in natural language, understand the costs involved, and complete transactions with confidence while maintaining control over important decisions.</p>
                   <div class="cards cards--icon">
                     <article class="card">
-                      <img src="/case/bank-icon-people.jpg" alt="">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/bank-icon-people.png">
+                        <img src="/case/bank-icon-people.jpg" alt="">
+                      </picture>
                       <div class="card__copy">
                         <h3>User group</h3>
                         <p>Global Chinese clients living abroad who regularly manage finances across countries and currencies.</p>
                       </div>
                     </article>
                     <article class="card">
-                      <img src="/case/bank-icon-check.jpg" alt="">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/bank-icon-check.png">
+                        <img src="/case/bank-icon-check.jpg" alt="">
+                      </picture>
                       <div class="card__copy">
                         <h3>User need</h3>
                         <p>A convenient and reliable way to manage cross-border transfers without navigating complex banking workflows or seeking in-person assistance.</p>
                       </div>
                     </article>
                     <article class="card">
-                      <img src="/case/bank-icon-target.jpg" alt="">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/bank-icon-target.png">
+                        <img src="/case/bank-icon-target.jpg" alt="">
+                      </picture>
                       <div class="card__copy">
                         <h3>Core challenge</h3>
                         <p>International transfers involve recipient, accounts, FX, fees. Users need a simpler way to complete these tasks without sacrificing transparency or security.</p>
@@ -990,28 +1012,40 @@
                 </div>
                 <div class="cards cards--pair cards--shot">
                   <article class="card">
-                    <img src="/case/bank-chat.jpg" alt="Chat asking to send CAD 5000 to Shanghai">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/bank-chat.png">
+                      <img src="/case/bank-chat.jpg" alt="Chat asking to send CAD 5000 to Shanghai">
+                    </picture>
                     <div class="card__copy">
                       <h3>Understand user intent</h3>
                       <p>Allow users to express a goal naturally, such as “Send CAD 5,000 to my mother in Shanghai.” The AI interprets the request and identifies the information required to initiate the transfer.</p>
                     </div>
                   </article>
                   <article class="card">
-                    <img src="/case/bank-account.jpg" alt="Confirm chequing account before continuing">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/bank-account.png">
+                      <img src="/case/bank-account.jpg" alt="Confirm chequing account before continuing">
+                    </picture>
                     <div class="card__copy">
                       <h3>Anticipate user needs</h3>
                       <p>Use available context, such as saved recipients and frequently used accounts, to reduce repetitive input. When information is ambiguous, ask for clarification rather than making assumptions.</p>
                     </div>
                   </article>
                   <article class="card">
-                    <img src="/case/bank-listening.jpg" alt="Voice capture while the assistant is listening">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/bank-listening.png">
+                      <img src="/case/bank-listening.jpg" alt="Voice capture while the assistant is listening">
+                    </picture>
                     <div class="card__copy">
                       <h3>Simplify user input</h3>
                       <p>Combine conversational interaction with quick actions and structured components, allowing users to describe their needs naturally while retaining familiar ways to select, enter, and edit financial details.</p>
                     </div>
                   </article>
                   <article class="card">
-                    <img src="/case/bank-fees.jpg" alt="CAD to CNY fee and exchange-rate breakdown">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/bank-fees.png">
+                      <img src="/case/bank-fees.jpg" alt="CAD to CNY fee and exchange-rate breakdown">
+                    </picture>
                     <div class="card__copy">
                       <h3>Provide contextual guide</h3>
                       <p>Explain FX, fees, recipient details, and transfer status at relevant moments in the journey. Help users understand the implications of their choices before they authorize a transaction.</p>
@@ -1124,21 +1158,30 @@
                   <p class="muted">Create a visually engaging journey that invites users to explore the HONOR 90 beyond a conventional product page.</p>
                   <div class="cards cards--icon">
                     <article class="card">
-                      <img src="/case/honor-icon-motion.jpg" alt="Motion line">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/honor-icon-motion.png">
+                        <img src="/case/honor-icon-motion.jpg" alt="Motion line">
+                      </picture>
                       <div class="card__copy">
                         <h3>Motion-first experience</h3>
                         <p>Use purposeful animation and transitions to create continuity between sections and make product features feel dynamic.</p>
                       </div>
                     </article>
                     <article class="card">
-                      <img src="/case/honor-icon-story.jpg" alt="Layered frames">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/honor-icon-story.png">
+                        <img src="/case/honor-icon-story.jpg" alt="Layered frames">
+                      </picture>
                       <div class="card__copy">
                         <h3>Visual storytelling</h3>
                         <p>Translate the device’s design details, materials, and features into a cohesive visual narrative.</p>
                       </div>
                     </article>
                     <article class="card">
-                      <img src="/case/honor-icon-touch.jpg" alt="Hand tapping a surface">
+                      <picture>
+                        <source media="(max-width: 768px)" srcset="/case/honor-icon-touch.png">
+                        <img src="/case/honor-icon-touch.jpg" alt="Hand tapping a surface">
+                      </picture>
                       <div class="card__copy">
                         <h3>Responsive interaction</h3>
                         <p>Make product exploration intuitive and engaging through interactive elements that encourage users to discover more.</p>
@@ -1181,7 +1224,10 @@
                   </div>
                   <p class="muted">Developed high-fidelity screens in Figma to establish the visual direction, layout hierarchy, typography, and composition. The static designs provided a clear foundation for evaluating the page’s overall look and feel.</p>
                   <div class="fig fig--clip">
-                    <img src="/case/honor-mockup.jpg" alt="HONOR 90 product page screens for color, materials, display, and camera">
+                    <picture>
+                      <source media="(max-width: 768px)" srcset="/case/honor-mockup.png">
+                      <img src="/case/honor-static.jpg" alt="HONOR 90 product page screens for color, materials, display, and camera">
+                    </picture>
                   </div>
                 </div>
                 <div class="sub">

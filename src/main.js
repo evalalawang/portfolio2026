@@ -1,4 +1,5 @@
 import { paintDither } from "./dither.js";
+import { language, onLanguage, phrase } from "./i18n.js";
 
 const TOP_BAR = 44;
 const DOCK_HEIGHT = 66;
@@ -54,19 +55,36 @@ const dateEl = document.querySelector("#time-date");
 const clockEl = document.querySelector("#time-clock");
 
 function paintTime() {
+  const now = new Date();
+  const clockParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Vancouver",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).formatToParts(now);
+  const clock = (type) => clockParts.find((item) => item.type === type)?.value ?? "";
+  clockEl.textContent = `${clock("hour")}:${clock("minute")} ${clock("dayPeriod")}`;
+  if (language() === "zh") {
+    const parts = new Intl.DateTimeFormat("zh-CN", {
+      timeZone: "America/Vancouver",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      weekday: "long",
+    }).formatToParts(now);
+    const part = (type) => parts.find((item) => item.type === type)?.value ?? "";
+    dateEl.textContent = `${part("year")}/${part("month")}/${part("day")} ${part("weekday")}`;
+    return;
+  }
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Vancouver",
     weekday: "short",
     month: "short",
     day: "2-digit",
     year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  }).formatToParts(new Date());
+  }).formatToParts(now);
   const part = (type) => parts.find((item) => item.type === type)?.value ?? "";
   dateEl.textContent = `${part("weekday")}, ${part("day")} ${part("month")} ${part("year")}`;
-  clockEl.textContent = `${part("hour")}:${part("minute")} ${part("dayPeriod")}`;
 }
 
 paintTime();
@@ -254,8 +272,8 @@ function showFolder(win, id) {
   if (current && current.dataset.pane !== id) panePark.append(current);
   body.append(panes[id]);
   win.dataset.folder = id;
-  win.setAttribute("aria-label", FOLDERS[id].title);
-  win.querySelector(".finder__title").textContent = FOLDERS[id].title;
+  win.setAttribute("aria-label", phrase(FOLDERS[id].title));
+  win.querySelector(".finder__title").textContent = phrase(FOLDERS[id].title);
   win.querySelectorAll(".side__item").forEach((item) => {
     const on = item.dataset.open === id;
     item.classList.toggle("is-current", on);
@@ -450,6 +468,10 @@ function insideViewport(x, y) {
 }
 
 window.addEventListener("pointermove", (event) => {
+  if (isPhone()) {
+    hidePointer();
+    return;
+  }
   if (!insideViewport(event.clientX, event.clientY)) {
     hidePointer();
     return;
@@ -491,7 +513,24 @@ const projectNav = {
   ],
 };
 
+function navLabel(english) {
+  const zh = {
+    Overview: "概述",
+    Challenge: "挑战",
+    Decision: "决策",
+    Design: "设计",
+    Outcome: "成果",
+    "Creative concept": "创意概念",
+    "Project 1": "情感物件",
+    "Project 2": "小池",
+  };
+  return language() === "zh" ? zh[english] || english : english;
+}
+
+let currentProject = "honor";
+
 function applyNav(project) {
+  currentProject = project;
   const items = projectNav[project] || defaultNav;
   jumps.forEach((button, index) => {
     const item = items[index];
@@ -503,7 +542,7 @@ function applyNav(project) {
       return;
     }
     button.dataset.jump = item[0];
-    button.replaceChildren(icon, item[1]);
+    button.replaceChildren(icon, navLabel(item[1]));
     button.classList.toggle("is-on", item[0] === "overview");
   });
 }
@@ -782,6 +821,11 @@ const albums = {
   japan: { name: "Japan", count: 8 },
 };
 let albumId = "korea";
+
+function tripLabel(name) {
+  if (name === "Vancouver") return language() === "zh" ? "温哥华" : name;
+  return phrase(name);
+}
 let photoIndex = 0;
 let sliding = false;
 const lightboxTrack = document.querySelector(".lightbox__track");
@@ -810,7 +854,7 @@ function paintLightbox() {
     lightboxTrack.append(img);
   });
   document.querySelectorAll(".finder__crumb-name").forEach((node) => {
-    node.textContent = name;
+    node.textContent = tripLabel(name);
   });
 }
 
@@ -935,6 +979,11 @@ document.querySelector(".lightbox__arrow--next").addEventListener("click", (even
 const weatherIcon = document.querySelector("#weather-icon");
 const weatherLabel = document.querySelector("#weather-label");
 const weatherTemp = document.querySelector("#weather-temp");
+let weatherEnglish = "Sunny";
+
+function paintWeatherLabel() {
+  weatherLabel.textContent = phrase(weatherEnglish);
+}
 
 function weatherFor(code, isDay) {
   const night = !isDay;
@@ -1095,8 +1144,13 @@ function unpark(node) {
 
 function setPhonePage(index, animate) {
   phonePage = Math.max(0, Math.min(2, index));
-  phoneTrack.style.transition = animate ? "transform 0.35s ease" : "none";
-  phoneTrack.style.transform = `translateX(${-phonePage * 100}%)`;
+  const width = pager.clientWidth || window.innerWidth;
+  document.querySelectorAll(".pager__view").forEach((view) => {
+    view.style.width = `${width}px`;
+  });
+  phoneTrack.style.width = `${width * 3}px`;
+  phoneTrack.style.transition = animate ? "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)" : "none";
+  phoneTrack.style.transform = `translate3d(${-phonePage * width}px, 0, 0)`;
   document.querySelectorAll(".pager-dots button").forEach((dot, dotIndex) => {
     dot.classList.toggle("is-on", dotIndex === phonePage);
     dot.setAttribute("aria-current", dotIndex === phonePage ? "true" : "false");
@@ -1126,6 +1180,9 @@ function syncPhone() {
   unpark(rightWidget);
   unpark(aboutCard);
   unpark(headline);
+  phoneTrack.style.removeProperty("width");
+  phoneTrack.style.removeProperty("transform");
+  document.querySelectorAll(".pager__view").forEach((view) => view.style.removeProperty("width"));
   document.documentElement.classList.remove("is-phone-home", "is-sheet");
 }
 
@@ -1146,24 +1203,58 @@ pager.addEventListener("pointerdown", (event) => {
   if (!isPhone() || sheetOpen()) return;
   if (event.target.closest("button, a, input, textarea")) return;
   swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, axis: "" };
+  try {
+    pager.setPointerCapture(event.pointerId);
+  } catch (error) {}
 });
 pager.addEventListener("pointermove", (event) => {
-  if (!swipe || swipe.id !== event.pointerId || swipe.axis) return;
+  if (!swipe || swipe.id !== event.pointerId) return;
   const dx = event.clientX - swipe.x;
   const dy = event.clientY - swipe.y;
-  if (Math.hypot(dx, dy) < 10) return;
-  swipe.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+  if (!swipe.axis) {
+    if (Math.hypot(dx, dy) < 8) return;
+    swipe.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+  }
+  if (swipe.axis !== "x") return;
+  event.preventDefault();
+  const width = pager.clientWidth || window.innerWidth;
+  let shift = -phonePage * width + dx;
+  if ((phonePage === 0 && dx > 0) || (phonePage === 2 && dx < 0)) {
+    shift = -phonePage * width + dx * 0.35;
+  }
+  phoneTrack.style.transition = "none";
+  phoneTrack.style.transform = `translate3d(${shift}px, 0, 0)`;
 });
 function endSwipe(event) {
   if (!swipe || swipe.id !== event.pointerId) return;
   const dx = event.clientX - swipe.x;
-  if (swipe.axis === "x" && Math.abs(dx) > 48) setPhonePage(phonePage + (dx < 0 ? 1 : -1), true);
+  const width = pager.clientWidth || window.innerWidth;
+  const horizontal = swipe.axis === "x";
   swipe = null;
+  if (!horizontal) return;
+  if (dx <= -width * 0.18) setPhonePage(phonePage + 1, true);
+  else if (dx >= width * 0.18) setPhonePage(phonePage - 1, true);
+  else setPhonePage(phonePage, true);
 }
 pager.addEventListener("pointerup", endSwipe);
 pager.addEventListener("pointercancel", endSwipe);
 
 syncPhone();
+
+onLanguage(() => {
+  paintTime();
+  paintWeatherLabel();
+  document.querySelectorAll(".finder").forEach((win) => {
+    const id = win.dataset.folder;
+    if (!id || !FOLDERS[id]) return;
+    win.querySelector(".finder__title").textContent = phrase(FOLDERS[id].title);
+    win.setAttribute("aria-label", phrase(FOLDERS[id].title));
+  });
+  document.querySelectorAll(".finder__crumb-name").forEach((node) => {
+    node.textContent = tripLabel(albums[albumId].name);
+  });
+  applyNav(currentProject);
+});
 
 openGate();
 
@@ -1173,8 +1264,9 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.12
     const current = data.current;
     if (!current) return;
     const [icon, label] = weatherFor(current.weather_code, current.is_day === 1);
+    weatherEnglish = label;
     weatherTemp.textContent = String(Math.round(current.temperature_2m));
-    weatherLabel.textContent = label;
+    paintWeatherLabel();
     weatherIcon.src = `/weather/${icon}.svg`;
     weatherIcon.alt = "";
   })
