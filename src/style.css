@@ -1632,6 +1632,7 @@ html.is-in .restart {
 }
 
 .gate__enter {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1646,6 +1647,12 @@ html.is-in .restart {
   font-size: 11px;
   letter-spacing: -0.11px;
   text-transform: uppercase;
+}
+
+.gate__enter::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
 }
 
 .gate__enter-icon {
