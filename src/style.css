@@ -56,6 +56,9 @@ body {
   cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
 button,
@@ -1671,11 +1674,11 @@ html.is-in .restart {
 
 @media (max-width: 768px) {
   .gate__copy {
-    left: calc(28 / 402 * 100vw);
+    left: calc(28 / 402 * var(--app-width, 100vw));
     right: auto;
     top: calc(320 / 874 * 100%);
     width: max-content;
-    max-width: calc(100vw - 48px);
+    max-width: calc(var(--app-width, 100vw) - 48px);
   }
 
   .gate__line {
@@ -1698,7 +1701,16 @@ html.is-in .restart {
   }
 
   .gate__enter {
+    gap: 8px;
+    height: auto;
     margin-top: 25px;
+    padding: 7px 11px;
+    font-size: 12px;
+    letter-spacing: -0.12px;
+  }
+
+  .gate__enter > span:last-child {
+    padding: 0 2px;
   }
 }
 
@@ -2387,6 +2399,8 @@ button.dock__slot {
     left: 0;
     display: block;
     overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: pan-y;
   }
 
   .pointer {
@@ -2414,10 +2428,16 @@ button.dock__slot {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: calc(16 / 402 * 100vw) calc(17 / 402 * 100vw) 84px;
+    overflow-anchor: none;
+    overscroll-behavior: none;
+    padding: calc(16 / 402 * var(--app-width, 100vw)) calc(17 / 402 * var(--app-width, 100vw)) 84px;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
+  }
+
+  html.is-swiping .pager__view {
+    overflow: hidden;
+    touch-action: none;
   }
 
   .pager__view::-webkit-scrollbar {
@@ -2474,17 +2494,18 @@ button.dock__slot {
     position: relative;
     top: auto;
     right: auto;
-    gap: calc(10 / 402 * 100vw);
+    gap: calc(10 / 402 * var(--app-width, 100vw));
     width: 100%;
     opacity: 1;
     transform: none;
     transition: none;
+    overflow-anchor: none;
   }
 
   .contact {
-    height: calc(335 / 402 * 100vw);
+    height: calc(335 / 402 * var(--app-width, 100vw));
     justify-content: flex-start;
-    padding-top: calc(5px + (123 / 402 * 100vw) - 38px);
+    padding-top: calc(5px + (123 / 402 * var(--app-width, 100vw)) - 38px);
   }
 
   .contact__main {
@@ -2492,9 +2513,9 @@ button.dock__slot {
   }
 
   .contact__hero {
-    left: calc(5 / 402 * 100vw);
-    width: calc(100% - (10 / 402 * 100vw));
-    height: calc(123 / 402 * 100vw);
+    left: calc(5 / 402 * var(--app-width, 100vw));
+    width: calc(100% - (10 / 402 * var(--app-width, 100vw)));
+    height: calc(123 / 402 * var(--app-width, 100vw));
   }
 
   .contact__hills {
@@ -2509,15 +2530,15 @@ button.dock__slot {
   }
 
   .pair {
-    gap: calc(12 / 402 * 100vw);
+    gap: calc(12 / 402 * var(--app-width, 100vw));
   }
 
   .weather,
   .note {
     flex: none;
-    width: calc((100% - (12 / 402 * 100vw)) / 2);
+    width: calc((100% - (12 / 402 * var(--app-width, 100vw))) / 2);
     min-width: 0;
-    height: calc(160 / 402 * 100vw);
+    height: calc(160 / 402 * var(--app-width, 100vw));
     border: 1px solid rgba(52, 48, 25, 0.13);
   }
 
@@ -2535,15 +2556,16 @@ button.dock__slot {
     left: auto;
     top: auto;
     width: 100%;
-    height: calc(490.667 / 402 * 100vw);
+    height: calc(490.667 / 402 * var(--app-width, 100vw));
     overflow: hidden;
   }
 
   .about__body {
     overflow-x: hidden;
     overflow-y: auto;
+    overflow-anchor: none;
+    overscroll-behavior: contain;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
   }
 
   .about__body::-webkit-scrollbar {
@@ -2753,8 +2775,9 @@ button.dock__slot {
   .finder__body {
     overflow-x: hidden;
     overflow-y: auto;
+    overflow-anchor: none;
+    overscroll-behavior: contain;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
   }
 
   .finder__body::-webkit-scrollbar {

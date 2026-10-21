@@ -56,14 +56,26 @@ const clockEl = document.querySelector("#time-clock");
 
 function paintTime() {
   const now = new Date();
-  const clockParts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Vancouver",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  }).formatToParts(now);
-  const clock = (type) => clockParts.find((item) => item.type === type)?.value ?? "";
-  clockEl.textContent = `${clock("hour")}:${clock("minute")} ${clock("dayPeriod")}`;
+  if (language() === "zh") {
+    const clockParts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "America/Vancouver",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(now);
+    const clock = (type) => clockParts.find((item) => item.type === type)?.value ?? "";
+    clockEl.textContent = `${clock("hour")}:${clock("minute")}:${clock("second")}`;
+  } else {
+    const clockParts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Vancouver",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }).formatToParts(now);
+    const clock = (type) => clockParts.find((item) => item.type === type)?.value ?? "";
+    clockEl.textContent = `${clock("hour")}:${clock("minute")} ${clock("dayPeriod")}`;
+  }
   if (language() === "zh") {
     const parts = new Intl.DateTimeFormat("zh-CN", {
       timeZone: "America/Vancouver",
@@ -1142,8 +1154,33 @@ function unpark(node) {
   spot.parent.insertBefore(node, spot.next);
 }
 
+let heldScroll = [];
+let swipeToken = 0;
+
+function syncAppWidth() {
+  document.documentElement.style.setProperty("--app-width", `${document.documentElement.clientWidth}px`);
+}
+
+function rememberScroll() {
+  heldScroll = [...document.querySelectorAll(".pager__view")].map((view) => ({
+    view,
+    top: view.scrollTop,
+  }));
+}
+
+function restoreScroll() {
+  heldScroll.forEach(({ view, top }) => {
+    if (view.scrollTop !== top) view.scrollTop = top;
+  });
+}
+
 function setPhonePage(index, animate) {
-  phonePage = Math.max(0, Math.min(2, index));
+  const next = Math.max(0, Math.min(2, index));
+  if (next === 0 && next < phonePage) {
+    phoneWidgets.scrollTop = 0;
+    heldScroll = heldScroll.map((item) => (item.view === phoneWidgets ? { view: item.view, top: 0 } : item));
+  }
+  phonePage = next;
   const width = pager.clientWidth || window.innerWidth;
   document.querySelectorAll(".pager__view").forEach((view) => {
     view.style.width = `${width}px`;
@@ -1156,6 +1193,23 @@ function setPhonePage(index, animate) {
     dot.setAttribute("aria-current", dotIndex === phonePage ? "true" : "false");
   });
   document.documentElement.classList.toggle("is-phone-home", isPhone() && phonePage === 2);
+  if (!animate) {
+    document.documentElement.classList.remove("is-swiping");
+    return;
+  }
+  const token = ++swipeToken;
+  document.documentElement.classList.add("is-swiping");
+  let released = false;
+  const release = (event) => {
+    if (event && event.propertyName !== "transform") return;
+    phoneTrack.removeEventListener("transitionend", release);
+    if (released || token !== swipeToken) return;
+    released = true;
+    restoreScroll();
+    document.documentElement.classList.remove("is-swiping");
+  };
+  phoneTrack.addEventListener("transitionend", release);
+  window.setTimeout(release, 520);
 }
 
 function syncPhone() {
@@ -1202,6 +1256,8 @@ let swipe = null;
 pager.addEventListener("pointerdown", (event) => {
   if (!isPhone() || sheetOpen()) return;
   if (event.target.closest("button, a, input, textarea")) return;
+  rememberScroll();
+  swipeToken += 1;
   swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, axis: "" };
   try {
     pager.setPointerCapture(event.pointerId);
@@ -1214,9 +1270,14 @@ pager.addEventListener("pointermove", (event) => {
   if (!swipe.axis) {
     if (Math.hypot(dx, dy) < 8) return;
     swipe.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    if (swipe.axis === "x") {
+      document.documentElement.classList.add("is-swiping");
+      restoreScroll();
+    }
   }
   if (swipe.axis !== "x") return;
   event.preventDefault();
+  restoreScroll();
   const width = pager.clientWidth || window.innerWidth;
   let shift = -phonePage * width + dx;
   if ((phonePage === 0 && dx > 0) || (phonePage === 2 && dx < 0)) {
@@ -1231,13 +1292,29 @@ function endSwipe(event) {
   const width = pager.clientWidth || window.innerWidth;
   const horizontal = swipe.axis === "x";
   swipe = null;
-  if (!horizontal) return;
+  if (!horizontal) {
+    document.documentElement.classList.remove("is-swiping");
+    return;
+  }
+  restoreScroll();
   if (dx <= -width * 0.18) setPhonePage(phonePage + 1, true);
   else if (dx >= width * 0.18) setPhonePage(phonePage - 1, true);
   else setPhonePage(phonePage, true);
 }
 pager.addEventListener("pointerup", endSwipe);
 pager.addEventListener("pointercancel", endSwipe);
+pager.addEventListener("touchmove", (event) => {
+  if (swipe && swipe.axis === "x") event.preventDefault();
+}, { passive: false });
+
+function onViewportResize() {
+  syncAppWidth();
+  if (isPhone() && !swipe) setPhonePage(phonePage, false);
+}
+
+syncAppWidth();
+window.addEventListener("resize", onViewportResize);
+window.addEventListener("orientationchange", onViewportResize);
 
 syncPhone();
 
