@@ -456,8 +456,8 @@ img {
 .contact__hero {
   position: absolute;
   top: 5px;
+  right: 5px;
   left: 5px;
-  width: 358px;
   height: 123px;
   overflow: hidden;
   background: #d9d9d9;
@@ -492,7 +492,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 328px;
+  width: 100%;
 }
 
 .contact__top {
@@ -1636,26 +1636,92 @@ html.is-in .restart {
 
 .gate__enter {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: grid;
   height: 28px;
   margin-top: 32px;
   padding: 2px 8px;
-  background: #343019;
-  border: 1px solid rgba(52, 48, 25, 0.13);
+  background: rgba(52, 48, 25, 0.1);
+  border: 1px solid transparent;
   border-radius: 6px;
   color: #fffdf4;
   font-family: "Reddit Mono", monospace;
   font-size: 11px;
   letter-spacing: -0.11px;
   text-transform: uppercase;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
 }
 
 .gate__enter::before {
   content: "";
   position: absolute;
   inset: -6px;
+}
+
+.gate__clip {
+  position: absolute;
+  z-index: 0;
+  inset: -1px;
+  overflow: hidden;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.gate__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: max(13px, calc(var(--gate-progress, 0) * 1%));
+  background: #fd882b;
+}
+
+.gate__progress,
+.gate__ready {
+  grid-area: 1 / 1;
+}
+
+.gate__progress {
+  z-index: 1;
+  justify-self: end;
+  align-self: center;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: -0.12px;
+  text-align: right;
+  transition: opacity 80ms linear;
+}
+
+.gate__ready {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+}
+
+.gate__enter.is-black .gate__fill {
+  width: 100%;
+  background: #343019;
+  transition: background-color 140ms linear;
+}
+
+.gate__enter.is-black .gate__progress {
+  opacity: 0;
+}
+
+.gate__enter.is-ready {
+  background: #343019;
+  border-color: rgba(52, 48, 25, 0.13);
+}
+
+.gate__enter.is-ready .gate__fill,
+.gate__enter.is-ready .gate__progress {
+  opacity: 0;
+}
+
+.gate__enter.is-ready .gate__ready {
+  opacity: 1;
 }
 
 .gate__enter-icon {
@@ -1701,7 +1767,6 @@ html.is-in .restart {
   }
 
   .gate__enter {
-    gap: 8px;
     height: auto;
     margin-top: 25px;
     padding: 7px 11px;
@@ -1709,7 +1774,11 @@ html.is-in .restart {
     letter-spacing: -0.12px;
   }
 
-  .gate__enter > span:last-child {
+  .gate__ready {
+    gap: 8px;
+  }
+
+  .gate__label {
     padding: 0 2px;
   }
 }
@@ -2513,6 +2582,7 @@ button.dock__slot {
   }
 
   .contact__hero {
+    right: auto;
     left: calc(5 / 402 * var(--app-width, 100vw));
     width: calc(100% - (10 / 402 * var(--app-width, 100vw)));
     height: calc(123 / 402 * var(--app-width, 100vw));

@@ -1036,8 +1036,14 @@ const GATE_LINES = ["Hello there!", "Welcome to my space."];
 const gate = document.querySelector("#gate");
 const gateLines = [...gate.querySelectorAll(".gate__line")];
 const gateEnter = document.querySelector("#gate-enter");
+const gateProgress = document.querySelector("#gate-progress");
+const gateReadyLabel = gateEnter.querySelector(".gate__ready");
 const mobileQuery = window.matchMedia("(max-width: 768px)");
 let gateTimer = 0;
+let gateFrame = 0;
+let gateReveal = 0;
+let gateShown = 0;
+let gateHold = 0;
 let gateReady = false;
 let typedDone = false;
 let gateMode = mobileQuery.matches ? "mobile" : "desktop";
@@ -1046,16 +1052,69 @@ function siteReady() {
   return document.readyState === "complete" && document.documentElement.dataset.dither === "ready";
 }
 
-function refreshGateReady() {
-  gateReady = siteReady() && typedDone;
-  gateEnter.disabled = !gateReady;
+function gateLoadTarget() {
+  let value = 8;
+  if (document.readyState !== "loading") value = 28;
+  if (document.readyState === "complete") value = 46;
+  if (photo.complete && photo.naturalWidth) value = Math.max(value, 62);
+  if (document.documentElement.dataset.dither === "ready") value = Math.max(value, 78);
+  if (document.fonts.status === "loaded") value = Math.max(value, 88);
+  if (typedDone) value = Math.max(value, 94);
+  if (siteReady()) value = 100;
+  return value;
 }
+
+function paintGateProgress() {
+  if (gateReady) return;
+  const target = gateLoadTarget();
+  const gap = target - gateShown;
+  if (gap > 0) gateShown = Math.min(target, gateShown + Math.max(0.45, gap * 0.08));
+  const shown = Math.min(100, Math.round(gateShown));
+  gateEnter.style.setProperty("--gate-progress", gateShown.toFixed(2));
+  gateProgress.textContent = `${shown}%`;
+  if (gateShown < 99.6 || !siteReady() || !typedDone) {
+    gateHold = 0;
+    gateFrame = requestAnimationFrame(paintGateProgress);
+    return;
+  }
+  gateShown = 100;
+  gateEnter.style.setProperty("--gate-progress", "100");
+  gateProgress.textContent = "100%";
+  gateHold += 1;
+  if (gateHold < 14) {
+    gateFrame = requestAnimationFrame(paintGateProgress);
+    return;
+  }
+  gateEnter.classList.add("is-black");
+  window.clearTimeout(gateReveal);
+  gateReveal = window.setTimeout(() => {
+    gateEnter.classList.add("is-ready");
+    gateReadyLabel.setAttribute("aria-hidden", "false");
+    gateProgress.setAttribute("aria-hidden", "true");
+    gateEnter.setAttribute("aria-busy", "false");
+    gateReady = true;
+    gateEnter.disabled = false;
+  }, 140);
+}
+
+function refreshGateReady() {}
 
 function typeGate() {
   window.clearTimeout(gateTimer);
+  window.clearTimeout(gateReveal);
+  window.cancelAnimationFrame(gateFrame);
   typedDone = false;
   gateReady = false;
+  gateShown = 0;
+  gateHold = 0;
   gateEnter.disabled = true;
+  gateEnter.classList.remove("is-black", "is-ready");
+  gateEnter.setAttribute("aria-busy", "true");
+  gateReadyLabel.setAttribute("aria-hidden", "true");
+  gateProgress.removeAttribute("aria-hidden");
+  gateEnter.style.setProperty("--gate-progress", "0");
+  gateProgress.textContent = "0%";
+  gateFrame = requestAnimationFrame(paintGateProgress);
   gateLines.forEach((line) => {
     line.querySelector(".gate__chars").textContent = "";
     line.classList.remove("is-typing");

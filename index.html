@@ -71,10 +71,14 @@
             <span class="gate__line is-typing"><span class="gate__chars"></span><span class="gate__caret" aria-hidden="true"><img src="/assets/icon-caret.svg" alt=""></span></span>
             <span class="gate__line"><span class="gate__chars"></span><span class="gate__caret" aria-hidden="true"><img src="/assets/icon-caret.svg" alt=""></span></span>
           </p>
-          <button class="gate__enter" id="gate-enter" type="button" disabled>
-            <img class="gate__enter-icon" src="/assets/icon-enter.svg" alt="">
-            <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
-            <span>enter</span>
+          <button class="gate__enter" id="gate-enter" type="button" disabled aria-busy="true">
+            <span class="gate__clip" aria-hidden="true"><span class="gate__fill"></span></span>
+            <span class="gate__progress" id="gate-progress">0%</span>
+            <span class="gate__ready" aria-hidden="true">
+              <img class="gate__enter-icon" src="/assets/icon-enter.svg" alt="">
+              <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+              <span class="gate__label">enter</span>
+            </span>
           </button>
         </div>
       </div>
