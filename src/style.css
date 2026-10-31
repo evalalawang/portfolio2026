@@ -129,7 +129,7 @@ img {
 .headline {
   position: absolute;
   z-index: 2;
-  left: calc(25% + 15.5px);
+  left: calc(25% + 25.5px);
   top: 148px;
   width: 600px;
   margin: 0;
@@ -155,7 +155,7 @@ img {
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   text-align: center;
   touch-action: none;
   user-select: none;
@@ -319,7 +319,7 @@ img {
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -381,7 +381,7 @@ img {
   font-family: Inter, sans-serif;
   font-size: 13px;
   line-height: 16px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -393,7 +393,7 @@ img {
   font-family: Inter, sans-serif;
   font-size: 13px;
   line-height: 16px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
   white-space: nowrap;
 }
@@ -446,7 +446,7 @@ img {
   gap: 20px;
   justify-content: flex-end;
   height: 335px;
-  padding: 24px 20px;
+  padding: 24px 16px 24px 20px;
   overflow: hidden;
   background: #fffdf4;
   border: 1px solid rgba(52, 48, 25, 0.13);
@@ -458,7 +458,7 @@ img {
   top: 5px;
   right: 5px;
   left: 5px;
-  height: 123px;
+  height: 120px;
   overflow: hidden;
   background: #d9d9d9;
   border-radius: 4px 4px 0 0;
@@ -525,45 +525,604 @@ img {
   gap: 5px;
 }
 
-.mail {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  flex: none;
-  background: #343019;
-  border-radius: 4px;
-}
-
-.mail:hover {
-  background: #4b4833;
-}
-
-.mail img {
-  position: absolute;
-  top: -0.5px;
-  left: -0.5px;
-}
-
-.connect {
+.meet {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   height: 28px;
-  padding: 6px 14px;
-  background: #fd882b;
+  flex: none;
+  padding: 6px 8px;
+  background: #343019;
   border-radius: 4px;
   color: #fffdf4;
   font-family: "Reddit Mono", monospace;
   font-size: 12px;
   line-height: 16px;
+  letter-spacing: -0.12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.meet:hover {
+  background: #4b4833;
+}
+
+.meet img {
+  display: block;
+  width: 16px;
+  height: 11px;
+}
+
+.meet .restart__rule {
+  width: 1px;
+  background: rgba(255, 253, 244, 0.13);
+}
+
+.meet .restart__rule img {
+  display: none;
+}
+
+.meet__label {
+  padding: 0 2px;
   text-box-edge: cap alphabetic;
   text-box-trim: trim-both;
-  text-decoration: none;
+}
+
+.share-open {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 28px;
+  flex: none;
+  padding: 0;
+  background: #fd882b;
+  border: 0;
+  border-radius: 4px;
+}
+
+.share-open:hover {
+  background: #fd9644;
+}
+
+.share-open img {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.share {
+  position: absolute;
+  z-index: 28;
+  top: calc(44px + (100% - 126px - min(611px, 100% - 126px)) / 2);
+  left: calc(24px + (100% - 48px - min(912px, 100% - 48px)) / 2);
+  display: flex;
+  flex-direction: column;
+  width: min(912px, calc(100% - 48px));
+  height: min(611px, calc(100% - 126px));
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 8px;
+  background-clip: padding-box;
+  touch-action: none;
+}
+
+.share[hidden] {
+  display: none;
+}
+
+.share.is-dragging {
+  transition: none;
+}
+
+.share__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  flex: none;
+  padding: 0 20px;
+  background: #f6f4ea;
+  border-bottom: 1px solid rgba(52, 48, 25, 0.13);
+}
+
+.share__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.12px;
   text-transform: uppercase;
 }
 
-.connect:hover {
+.share__title img {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.share__close {
+  width: 36px;
+  height: 40px;
+  flex: none;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.share__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.share__stage {
+  position: relative;
+  width: 427px;
+  flex: none;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.share__banner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.share__hills,
+.share__dither {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.share__hills {
+  object-fit: cover;
+  transform: scale(1.12);
+  filter: blur(16px);
+}
+
+.share__dither {
+  opacity: 0.4;
+}
+
+.share__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.share__slot {
+  position: absolute;
+  z-index: 2;
+  top: 40px;
+  left: 40px;
+  width: 347px;
+  height: 464px;
+}
+
+.biz {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 347px;
+  height: 464px;
+  padding: 48px 24px 24px;
+  overflow: hidden;
+  background: #fffdf4;
+  background-clip: padding-box;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 8px;
+}
+
+.biz__wash {
+  position: absolute;
+  top: 5px;
+  right: 4px;
+  left: 4px;
+  height: 168px;
+  background: #f6f4ea;
+  border-radius: 6px 6px 0 0;
+  pointer-events: none;
+}
+
+.biz__main {
+  position: relative;
+  width: 100%;
+}
+
+.biz__id {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 262px;
+  color: #343019;
+}
+
+.biz__block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.biz__block--name {
+  gap: 8px;
+  width: auto;
+}
+
+.biz__kicker {
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 15px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.biz__name {
+  color: #343019;
+  font-family: "PP Editorial New", "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.45px;
+}
+
+.biz__role,
+.biz__focus {
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.biz__role {
+  opacity: 0.6;
+}
+
+.biz__portrait {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.biz__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.biz__divider {
+  height: 1px;
+  background: repeating-linear-gradient(to right, rgba(52, 48, 25, 0.13) 0 4px, transparent 4px 8px);
+}
+
+.biz__row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.biz__row .biz__kicker {
+  width: 50px;
+  flex: none;
+}
+
+.biz__qr {
+  width: 100px;
+  height: 100px;
+}
+
+.share__save {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 4px;
+}
+
+.share__save:hover {
+  background: #f0ecdb;
+}
+
+.share__save img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.share__save--card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.share__save--stage {
+  display: none;
+}
+
+.share__panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  min-width: 0;
+  padding: 40px 32px;
+  overflow: auto;
+  background: #fffdf4;
+}
+
+.share__intro h2 {
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.45px;
+}
+
+.share__intro p {
+  margin-top: 5px;
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0;
+  opacity: 0.8;
+}
+
+.share__meet--head {
+  display: none;
+}
+
+.share__line {
+  display: none;
+}
+
+.share__profile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px 20px;
+  border: 1px solid rgba(52, 48, 25, 0.08);
+  border-radius: 6px;
+}
+
+.share__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 15px;
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: -0.11px;
+  text-transform: uppercase;
+}
+
+.share__eyebrow img {
+  width: 12px;
+  height: 12px;
+}
+
+.share__bio {
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0;
+  opacity: 0.8;
+}
+
+.share__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 5px;
+}
+
+.share__chips span {
+  display: flex;
+  align-items: center;
+  height: 26.5px;
+  padding: 3px 10px 4px;
+  border: 1px solid rgba(173, 81, 1, 0.13);
+  border-radius: 14px;
+  color: #ad5101;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.share__linkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.share__label {
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: -0.11px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.share__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px;
+  background: #f6f4ea;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 6px;
+}
+
+.share__url {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 8px;
+  color: #343019;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+.share__url img {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.share__url span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.share__copy {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  flex: none;
+  padding: 6px 10px;
+  background: #fd882b;
+  border: 0;
+  border-radius: 4px;
+  color: #fffdf4;
+  font-family: "Reddit Mono", monospace;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  text-transform: uppercase;
+}
+
+.share__copy:hover {
   background: #fd9644;
+}
+
+.share__copy span {
+  padding: 0 4px;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+}
+
+.share__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 69px;
+  flex: none;
+  padding: 20px;
+  background: #f6f4ea;
+  border-top: 1px solid rgba(52, 48, 25, 0.13);
+}
+
+.share__foot-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ghost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 6px 8px;
+  background: transparent;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 4px;
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ghost:hover,
+.ghost.is-done {
+  background: #f0ecdb;
+}
+
+.ghost__check {
+  display: none;
+  width: 16px;
+  height: 14px;
+}
+
+.ghost.is-done .ghost__copy {
+  display: none;
+}
+
+.ghost.is-done .ghost__check {
+  display: block;
+}
+
+.ghost span:last-child {
+  padding: 0 2px;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+}
+
+.ghost__copy {
+  width: 16px;
+  height: 14px;
+}
+
+.ghost__mail {
+  width: 17px;
+  height: 12px;
+}
+
+.share__rule {
+  width: 1px;
+  height: 13px;
+  flex: none;
+  background: rgba(52, 48, 25, 0.13);
 }
 
 .contact__id {
@@ -609,7 +1168,7 @@ img {
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
-  letter-spacing: -0.13px;
+  letter-spacing: 0;
 }
 
 .facts {
@@ -683,7 +1242,7 @@ img {
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1142,7 +1701,7 @@ img {
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   text-align: center;
 }
 
@@ -1990,7 +2549,7 @@ button.dock__slot {
   font-family: Inter, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -2041,7 +2600,7 @@ button.dock__slot {
   font-size: 13px;
   font-weight: 400;
   line-height: 18px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -2150,7 +2709,7 @@ button.dock__slot {
   font-family: Inter, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   opacity: 0.8;
 }
 
@@ -2536,7 +3095,7 @@ button.dock__slot {
     color: #fffdf4;
     font-family: Inter, sans-serif;
     font-size: 13px;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
   }
 
   .phone-app__icon {
@@ -2711,7 +3270,8 @@ button.dock__slot {
 
   .projects,
   .finder,
-  .sketch {
+  .sketch,
+  .share {
     position: fixed;
     z-index: 60;
     top: 44px;
@@ -2725,7 +3285,8 @@ button.dock__slot {
   }
 
   .projects,
-  .finder {
+  .finder,
+  .share {
     border: 0;
   }
 
@@ -2959,6 +3520,100 @@ button.dock__slot {
     width: 44px;
     height: 44px;
   }
+
+  .share {
+    touch-action: auto;
+    background: #fffdf4;
+  }
+
+  .share__body {
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fffdf4;
+  }
+
+  .share__stage {
+    width: calc(100% - 32px);
+    height: auto;
+    aspect-ratio: 370 / 318;
+    margin: 16px 16px 0;
+    overflow: hidden;
+    flex: none;
+  }
+
+  .share__slot {
+    top: calc(100% * 28 / 318);
+    left: 50%;
+    width: 72%;
+    height: auto;
+    aspect-ratio: 347 / 464;
+    transform: translateX(-50%);
+    container-type: inline-size;
+  }
+
+  .biz {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 347px;
+    height: 464px;
+    transform: scale(calc(100cqi / 347px));
+    transform-origin: top left;
+  }
+
+  .share__save--card {
+    display: none;
+  }
+
+  .share__save--stage {
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    right: 10px;
+    display: grid;
+  }
+
+  .share__panel {
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 32px 16px 24px;
+    overflow: visible;
+    background: #fffdf4;
+  }
+
+  .share__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .share__intro-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .share__profile {
+    gap: 24px;
+    padding: 16px 20px;
+  }
+
+  .share__meet--head {
+    display: flex;
+  }
+
+  .share__meet--foot {
+    display: none;
+  }
+
+  .share__foot {
+    justify-content: flex-end;
+    gap: 5px;
+    background: #f6f4ea;
+  }
 }
 
 html.is-gated .phone-apps,
@@ -3012,7 +3667,7 @@ html[lang="zh-CN"] .lightbox__back > span:last-child {
   line-height: 1;
 }
 
-html[lang="zh-CN"] .connect,
+html[lang="zh-CN"] .contact .meet,
 html[lang="zh-CN"] .about__prose p,
 html[lang="zh-CN"] .beyond,
 html[lang="zh-CN"] .work__lead,
@@ -3039,10 +3694,12 @@ html[lang="zh-CN"] .fig figcaption > p:last-child {
   font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
-html[lang="zh-CN"] .connect {
-  padding-top: 0;
-  padding-bottom: 0;
-  line-height: 16px;
+html[lang="zh-CN"] .contact .meet {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="zh-CN"] .contact .meet__label {
   text-box-edge: auto;
   text-box-trim: none;
 }

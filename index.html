@@ -173,10 +173,14 @@
                 <img src="/assets/portrait.png" alt="">
               </div>
               <div class="contact__actions">
-                <a class="mail" href="mailto:iamyifanwang@hotmail.com" aria-label="Email">
-                  <img src="/assets/icon-mail.svg" alt="">
+                <a class="meet" href="https://calendly.com/evalalawang/30min" target="_blank" rel="noreferrer">
+                  <img src="/assets/icon-calendar.svg" alt="">
+                  <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+                  <span class="meet__label">book meeting</span>
                 </a>
-                <a class="connect" href="https://www.linkedin.com/in/iamyifanwang" target="_blank" rel="noreferrer">Connect</a>
+                <button class="share-open" id="share-open" type="button" aria-label="Share">
+                  <img src="/assets/icon-share.svg" alt="">
+                </button>
               </div>
             </div>
             <div class="contact__id">
@@ -1454,6 +1458,105 @@
             </article>
           </div>
         </div>
+      </section>
+
+      <section class="share" id="sharecard" data-drag hidden aria-label="Share and connect">
+        <header class="share__bar">
+          <p class="share__title"><img src="/assets/icon-share-ink.svg" alt="">share &amp; connect</p>
+          <button class="share__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+        </header>
+        <div class="share__body">
+          <div class="share__stage">
+            <div class="share__banner">
+              <img class="share__hills" src="/assets/contact-hills.png" alt="">
+              <canvas class="share__dither" id="share-dither"></canvas>
+              <div class="share__veil"></div>
+            </div>
+            <div class="share__slot">
+              <article class="biz" id="biz-card">
+                <div class="biz__wash"></div>
+                <div class="biz__main">
+                  <div class="biz__id">
+                    <div class="biz__block biz__block--name">
+                      <p class="biz__name">Yifan Wang</p>
+                      <p class="biz__role">Product &amp; Interaction Designer</p>
+                    </div>
+                    <div class="biz__block">
+                      <p class="biz__kicker">Focus areas</p>
+                      <p class="biz__focus">Digital products · Interactive experience · AI</p>
+                    </div>
+                  </div>
+                  <img class="biz__portrait" src="/assets/portrait.png" alt="">
+                </div>
+                <div class="biz__meta">
+                  <div class="biz__divider"></div>
+                  <p class="biz__row"><span class="biz__kicker">Email</span><span>iamyifanwang@hotmail.com</span></p>
+                  <p class="biz__row"><span class="biz__kicker">LinkedIn</span><span>/iamyifanwang</span></p>
+                </div>
+                <img class="biz__qr" src="/share/qr.png" alt="">
+              </article>
+              <button class="share__save share__save--card" type="button" aria-label="Download image">
+                <img src="/assets/icon-download.svg" alt="">
+              </button>
+            </div>
+            <button class="share__save share__save--stage" type="button" aria-label="Download image">
+              <img src="/assets/icon-download.svg" alt="">
+            </button>
+          </div>
+          <div class="share__panel">
+            <div class="share__intro">
+              <div class="share__intro-copy">
+                <h2>Let’s chat!</h2>
+                <p>Save my contact, share my work, or introduce me to your team.</p>
+              </div>
+              <a class="meet share__meet--head" href="https://calendly.com/evalalawang/30min" target="_blank" rel="noreferrer">
+                <img src="/assets/icon-calendar.svg" alt="">
+                <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+                <span class="meet__label">book meeting</span>
+              </a>
+            </div>
+            <div class="share__line"></div>
+            <div class="share__profile">
+              <p class="share__eyebrow"><img src="/assets/icon-profile.svg" alt="">profile</p>
+              <p class="share__bio">I’m an interaction designer who cares deeply about making digital experiences clear, useful, and delightful. I enjoy solving problems through research and by bringing together product thinking, visual systems, and emerging technologies.</p>
+              <div class="share__chips">
+                <span>Product Design</span>
+                <span>UX Research</span>
+                <span>AI Prototyping</span>
+                <span>Interaction</span>
+                <span>Visual Exploration</span>
+                <span>Design Systems</span>
+              </div>
+            </div>
+            <div class="share__linkbox">
+              <p class="share__label">share card link</p>
+              <div class="share__link">
+                <p class="share__url"><img src="/assets/icon-link.svg" alt=""><span>https://yifanwangdesign.com/#sharing</span></p>
+                <button class="share__copy" id="share-copy-link" type="button"><span>Copy Link</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="share__foot">
+          <a class="meet share__meet--foot" href="https://calendly.com/evalalawang/30min" target="_blank" rel="noreferrer">
+            <img src="/assets/icon-calendar.svg" alt="">
+            <span class="restart__rule"><img src="/assets/divider.svg" alt=""></span>
+            <span class="meet__label">book meeting</span>
+          </a>
+          <div class="share__foot-actions">
+            <button class="ghost" id="share-copy-text" type="button">
+              <img class="ghost__copy" src="/assets/icon-copy.svg" alt="">
+              <img class="ghost__check" src="/assets/icon-check.svg" alt="">
+              <span class="share__rule"></span>
+              <span>copy text</span>
+            </button>
+            <button class="ghost" id="share-email" type="button">
+              <img class="ghost__mail" src="/assets/icon-send.svg" alt="">
+              <span class="share__rule"></span>
+              <span>share by email</span>
+            </button>
+          </div>
+        </footer>
       </section>
 
       <section class="sketch" id="sketch" data-drag hidden aria-label="Note">

@@ -257,7 +257,7 @@ function findOpen(id) {
 }
 
 function layerItems() {
-  return [...document.querySelectorAll(".finder, .projects, .sketch")];
+  return [...document.querySelectorAll(".finder, .projects, .sketch, .share")];
 }
 
 function raise(win) {
@@ -363,7 +363,7 @@ document.querySelectorAll("[data-drag]").forEach((el) => {
 
   el.addEventListener("pointerdown", (event) => {
     if (event.button !== 0) return;
-    if (isPhone() && el.matches(".about, .folder, .finder, .projects, .sketch")) return;
+    if (isPhone() && el.matches(".about, .folder, .finder, .projects, .sketch, .share")) return;
     if (event.target.closest("button, a, input, textarea, canvas, .projects__stage, .sketch__foot")) return;
     el.classList.remove("is-sizing");
     const rect = el.getBoundingClientRect();
@@ -381,7 +381,7 @@ document.querySelectorAll("[data-drag]").forEach((el) => {
     const dx = event.clientX - startX;
     const dy = event.clientY - startY;
     if (!dragged && Math.hypot(dx, dy) < DRAG_SLOP) return;
-    if (!dragged && el.matches(".finder, .projects, .sketch")) {
+    if (!dragged && el.matches(".finder, .projects, .sketch, .share")) {
       if (el.classList.contains("projects")) el.style.transform = "none";
       raise(el);
     }
@@ -409,6 +409,7 @@ window.addEventListener("resize", () => {
     el.style.removeProperty("top");
     el.style.removeProperty("transform");
   });
+  paintShare();
 });
 
 function bindHover(el) {
@@ -443,6 +444,7 @@ document.querySelector("#restart").addEventListener("click", () => {
     win.style.removeProperty("width");
     win.style.removeProperty("height");
   });
+  closeShare();
   markSheet();
 });
 
@@ -1143,7 +1145,267 @@ function typeGate() {
   tick();
 }
 
+const shareCard = document.querySelector("#sharecard");
+const shareCanvas = document.querySelector("#share-dither");
+const hills = new Image();
+hills.src = "/assets/contact-hills.png";
+const SHARE_URL = "https://yifanwangdesign.com/#sharing";
+const PROFILE_PLAIN = [
+  "Yifan Wang",
+  "Product & Interaction Designer",
+  "",
+  "Focus areas",
+  "Digital products · Interactive experience · AI",
+  "",
+  "Summary",
+  "I’m an interaction designer who cares deeply about making digital experiences clear, useful, and delightful. I enjoy solving problems through research and by bringing together product thinking, visual systems, and emerging technologies.",
+  "",
+  "Key words",
+  "Product Design · UX Research · AI Prototyping · Interaction · Visual Exploration · Design Systems",
+  "",
+  "Contact",
+  "Email: iamyifanwang@hotmail.com",
+  "LinkedIn: www.linkedin.com/in/iamyifanwang",
+].join("\n");
+const PROFILE_HTML = [
+  "<p><b>Yifan Wang</b><br>Product &amp; Interaction Designer</p>",
+  "<p><b>Focus areas</b><br>Digital products · Interactive experience · AI</p>",
+  "<p><b>Summary</b><br>I’m an interaction designer who cares deeply about making digital experiences clear, useful, and delightful. I enjoy solving problems through research and by bringing together product thinking, visual systems, and emerging technologies.</p>",
+  "<p><b>Key words</b><br>Product Design · UX Research · AI Prototyping · Interaction · Visual Exploration · Design Systems</p>",
+  "<p><b>Contact</b><br>Email: iamyifanwang@hotmail.com<br>LinkedIn: www.linkedin.com/in/iamyifanwang</p>",
+].join("");
+
+function paintShare() {
+  if (!hills.complete || !hills.naturalWidth || shareCard.hidden) return;
+  if (shareCanvas.clientWidth < 2) return;
+  paintDither(hills, shareCanvas, {
+    tile: 4,
+    levels: 7,
+    contrast: 1,
+    brightness: 113,
+  });
+}
+
+hills.addEventListener("load", paintShare);
+
+function setShareHash(open) {
+  if ((location.hash === "#sharing") === open) return;
+  history.replaceState(null, "", open ? "#sharing" : `${location.pathname}${location.search}`);
+}
+
+function openShare() {
+  shareCard.hidden = false;
+  raise(shareCard);
+  markSheet();
+  setShareHash(true);
+  requestAnimationFrame(paintShare);
+}
+
+function closeShare() {
+  shareCard.hidden = true;
+  setShareHash(false);
+  markSheet();
+}
+
+function flashLabel(button, next) {
+  const label = button.querySelector("span:last-child");
+  const previous = label.textContent;
+  label.textContent = next;
+  window.setTimeout(() => {
+    if (label.textContent === next) label.textContent = previous;
+  }, 1400);
+}
+
+function roundedRect(ctx, x, y, width, height, radius) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.arcTo(x + width, y, x + width, y + height, radius);
+  ctx.arcTo(x + width, y + height, x, y + height, radius);
+  ctx.arcTo(x, y + height, x, y, radius);
+  ctx.arcTo(x, y, x + width, y, radius);
+  ctx.closePath();
+}
+
+function downloadCard() {
+  const card = document.querySelector("#biz-card");
+  const origin = card.getBoundingClientRect();
+  const scale = 347 / origin.width;
+  const canvas = document.createElement("canvas");
+  canvas.width = 347;
+  canvas.height = 464;
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, 347, 464);
+  roundedRect(ctx, 0.5, 0.5, 346, 463, 8);
+  ctx.fillStyle = "#fffdf4";
+  ctx.fill();
+  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const wash = card.querySelector(".biz__wash");
+  if (wash) {
+    const band = wash.getBoundingClientRect();
+    const x = (band.left - origin.left) * scale;
+    const y = (band.top - origin.top) * scale;
+    const w = band.width * scale;
+    const h = band.height * scale;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x, y + h);
+    ctx.lineTo(x, y + 6);
+    ctx.arcTo(x, y, x + 6, y, 6);
+    ctx.lineTo(x + w - 6, y);
+    ctx.arcTo(x + w, y, x + w, y + 6, 6);
+    ctx.lineTo(x + w, y + h);
+    ctx.closePath();
+    ctx.fillStyle = "#f6f4ea";
+    ctx.fill();
+    ctx.restore();
+  }
+
+  const place = (el) => {
+    const rect = el.getBoundingClientRect();
+    return {
+      x: (rect.left - origin.left) * scale,
+      y: (rect.top - origin.top) * scale,
+      w: rect.width * scale,
+      h: rect.height * scale,
+    };
+  };
+
+  card.querySelectorAll("p, span").forEach((el) => {
+    if (el.querySelector("p, span")) return;
+    const raw = [...el.childNodes].filter((node) => node.nodeType === 3).map((node) => node.textContent).join("").trim();
+    if (!raw) return;
+    const box = place(el);
+    const style = getComputedStyle(el);
+    const text = style.textTransform === "uppercase" ? raw.toUpperCase() : raw;
+    const size = parseFloat(style.fontSize) * scale;
+    const line = parseFloat(style.lineHeight);
+    const lead = Number.isFinite(line) ? ((line - parseFloat(style.fontSize)) / 2) * scale : 0;
+    ctx.save();
+    ctx.font = `${style.fontStyle} ${style.fontWeight} ${size}px ${style.fontFamily}`;
+    ctx.fillStyle = style.color;
+    ctx.globalAlpha = Number(style.opacity) || 1;
+    ctx.textBaseline = "top";
+    const spacing = style.letterSpacing === "normal" ? 0 : parseFloat(style.letterSpacing) * scale;
+    if (!spacing) ctx.fillText(text, box.x, box.y + lead);
+    else {
+      let cursor = box.x;
+      [...text].forEach((glyph) => {
+        ctx.fillText(glyph, cursor, box.y + lead);
+        cursor += ctx.measureText(glyph).width + spacing;
+      });
+    }
+    ctx.restore();
+  });
+
+  const rule = card.querySelector(".biz__divider");
+  const ruleBox = place(rule);
+  ctx.save();
+  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(ruleBox.x, ruleBox.y + 0.5);
+  ctx.lineTo(ruleBox.x + ruleBox.w, ruleBox.y + 0.5);
+  ctx.stroke();
+  ctx.restore();
+
+  const portrait = card.querySelector(".biz__portrait");
+  const photoBox = place(portrait);
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(photoBox.x + photoBox.w / 2, photoBox.y + photoBox.h / 2, photoBox.w / 2, 0, Math.PI * 2);
+  ctx.clip();
+  ctx.drawImage(portrait, photoBox.x, photoBox.y, photoBox.w, photoBox.h);
+  ctx.restore();
+  ctx.beginPath();
+  ctx.arc(photoBox.x + photoBox.w / 2, photoBox.y + photoBox.h / 2, photoBox.w / 2 - 0.5, 0, Math.PI * 2);
+  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const qr = card.querySelector(".biz__qr");
+  const qrBox = place(qr);
+  ctx.drawImage(qr, qrBox.x, qrBox.y, qrBox.w, qrBox.h);
+
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Yifan-Wang.png";
+    link.click();
+    URL.revokeObjectURL(url);
+  });
+}
+
+async function copyProfile() {
+  try {
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        "text/html": new Blob([PROFILE_HTML], { type: "text/html" }),
+        "text/plain": new Blob([PROFILE_PLAIN], { type: "text/plain" }),
+      }),
+    ]);
+  } catch {
+    await navigator.clipboard.writeText(PROFILE_PLAIN);
+  }
+}
+
+document.querySelector("#share-open").addEventListener("click", openShare);
+shareCard.querySelector(".share__close").addEventListener("click", (event) => {
+  event.stopPropagation();
+  closeShare();
+});
+shareCard.addEventListener("pointerdown", () => {
+  if (!shareCard.hidden) raise(shareCard);
+});
+document.querySelector("#share-copy-link").addEventListener("click", async (event) => {
+  try {
+    await navigator.clipboard.writeText(SHARE_URL);
+    flashLabel(event.currentTarget, "Copied");
+  } catch {
+    /* clipboard can be blocked until the page is focused */
+  }
+});
+let copyTextTimer = 0;
+document.querySelector("#share-copy-text").addEventListener("click", async (event) => {
+  const button = event.currentTarget;
+  const label = button.querySelector("span:last-child");
+  try {
+    await copyProfile();
+    button.classList.add("is-done");
+    label.textContent = "copied";
+    window.clearTimeout(copyTextTimer);
+    copyTextTimer = window.setTimeout(() => {
+      button.classList.remove("is-done");
+      label.textContent = "copy text";
+    }, 5000);
+  } catch {
+    /* clipboard can be blocked until the page is focused */
+  }
+});
+document.querySelectorAll(".share__save").forEach((button) => {
+  button.addEventListener("click", () => downloadCard());
+});
+document.querySelector("#share-email").addEventListener("click", () => {
+  copyProfile().catch(() => {});
+  window.location.href = `mailto:?subject=${encodeURIComponent("Yifan Wang")}&body=${encodeURIComponent(PROFILE_PLAIN)}`;
+});
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#sharing") openShare();
+  else closeShare();
+});
+
 function openGate() {
+  if (location.hash === "#sharing") {
+    document.documentElement.classList.add("is-in");
+    document.documentElement.classList.remove("is-gated");
+    gate.hidden = true;
+    openShare();
+    return;
+  }
   document.documentElement.classList.add("is-gated");
   document.documentElement.classList.remove("is-in");
   gate.hidden = false;
@@ -1199,7 +1461,7 @@ function markSheet() {
 }
 
 function sheetOpen() {
-  return Boolean(document.querySelector(".projects:not([hidden]), .sketch:not([hidden]), .finder:not([hidden])"));
+  return Boolean(document.querySelector(".projects:not([hidden]), .sketch:not([hidden]), .finder:not([hidden]), .share:not([hidden])"));
 }
 
 function park(node, parent) {

@@ -16,6 +16,7 @@ const EXACT = new Map([
   ["clear", "清除"],
   ["back to folder", "回到文件夹"],
   ["Connect", "联系我"],
+  ["book meeting", "开启会面"],
   ["back to projects", "返回项目"],
   ["About", "简介"],
   ["about me", "关于我"],
@@ -323,7 +324,7 @@ const SPECIFIC = [
   { selector: ".beyond, .work__more", en: ".", zh: "。" },
 ];
 
-const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .socials, .contact__name, .handle, #time-clock, .file";
+const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .socials, .contact__name, .handle, #time-clock, .file, .share";
 
 const originals = new WeakMap();
 const listeners = [];
