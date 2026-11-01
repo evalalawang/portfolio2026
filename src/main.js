@@ -409,7 +409,6 @@ window.addEventListener("resize", () => {
     el.style.removeProperty("top");
     el.style.removeProperty("transform");
   });
-  paintShare();
 });
 
 function bindHover(el) {
@@ -1146,9 +1145,6 @@ function typeGate() {
 }
 
 const shareCard = document.querySelector("#sharecard");
-const shareCanvas = document.querySelector("#share-dither");
-const hills = new Image();
-hills.src = "/assets/contact-hills.png";
 const SHARE_URL = "https://yifanwangdesign.com/#sharing";
 const PROFILE_PLAIN = [
   "Yifan Wang",
@@ -1175,19 +1171,6 @@ const PROFILE_HTML = [
   "<p><b>Contact</b><br>Email: iamyifanwang@hotmail.com<br>LinkedIn: www.linkedin.com/in/iamyifanwang</p>",
 ].join("");
 
-function paintShare() {
-  if (!hills.complete || !hills.naturalWidth || shareCard.hidden) return;
-  if (shareCanvas.clientWidth < 2) return;
-  paintDither(hills, shareCanvas, {
-    tile: 4,
-    levels: 7,
-    contrast: 1,
-    brightness: 113,
-  });
-}
-
-hills.addEventListener("load", paintShare);
-
 function setShareHash(open) {
   if ((location.hash === "#sharing") === open) return;
   history.replaceState(null, "", open ? "#sharing" : `${location.pathname}${location.search}`);
@@ -1198,7 +1181,6 @@ function openShare() {
   raise(shareCard);
   markSheet();
   setShareHash(true);
-  requestAnimationFrame(paintShare);
 }
 
 function closeShare() {
@@ -1216,128 +1198,13 @@ function flashLabel(button, next) {
   }, 1400);
 }
 
-function roundedRect(ctx, x, y, width, height, radius) {
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.arcTo(x + width, y, x + width, y + height, radius);
-  ctx.arcTo(x + width, y + height, x, y + height, radius);
-  ctx.arcTo(x, y + height, x, y, radius);
-  ctx.arcTo(x, y, x + width, y, radius);
-  ctx.closePath();
-}
-
 function downloadCard() {
-  const card = document.querySelector("#biz-card");
-  const origin = card.getBoundingClientRect();
-  const scale = 347 / origin.width;
-  const canvas = document.createElement("canvas");
-  canvas.width = 347;
-  canvas.height = 464;
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, 347, 464);
-  roundedRect(ctx, 0.5, 0.5, 346, 463, 8);
-  ctx.fillStyle = "#fffdf4";
-  ctx.fill();
-  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  const wash = card.querySelector(".biz__wash");
-  if (wash) {
-    const band = wash.getBoundingClientRect();
-    const x = (band.left - origin.left) * scale;
-    const y = (band.top - origin.top) * scale;
-    const w = band.width * scale;
-    const h = band.height * scale;
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(x, y + h);
-    ctx.lineTo(x, y + 6);
-    ctx.arcTo(x, y, x + 6, y, 6);
-    ctx.lineTo(x + w - 6, y);
-    ctx.arcTo(x + w, y, x + w, y + 6, 6);
-    ctx.lineTo(x + w, y + h);
-    ctx.closePath();
-    ctx.fillStyle = "#f6f4ea";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  const place = (el) => {
-    const rect = el.getBoundingClientRect();
-    return {
-      x: (rect.left - origin.left) * scale,
-      y: (rect.top - origin.top) * scale,
-      w: rect.width * scale,
-      h: rect.height * scale,
-    };
-  };
-
-  card.querySelectorAll("p, span").forEach((el) => {
-    if (el.querySelector("p, span")) return;
-    const raw = [...el.childNodes].filter((node) => node.nodeType === 3).map((node) => node.textContent).join("").trim();
-    if (!raw) return;
-    const box = place(el);
-    const style = getComputedStyle(el);
-    const text = style.textTransform === "uppercase" ? raw.toUpperCase() : raw;
-    const size = parseFloat(style.fontSize) * scale;
-    const line = parseFloat(style.lineHeight);
-    const lead = Number.isFinite(line) ? ((line - parseFloat(style.fontSize)) / 2) * scale : 0;
-    ctx.save();
-    ctx.font = `${style.fontStyle} ${style.fontWeight} ${size}px ${style.fontFamily}`;
-    ctx.fillStyle = style.color;
-    ctx.globalAlpha = Number(style.opacity) || 1;
-    ctx.textBaseline = "top";
-    const spacing = style.letterSpacing === "normal" ? 0 : parseFloat(style.letterSpacing) * scale;
-    if (!spacing) ctx.fillText(text, box.x, box.y + lead);
-    else {
-      let cursor = box.x;
-      [...text].forEach((glyph) => {
-        ctx.fillText(glyph, cursor, box.y + lead);
-        cursor += ctx.measureText(glyph).width + spacing;
-      });
-    }
-    ctx.restore();
-  });
-
-  const rule = card.querySelector(".biz__divider");
-  const ruleBox = place(rule);
-  ctx.save();
-  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
-  ctx.lineWidth = 1;
-  ctx.setLineDash([4, 4]);
-  ctx.beginPath();
-  ctx.moveTo(ruleBox.x, ruleBox.y + 0.5);
-  ctx.lineTo(ruleBox.x + ruleBox.w, ruleBox.y + 0.5);
-  ctx.stroke();
-  ctx.restore();
-
-  const portrait = card.querySelector(".biz__portrait");
-  const photoBox = place(portrait);
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(photoBox.x + photoBox.w / 2, photoBox.y + photoBox.h / 2, photoBox.w / 2, 0, Math.PI * 2);
-  ctx.clip();
-  ctx.drawImage(portrait, photoBox.x, photoBox.y, photoBox.w, photoBox.h);
-  ctx.restore();
-  ctx.beginPath();
-  ctx.arc(photoBox.x + photoBox.w / 2, photoBox.y + photoBox.h / 2, photoBox.w / 2 - 0.5, 0, Math.PI * 2);
-  ctx.strokeStyle = "rgba(52, 48, 25, 0.13)";
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  const qr = card.querySelector(".biz__qr");
-  const qrBox = place(qr);
-  ctx.drawImage(qr, qrBox.x, qrBox.y, qrBox.w, qrBox.h);
-
-  canvas.toBlob((blob) => {
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "Yifan-Wang.png";
-    link.click();
-    URL.revokeObjectURL(url);
-  });
+  const link = document.createElement("a");
+  link.href = "/share/yifan-wang.jpg";
+  link.download = "Yifan-Wang.jpg";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 }
 
 async function copyProfile() {
