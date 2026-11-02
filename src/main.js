@@ -459,7 +459,9 @@ tabs.forEach((tab) => {
       item.setAttribute("aria-selected", on ? "true" : "false");
     });
     panels.forEach((panel) => {
-      panel.hidden = panel.dataset.panel !== id;
+      const hide = panel.dataset.panel !== id;
+      panel.hidden = hide;
+      panel.setAttribute("aria-hidden", hide ? "true" : "false");
     });
   });
 });
