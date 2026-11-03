@@ -678,7 +678,6 @@ img {
   bottom: 20px;
   left: 20px;
   overflow: hidden;
-  border: 1px solid rgba(52, 48, 25, 0.13);
   border-radius: 4px;
   pointer-events: none;
 }
@@ -1934,6 +1933,10 @@ img {
   opacity: 1;
 }
 
+.lang-link {
+  display: none;
+}
+
 .socials {
   display: flex;
   align-items: center;
@@ -3015,7 +3018,43 @@ button.dock__slot {
   }
 
   .socials {
-    padding: 0 16px;
+    padding: 0 12px 0 16px;
+  }
+
+  .lang-link__rule {
+    display: block;
+    flex: none;
+    width: 1px;
+    align-self: stretch;
+    background: rgba(52, 48, 25, 0.13);
+  }
+
+  .lang-link {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    height: 44px;
+    margin: 0 16px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: #343019;
+    font-family: "Reddit Mono", monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .lang-link.is-han {
+    font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .pager {
@@ -3074,8 +3113,95 @@ button.dock__slot {
     height: 0;
   }
 
-  #phone-home {
-    padding-bottom: 156px;
+  #phone-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 92px;
+  }
+
+  #phone-widgets > * {
+    flex: none;
+  }
+
+  #phone-widgets .about__body {
+    overflow: visible;
+  }
+
+  #phone-tools {
+    padding: calc(26 / 402 * var(--app-width, 100vw)) calc(20 / 402 * var(--app-width, 100vw)) 92px;
+  }
+
+  .combo {
+    width: calc(167 / 402 * var(--app-width, 100vw));
+    margin-left: calc(6 / 402 * var(--app-width, 100vw));
+  }
+
+  .combo__plate {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(13 / 167 * 100%);
+    padding: calc(13 / 167 * 100%);
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 12px;
+  }
+
+  .combo__tile,
+  .combo__mini {
+    min-width: 0;
+    aspect-ratio: 1;
+  }
+
+  .combo__tile,
+  .combo__tiny {
+    display: grid;
+    place-items: center;
+    background: #343019;
+    border: 1px solid rgba(52, 48, 25, 0.13);
+  }
+
+  .combo__tile {
+    border-radius: 8px;
+  }
+
+  .combo__tile img,
+  .combo__tiny img {
+    display: block;
+    width: 61%;
+    height: 61%;
+  }
+
+  .combo__mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(5.5 / 64 * 100%);
+  }
+
+  .combo__tiny {
+    border-radius: 4px;
+    aspect-ratio: 1;
+  }
+
+  .combo__label {
+    margin: 12px 0 0;
+    color: #fffdf4;
+    font-family: Satoshi, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  #phone-tools .headline {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: calc(41 / 402 * var(--app-width, 100vw)) 0 0;
+    font-size: 38px;
+    letter-spacing: -0.38px;
   }
 
   .phone-apps {
@@ -3219,9 +3345,8 @@ button.dock__slot {
     gap: 6px;
     width: 76px;
     height: 40px;
-    background: rgba(52, 48, 25, 0.3);
+    background: #343019;
     border-radius: 8px;
-    backdrop-filter: blur(10px);
     transform: translateX(-50%);
   }
 
@@ -3229,13 +3354,14 @@ button.dock__slot {
     width: 8px;
     height: 8px;
     padding: 0;
-    background: #fffdf4;
+    background: #8b8774;
     border: 0;
     border-radius: 50%;
-    opacity: 0.4;
+    opacity: 1;
   }
 
   .pager-dots button.is-on {
+    background: #fffdf4;
     opacity: 1;
   }
 
@@ -3248,10 +3374,6 @@ button.dock__slot {
     width: max-content;
     max-width: none;
     transform: translateX(-50%);
-  }
-
-  html.is-phone-home .dock {
-    display: flex;
   }
 
   button.dock__slot.dock__slot--desk,
@@ -3663,6 +3785,7 @@ html[lang="zh-CN"] .spark,
 html[lang="zh-CN"] .meta,
 html[lang="zh-CN"] .projects__nav,
 html[lang="zh-CN"] .weather__label,
+html[lang="zh-CN"] .combo__label,
 html[lang="zh-CN"] .phone-app,
 html[lang="zh-CN"] .compare__switch button,
 html[lang="zh-CN"] #time-date {
@@ -3733,16 +3856,21 @@ html[lang="zh-CN"] .contact .meet__label {
 
 html[lang="zh-CN"] .about__prose p,
 html[lang="zh-CN"] .beyond,
+html[lang="zh-CN"] .work__lead,
 html[lang="zh-CN"] .work__more,
+html[lang="zh-CN"] .work__row,
+html[lang="zh-CN"] .bio,
+html[lang="zh-CN"] .share__intro p,
+html[lang="zh-CN"] .share__bio,
 html[lang="zh-CN"] .prose p,
 html[lang="zh-CN"] .muted,
 html[lang="zh-CN"] .col > p:not(.spark),
 html[lang="zh-CN"] .card p,
 html[lang="zh-CN"] .fig figcaption > p:last-child,
 html[lang="zh-CN"] .meta__value {
-  line-height: 19px;
+  line-height: 150%;
 }
 
 html[lang="zh-CN"] .about__gap {
-  height: 19px;
+  height: 1.5em;
 }

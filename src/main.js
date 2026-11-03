@@ -1,5 +1,5 @@
 import { paintDither } from "./dither.js";
-import { language, onLanguage, phrase } from "./i18n.js";
+import { language, onLanguage, phrase, setLanguage } from "./i18n.js";
 
 const TOP_BAR = 44;
 const DOCK_HEIGHT = 66;
@@ -1315,8 +1315,8 @@ mobileQuery.addEventListener("change", (event) => {
 });
 
 const phoneWidgets = document.querySelector("#phone-widgets");
-const phoneAbout = document.querySelector("#phone-about");
 const phoneHome = document.querySelector("#phone-home");
+const phoneTools = document.querySelector("#phone-tools");
 const phoneTrack = document.querySelector("#pager-track");
 const aboutCard = document.querySelector("#about");
 const aboutHeights = { wide: 0, phone: 0 };
@@ -1409,7 +1409,6 @@ function setPhonePage(index, animate) {
     dot.classList.toggle("is-on", dotIndex === phonePage);
     dot.setAttribute("aria-current", dotIndex === phonePage ? "true" : "false");
   });
-  document.documentElement.classList.toggle("is-phone-home", isPhone() && phonePage === 2);
   if (!animate) {
     document.documentElement.classList.remove("is-swiping");
     return;
@@ -1433,8 +1432,8 @@ function syncPhone() {
   document.documentElement.classList.toggle("is-phone", isPhone());
   if (isPhone()) {
     park(rightWidget, phoneWidgets);
-    park(aboutCard, phoneAbout);
-    park(headline, phoneHome);
+    park(aboutCard, phoneWidgets);
+    park(headline, phoneTools);
     rightWidget.classList.remove("is-closed");
     if (currentId !== "chill") loadSong("chill", false);
     windows.forEach((win) => {
@@ -1454,7 +1453,7 @@ function syncPhone() {
   phoneTrack.style.removeProperty("width");
   phoneTrack.style.removeProperty("transform");
   document.querySelectorAll(".pager__view").forEach((view) => view.style.removeProperty("width"));
-  document.documentElement.classList.remove("is-phone-home", "is-sheet");
+  document.documentElement.classList.remove("is-sheet");
 }
 
 document.querySelectorAll(".pager-dots button").forEach((dot) => {
@@ -1535,7 +1534,23 @@ window.addEventListener("orientationchange", onViewportResize);
 
 syncPhone();
 
+function paintLangLink() {
+  const link = document.querySelector("#lang-link");
+  if (!link) return;
+  const zh = language() === "zh";
+  link.textContent = zh ? "EN" : "中";
+  link.classList.toggle("is-han", !zh);
+  link.setAttribute("lang", zh ? "en" : "zh-CN");
+  link.setAttribute("aria-label", zh ? "Switch to English" : "切换到中文");
+}
+
+document.querySelector("#lang-link").addEventListener("click", () => {
+  setLanguage(language() === "zh" ? "en" : "zh");
+});
+paintLangLink();
+
 onLanguage(() => {
+  paintLangLink();
   paintTime();
   paintWeatherLabel();
   document.querySelectorAll(".finder").forEach((win) => {

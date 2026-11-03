@@ -461,6 +461,8 @@
           <a href="https://www.behance.net/iamevawang" target="_blank" rel="noreferrer" aria-label="Behance"><img src="/assets/icon-behance.svg" alt=""></a>
           <a href="https://dribbble.com/iamyifanwang" target="_blank" rel="noreferrer" aria-label="Dribbble"><img src="/assets/icon-dribbble.svg" alt=""></a>
         </div>
+        <span class="lang-link__rule" aria-hidden="true"></span>
+        <button class="lang-link is-han" id="lang-link" type="button" lang="zh-CN" aria-label="切换到中文">中</button>
         <button class="time" id="time-button" type="button" aria-expanded="true" aria-controls="right-widget">
           <span id="time-date">Fri, 30 Oct 2026</span>
           <span class="time__clock" id="time-clock">10:40 AM</span>
@@ -481,7 +483,6 @@
       <div class="pager">
         <div class="pager__track" id="pager-track">
           <section class="pager__view" id="phone-widgets"></section>
-          <section class="pager__view" id="phone-about"></section>
           <section class="pager__view" id="phone-home">
             <div class="phone-apps">
               <button class="phone-app" type="button" data-sheet="projects">
@@ -494,12 +495,27 @@
               </button>
             </div>
           </section>
+          <section class="pager__view" id="phone-tools" aria-label="Software and tools">
+            <div class="combo">
+              <div class="combo__plate">
+                <span class="combo__tile"><img src="/assets/icon-ai.svg" alt="Illustrator"></span>
+                <span class="combo__tile"><img src="/assets/icon-openai.svg" alt="ChatGPT"></span>
+                <span class="combo__tile"><img src="/assets/icon-html.svg" alt="html/CSS/JS"></span>
+                <span class="combo__mini">
+                  <span class="combo__tiny"><img src="/assets/icon-ps.svg" alt="Photoshop"></span>
+                  <span class="combo__tiny"><img src="/assets/icon-figma.svg" alt="Figma"></span>
+                  <span class="combo__tiny"><img src="/assets/icon-sketch.svg" alt="Sketch"></span>
+                </span>
+              </div>
+              <p class="combo__label">My tools</p>
+            </div>
+          </section>
         </div>
       </div>
       <nav class="pager-dots" aria-label="Views">
         <button class="is-on" type="button" data-page="0" aria-label="Widgets"></button>
-        <button type="button" data-page="1" aria-label="About"></button>
-        <button type="button" data-page="2" aria-label="Home"></button>
+        <button type="button" data-page="1" aria-label="Home"></button>
+        <button type="button" data-page="2" aria-label="Tools"></button>
       </nav>
 
       <button class="restart" id="restart" type="button">
