@@ -1191,13 +1191,14 @@ function closeShare() {
   markSheet();
 }
 
-function flashLabel(button, next) {
+function flashLabel(button, next, duration = 5000) {
   const label = button.querySelector("span:last-child");
-  const previous = label.textContent;
+  if (!button.dataset.label) button.dataset.label = label.textContent;
   label.textContent = next;
-  window.setTimeout(() => {
-    if (label.textContent === next) label.textContent = previous;
-  }, 1400);
+  window.clearTimeout(button.flashTimer);
+  button.flashTimer = window.setTimeout(() => {
+    label.textContent = button.dataset.label;
+  }, duration);
 }
 
 function downloadCard() {
@@ -1231,9 +1232,10 @@ shareCard.addEventListener("pointerdown", () => {
   if (!shareCard.hidden) raise(shareCard);
 });
 document.querySelector("#share-copy-link").addEventListener("click", async (event) => {
+  const button = event.currentTarget;
   try {
     await navigator.clipboard.writeText(SHARE_URL);
-    flashLabel(event.currentTarget, "Copied");
+    flashLabel(button, "Copied");
   } catch {
     /* clipboard can be blocked until the page is focused */
   }

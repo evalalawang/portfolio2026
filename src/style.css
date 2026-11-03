@@ -203,7 +203,7 @@ img {
 .about {
   position: absolute;
   z-index: 12;
-  left: 24px;
+  left: 16px;
   top: 442px;
   display: flex;
   flex-direction: column;
@@ -422,8 +422,8 @@ img {
 .right-widget {
   position: absolute;
   z-index: 10;
-  top: 68px;
-  right: 24px;
+  top: 60px;
+  right: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -595,12 +595,12 @@ img {
 .share {
   position: absolute;
   z-index: 28;
-  top: calc(44px + (100% - 126px - min(611px, 100% - 126px)) / 2);
-  left: calc(24px + (100% - 48px - min(912px, 100% - 48px)) / 2);
+  top: calc(44px + (100% - 126px - min(655px, 100% - 126px)) / 2);
+  left: calc(24px + (100% - 48px - min(1008px, 100% - 48px)) / 2);
   display: flex;
   flex-direction: column;
-  width: min(912px, calc(100% - 48px));
-  height: min(611px, calc(100% - 126px));
+  width: min(1008px, calc(100% - 48px));
+  height: min(655px, calc(100% - 126px));
   overflow: hidden;
   background: transparent;
   border: 1px solid rgba(52, 48, 25, 0.13);
@@ -664,16 +664,21 @@ img {
 
 .share__stage {
   position: relative;
-  width: 427px;
+  width: 416px;
   flex: none;
   overflow: hidden;
-  background: #d9d9d9;
+  background: #fffdf4;
 }
 
 .share__banner {
   position: absolute;
-  inset: 0;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
   overflow: hidden;
+  border: 1px solid rgba(52, 48, 25, 0.13);
+  border-radius: 4px;
   pointer-events: none;
 }
 
@@ -707,54 +712,42 @@ img {
   position: absolute;
   z-index: 2;
   top: 40px;
-  left: 40px;
-  width: 347px;
-  height: 464px;
+  left: 24px;
+  width: 328px;
+  height: 479px;
+  pointer-events: auto;
 }
 
 .biz {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 347px;
-  height: 464px;
+  width: 328px;
+  height: 479px;
   overflow: hidden;
   background: #fffdf4;
   background-clip: padding-box;
   border: 1px solid rgba(52, 48, 25, 0.13);
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
-.biz__banner {
-  position: relative;
-  height: 168px;
-  margin: 4px 4px 0;
-  overflow: hidden;
-  border-radius: 4px 4px 0 0;
-  flex: none;
-}
-
-.biz__photo {
+.biz__copy {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.biz__hero {
-  position: absolute;
-  z-index: 1;
-  bottom: 16px;
-  left: 16px;
+  top: 80px;
+  left: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  width: 200px;
+  gap: 24px;
+  width: 288px;
+}
+
+.biz__id {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 149px;
 }
 
 .biz__kicker {
+  margin: 0;
   color: #343019;
   font-family: "Reddit Mono", monospace;
   font-size: 11px;
@@ -762,11 +755,11 @@ img {
   line-height: 15px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  opacity: 0.6;
 }
 
 .biz__name {
-  color: #fffdf4;
+  margin: 0;
+  color: #343019;
   font-family: "PP Editorial New", "Iowan Old Style", Palatino, Georgia, serif;
   font-size: 32px;
   font-weight: 400;
@@ -774,84 +767,65 @@ img {
   letter-spacing: -0.45px;
 }
 
-.biz__role {
-  display: inline-flex;
-  align-items: center;
-  margin: 0;
-  padding: 4px 10px;
-  background: #fffdf4;
-  border-radius: 999px;
-  color: #343019;
-  font-family: Satoshi, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0;
-  opacity: 1;
-}
-
 .biz__portrait {
   position: absolute;
   z-index: 2;
-  right: 12px;
-  bottom: 16px;
-  width: 64px;
-  height: 64px;
-  border: 1px solid #fffdf4;
+  top: 69px;
+  right: 20px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.biz__body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 16px;
-  padding: 28px 24px 20px;
 }
 
 .biz__block {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
 }
 
-.biz__focus {
+.biz__block--tight {
+  gap: 2px;
+}
+
+.biz__focus,
+.biz__meta p:not(.biz__kicker) {
+  margin: 0;
   color: #343019;
   font-family: Satoshi, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 18px;
   letter-spacing: 0;
 }
 
-.biz__divider {
-  height: 1px;
-  background: repeating-linear-gradient(to right, rgba(52, 48, 25, 0.13) 0 4px, transparent 4px 8px);
-}
-
-.biz__row {
+.biz__meta {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  color: #343019;
-  font-family: Satoshi, sans-serif;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0;
-  white-space: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 38px;
 }
 
-.biz__row .biz__kicker {
-  width: 62px;
-  flex: none;
-  opacity: 0.6;
+.biz__block--end {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.biz__qrwrap {
+  position: absolute;
+  right: 7px;
+  bottom: 0;
+  left: 7px;
+  display: grid;
+  place-items: center;
+  height: 203px;
+  background: #f6f4ea;
+  border-radius: 4px 4px 0 0;
 }
 
 .biz__qr {
-  width: 96px;
-  height: 96px;
-  margin: 4px auto 0;
+  width: 108px;
+  height: 108px;
 }
 
 .share__save {
@@ -860,13 +834,13 @@ img {
   width: 28px;
   height: 28px;
   padding: 0;
-  background: #f6f4ea;
-  border: 0;
+  background: #fffdf4;
+  border: 1px solid rgba(52, 48, 25, 0.13);
   border-radius: 4px;
 }
 
 .share__save:hover {
-  background: #f0ecdb;
+  background: #f6f4ea;
 }
 
 .share__save img {
@@ -877,8 +851,8 @@ img {
 
 .share__save--card {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 7px;
+  right: 7px;
 }
 
 .share__save--stage {
@@ -889,10 +863,10 @@ img {
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0;
+  justify-content: center;
+  gap: 24px;
   min-width: 0;
-  padding: 48px 44px;
+  padding: 48px 48px 48px 32px;
   overflow: auto;
   background: #fffdf4;
 }
@@ -900,10 +874,10 @@ img {
 .share__intro h2 {
   color: #343019;
   font-family: Satoshi, sans-serif;
-  font-size: 21px;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 26px;
-  letter-spacing: -0.01em;
+  line-height: 30px;
+  letter-spacing: -0.45px;
 }
 
 .share__intro p {
@@ -911,9 +885,8 @@ img {
   color: #343019;
   font-family: Satoshi, sans-serif;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 18px;
   letter-spacing: 0;
-  opacity: 0.8;
 }
 
 .share__meet--head {
@@ -921,16 +894,14 @@ img {
 }
 
 .share__line {
-  display: none;
+  height: 1px;
+  background: rgba(52, 48, 25, 0.13);
 }
 
 .share__profile {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 16px 20px;
-  border: 1px solid rgba(52, 48, 25, 0.08);
-  border-radius: 6px;
 }
 
 .share__eyebrow {
@@ -957,19 +928,19 @@ img {
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0;
-  opacity: 0.8;
 }
 
 .share__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 5px;
+  gap: 8px 5px;
 }
 
 .share__chips span {
   display: flex;
   align-items: center;
-  padding: 4px 11px;
+  padding: 4px 10px;
+  background: rgba(247, 233, 212, 0.8);
   border: 1px solid rgba(173, 81, 1, 0.13);
   border-radius: 14px;
   color: #ad5101;
@@ -1015,7 +986,7 @@ img {
   color: #343019;
   font-family: Satoshi, sans-serif;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 18px;
   letter-spacing: 0;
 }
 
@@ -1082,8 +1053,10 @@ img {
   height: 28px;
   padding: 6px 8px;
   background: transparent;
-  border: 1px solid rgba(52, 48, 25, 0.13);
+  border: 0;
   border-radius: 4px;
+  outline: 1px solid rgba(52, 48, 25, 0.13);
+  outline-offset: 0;
   color: #343019;
   font-family: "Reddit Mono", monospace;
   font-size: 11px;
@@ -1098,7 +1071,7 @@ img {
   background: #f0ecdb;
 }
 
-.ghost__check {
+.ghost .ghost__check {
   display: none;
   width: 16px;
   height: 14px;
@@ -1116,6 +1089,15 @@ img {
   padding: 0 2px;
   text-box-edge: cap alphabetic;
   text-box-trim: trim-both;
+}
+
+.ghost img {
+  flex: none;
+}
+
+.ghost__copy,
+.ghost__mail {
+  display: block;
 }
 
 .ghost__copy {
@@ -3560,14 +3542,23 @@ button.dock__slot {
     margin: 16px 16px 0;
     overflow: hidden;
     flex: none;
+    background: #d9d9d9;
+  }
+
+  .share__banner {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
   }
 
   .share__slot {
-    top: calc(100% * 28 / 318);
+    top: calc(100% * 24 / 318);
     left: 50%;
-    width: 72%;
+    width: calc(100% * 268 / 370);
     height: auto;
-    aspect-ratio: 347 / 464;
+    aspect-ratio: 328 / 479;
     transform: translateX(-50%);
     container-type: inline-size;
   }
@@ -3576,9 +3567,9 @@ button.dock__slot {
     position: absolute;
     top: 0;
     left: 0;
-    width: 347px;
-    height: 464px;
-    transform: scale(calc(100cqi / 347px));
+    width: 328px;
+    height: 479px;
+    transform: scale(calc(100cqi / 328px));
     transform-origin: top left;
   }
 
@@ -3589,8 +3580,8 @@ button.dock__slot {
   .share__save--stage {
     position: absolute;
     z-index: 3;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     display: grid;
   }
 
@@ -3616,7 +3607,7 @@ button.dock__slot {
 
   .share__profile {
     gap: 24px;
-    padding: 16px 20px;
+    padding: 0;
   }
 
   .share__meet--head {
