@@ -273,6 +273,7 @@ img {
 
 .about__body {
   display: grid;
+  flex: 1;
   width: 100%;
   padding: 24px 24px 24px 20px;
   background: #f6f4ea;
@@ -3674,6 +3675,23 @@ html[lang="zh-CN"] .emoji {
 
 html[lang="zh-CN"] .lightbox__back > span:last-child {
   line-height: 1;
+}
+
+html[lang="zh-CN"] .share__title,
+html[lang="zh-CN"] .biz__kicker,
+html[lang="zh-CN"] .biz__focus,
+html[lang="zh-CN"] .biz__meta,
+html[lang="zh-CN"] .share__intro h2,
+html[lang="zh-CN"] .share__intro p,
+html[lang="zh-CN"] .share__eyebrow,
+html[lang="zh-CN"] .share__bio,
+html[lang="zh-CN"] .share__chips,
+html[lang="zh-CN"] .share__label,
+html[lang="zh-CN"] .share__copy,
+html[lang="zh-CN"] .share .meet,
+html[lang="zh-CN"] .share .ghost {
+  font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-weight: 400;
 }
 
 html[lang="zh-CN"] .contact .meet,

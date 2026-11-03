@@ -1191,20 +1191,20 @@ function closeShare() {
   markSheet();
 }
 
-function flashLabel(button, next, duration = 5000) {
+function flashLabel(button, success, restore, duration = 5000) {
   const label = button.querySelector("span:last-child");
-  if (!button.dataset.label) button.dataset.label = label.textContent;
-  label.textContent = next;
+  label.textContent = language() === "zh" ? "复制成功" : success;
   window.clearTimeout(button.flashTimer);
   button.flashTimer = window.setTimeout(() => {
-    label.textContent = button.dataset.label;
+    label.textContent = language() === "zh" ? "复制链接" : restore;
   }, duration);
 }
 
 function downloadCard() {
+  const zh = language() === "zh";
   const link = document.createElement("a");
-  link.href = "/share/yifan-wang.jpg";
-  link.download = "Yifan-Wang.jpg";
+  link.href = zh ? "/share/yifan-wang-zh.jpg" : "/share/yifan-wang.jpg";
+  link.download = zh ? "Yifan-Wang-CN.jpg" : "Yifan-Wang.jpg";
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -1235,7 +1235,7 @@ document.querySelector("#share-copy-link").addEventListener("click", async (even
   const button = event.currentTarget;
   try {
     await navigator.clipboard.writeText(SHARE_URL);
-    flashLabel(button, "Copied");
+    flashLabel(button, "Copied", "Copy Link");
   } catch {
     /* clipboard can be blocked until the page is focused */
   }
@@ -1247,11 +1247,11 @@ document.querySelector("#share-copy-text").addEventListener("click", async (even
   try {
     await copyProfile();
     button.classList.add("is-done");
-    label.textContent = "copied";
+    label.textContent = language() === "zh" ? "复制成功" : "copied";
     window.clearTimeout(copyTextTimer);
     copyTextTimer = window.setTimeout(() => {
       button.classList.remove("is-done");
-      label.textContent = "copy text";
+      label.textContent = language() === "zh" ? "复制文字" : "copy text";
     }, 5000);
   } catch {
     /* clipboard can be blocked until the page is focused */
@@ -1319,6 +1319,31 @@ const phoneAbout = document.querySelector("#phone-about");
 const phoneHome = document.querySelector("#phone-home");
 const phoneTrack = document.querySelector("#pager-track");
 const aboutCard = document.querySelector("#about");
+const aboutHeights = { wide: 0, phone: 0 };
+
+function aboutMode() {
+  return mobileQuery.matches ? "phone" : "wide";
+}
+
+function syncAboutHeight() {
+  if (!aboutCard) return;
+  const mode = aboutMode();
+  if (language() === "zh") {
+    const floor = aboutHeights[mode];
+    aboutCard.style.minHeight = floor ? `${floor}px` : "";
+    return;
+  }
+  aboutCard.style.minHeight = "";
+  aboutHeights[mode] = aboutCard.offsetHeight;
+}
+
+syncAboutHeight();
+document.fonts.ready.then(() => {
+  if (language() !== "zh") syncAboutHeight();
+});
+window.addEventListener("resize", syncAboutHeight);
+onLanguage(syncAboutHeight);
+
 const headline = document.querySelector(".headline");
 const parked = new Map();
 let phonePage = 0;

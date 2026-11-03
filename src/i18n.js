@@ -17,6 +17,25 @@ const EXACT = new Map([
   ["back to folder", "回到文件夹"],
   ["Connect", "联系我"],
   ["book meeting", "开启会面"],
+  ["share & connect", "分享及连接"],
+  ["Name", "姓名"],
+  ["Area", "关注领域"],
+  ["Digital products · Interactive experience · AI", "数字产品 · 交互体验 · AI"],
+  ["Email", "邮箱"],
+  ["LinkedIn", "领英"],
+  ["Let’s chat!", "来聊聊吧！"],
+  ["Save my contact, share my work, or introduce me to your team.", "保存我的联系方式、分享我的作品，或者把我推荐给你的团队。"],
+  ["summary", "简介"],
+  ["Product Design", "数字产品设计"],
+  ["UX Research", "UX用户调研"],
+  ["AI Prototyping", "AI辅助原型设计制作"],
+  ["Interaction", "交互设计"],
+  ["Visual Exploration", "视觉探索"],
+  ["Design Systems", "设计系统及组件"],
+  ["profile link", "个人简介链接"],
+  ["Copy Link", "复制链接"],
+  ["copy text", "复制文字"],
+  ["share by email", "通过邮件分享"],
   ["back to projects", "返回项目"],
   ["About", "简介"],
   ["about me", "关于我"],
@@ -150,6 +169,7 @@ const EXACT = new Map([
   ["Severe thunderstorm", "强雷暴"],
   ["Vancouver", "温哥华"],
   ["Vancouver, Canada", "温哥华，加拿大"],
+  ["Shanghai, China", "中国，上海"],
   ["3-person team", "3 人团队"],
   ["2 mos 2024", "2024 年，2 个月"],
   ["Sola Salons is a salon booking platform that helps customers discover nearby locations, compare salon professionals, and book appointments. The project focused on simplifying the booking journey by creating a more intuitive search experience and guiding users through a clear sequence of decisions.", "Sola Salons 是一个美发沙龙预约平台，帮助用户查找附近的沙龙、比较不同的美发师，并预约服务。本项目旨在简化用户的预约流程，通过更直观的搜索体验和清晰的决策路径，引导用户逐步找到合适的沙龙与美发师，并完成预约。"],
@@ -318,13 +338,13 @@ const SPECIFIC = [
   { selector: ".projects__nav [data-jump='design']", en: "Design", zh: "设计" },
   { selector: ".projects__nav [data-jump='outcome']", en: "Outcome", zh: "成果" },
   { selector: ".trip__name, .finder__crumb-name, .weather__city", en: "Vancouver", zh: "温哥华" },
-  { selector: ".facts", en: "Vancouver, Canada", zh: "温哥华，加拿大" },
+  { selector: ".facts", en: "Shanghai, China", zh: "中国，上海" },
   { selector: ".study:not([data-project='honor']) .meta__value", en: "UI/UX Designer", zh: "UI/UX 设计师" },
   { selector: "[data-project='banking'] h2", en: "Outcome and reflection", zh: "项目反思" },
   { selector: ".beyond, .work__more", en: ".", zh: "。" },
 ];
 
-const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .socials, .contact__name, .handle, #time-clock, .file, .share";
+const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .socials, .contact__name, .handle, #time-clock, .file";
 
 const originals = new WeakMap();
 const listeners = [];
