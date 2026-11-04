@@ -315,6 +315,7 @@ function openFromDesktop(id) {
   showFolder(win, id);
   raise(win);
   markSheet();
+  pushHistory();
 }
 
 function openFromSidebar(win, id) {
@@ -331,6 +332,7 @@ document.querySelectorAll(".finder__close").forEach((button) => {
   button.addEventListener("click", (event) => {
     event.stopPropagation();
     const win = button.closest(".finder");
+    if (stepBack(win.dataset.folder)) return;
     win.hidden = true;
     win.classList.remove("is-lightbox", "is-sizing");
     win.style.removeProperty("width");
@@ -573,6 +575,7 @@ function openProjects() {
   projects.hidden = false;
   raise(projects);
   markSheet();
+  pushHistory();
 }
 
 function resetStudyScroll() {
@@ -622,6 +625,7 @@ document.querySelector("#open-projects-file").addEventListener("click", (event) 
 });
 
 document.querySelector(".projects__close").addEventListener("click", () => {
+  if (stepBack("projects")) return;
   projects.hidden = true;
   projects.classList.remove("is-reading");
   markSheet();
@@ -748,6 +752,7 @@ function openSketch() {
   sketch.hidden = false;
   raise(sketch);
   markSheet();
+  pushHistory();
   requestAnimationFrame(() => requestAnimationFrame(paintSketch));
 }
 
@@ -760,6 +765,7 @@ noteThumb.addEventListener("keydown", (event) => {
 });
 
 document.querySelector(".sketch__close").addEventListener("click", () => {
+  if (stepBack("sketch")) return;
   sketch.hidden = true;
   markSheet();
 });
@@ -1174,6 +1180,7 @@ const PROFILE_HTML = [
 ].join("");
 
 function setShareHash(open) {
+  if (isPhone()) return;
   if ((location.hash === "#sharing") === open) return;
   history.replaceState(null, "", open ? "#sharing" : `${location.pathname}${location.search}`);
 }
@@ -1226,6 +1233,7 @@ async function copyProfile() {
 document.querySelector("#share-open").addEventListener("click", openShare);
 shareCard.querySelector(".share__close").addEventListener("click", (event) => {
   event.stopPropagation();
+  if (stepBack("share")) return;
   closeShare();
 });
 shareCard.addEventListener("pointerdown", () => {
@@ -1265,6 +1273,7 @@ document.querySelector("#share-email").addEventListener("click", () => {
   window.location.href = `mailto:?subject=${encodeURIComponent("Yifan Wang")}&body=${encodeURIComponent(PROFILE_PLAIN)}`;
 });
 window.addEventListener("hashchange", () => {
+  if (isPhone()) return;
   if (location.hash === "#sharing") openShare();
   else closeShare();
 });
@@ -1360,6 +1369,59 @@ function sheetOpen() {
   return Boolean(document.querySelector(".projects:not([hidden]), .sketch:not([hidden]), .finder:not([hidden]), .share:not([hidden])"));
 }
 
+let historySeeded = false;
+let applyingHistory = false;
+
+function captureView() {
+  if (!shareCard.hidden) return "share";
+  if (!projects.hidden) return "projects";
+  if (!sketch.hidden) return "sketch";
+  const open = windows.find((win) => !win.hidden);
+  return open ? open.dataset.folder : null;
+}
+
+function pushHistory() {
+  if (!historySeeded || !isPhone() || applyingHistory) return;
+  const state = {
+    page: phonePage,
+    view: captureView(),
+    depth: (history.state?.depth || 0) + 1,
+  };
+  const prev = history.state;
+  if (prev && prev.page === state.page && prev.view === state.view) return;
+  history.pushState(state, "");
+}
+
+function stepBack(view) {
+  if (!isPhone() || !history.state || history.state.depth < 1 || history.state.view !== view) return false;
+  history.back();
+  return true;
+}
+
+function applyHistory(state) {
+  const next = state || { page: 0, view: null, depth: 0 };
+  applyingHistory = true;
+  if (typeof next.page === "number" && next.page !== phonePage) setPhonePage(next.page, true);
+  const view = next.view || null;
+  if (view !== "share") shareCard.hidden = true;
+  if (view !== "projects") {
+    projects.hidden = true;
+    projects.classList.remove("is-reading");
+  }
+  if (view !== "sketch") sketch.hidden = true;
+  windows.forEach((win) => {
+    if (view && win.dataset.folder === view) return;
+    win.hidden = true;
+    win.classList.remove("is-lightbox", "is-sizing");
+  });
+  if (view === "share") openShare();
+  else if (view === "projects") openProjects();
+  else if (view === "sketch") openSketch();
+  else if (view && FOLDERS[view]) openFromDesktop(view);
+  markSheet();
+  applyingHistory = false;
+}
+
 function park(node, parent) {
   if (!parked.has(node)) parked.set(node, { parent: node.parentElement, next: node.nextSibling });
   parent.append(node);
@@ -1391,13 +1453,15 @@ function restoreScroll() {
   });
 }
 
-function setPhonePage(index, animate) {
+function setPhonePage(index, animate, record) {
   const next = Math.max(0, Math.min(2, index));
+  const changed = next !== phonePage;
   if (next === 0 && next < phonePage) {
     phoneWidgets.scrollTop = 0;
     heldScroll = heldScroll.map((item) => (item.view === phoneWidgets ? { view: item.view, top: 0 } : item));
   }
   phonePage = next;
+  if (next !== 2) document.querySelector("#combo")?.classList.remove("is-open");
   const width = pager.clientWidth || window.innerWidth;
   document.querySelectorAll(".pager__view").forEach((view) => {
     view.style.width = `${width}px`;
@@ -1409,6 +1473,7 @@ function setPhonePage(index, animate) {
     dot.classList.toggle("is-on", dotIndex === phonePage);
     dot.setAttribute("aria-current", dotIndex === phonePage ? "true" : "false");
   });
+  if (record && changed) pushHistory();
   if (!animate) {
     document.documentElement.classList.remove("is-swiping");
     return;
@@ -1433,7 +1498,7 @@ function syncPhone() {
   if (isPhone()) {
     park(rightWidget, phoneWidgets);
     park(aboutCard, phoneWidgets);
-    park(headline, phoneTools);
+    park(headline, phoneHome);
     rightWidget.classList.remove("is-closed");
     if (currentId !== "chill") loadSong("chill", false);
     windows.forEach((win) => {
@@ -1457,7 +1522,7 @@ function syncPhone() {
 }
 
 document.querySelectorAll(".pager-dots button").forEach((dot) => {
-  dot.addEventListener("click", () => setPhonePage(Number(dot.dataset.page), true));
+  dot.addEventListener("click", () => setPhonePage(Number(dot.dataset.page), true, true));
 });
 
 document.querySelectorAll("[data-sheet]").forEach((button) => {
@@ -1475,9 +1540,6 @@ pager.addEventListener("pointerdown", (event) => {
   rememberScroll();
   swipeToken += 1;
   swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, axis: "" };
-  try {
-    pager.setPointerCapture(event.pointerId);
-  } catch (error) {}
 });
 pager.addEventListener("pointermove", (event) => {
   if (!swipe || swipe.id !== event.pointerId) return;
@@ -1489,6 +1551,9 @@ pager.addEventListener("pointermove", (event) => {
     if (swipe.axis === "x") {
       document.documentElement.classList.add("is-swiping");
       restoreScroll();
+      try {
+        pager.setPointerCapture(event.pointerId);
+      } catch (error) {}
     }
   }
   if (swipe.axis !== "x") return;
@@ -1513,8 +1578,8 @@ function endSwipe(event) {
     return;
   }
   restoreScroll();
-  if (dx <= -width * 0.18) setPhonePage(phonePage + 1, true);
-  else if (dx >= width * 0.18) setPhonePage(phonePage - 1, true);
+  if (dx <= -width * 0.18) setPhonePage(phonePage + 1, true, true);
+  else if (dx >= width * 0.18) setPhonePage(phonePage - 1, true, true);
   else setPhonePage(phonePage, true);
 }
 pager.addEventListener("pointerup", endSwipe);
@@ -1533,6 +1598,39 @@ window.addEventListener("resize", onViewportResize);
 window.addEventListener("orientationchange", onViewportResize);
 
 syncPhone();
+
+const combo = document.querySelector("#combo");
+function flipTools(open) {
+  if (!combo || combo.classList.contains("is-open") === open) return;
+  const glyphs = [...combo.querySelectorAll(".combo__glyph")];
+  const first = glyphs.map((el) => el.getBoundingClientRect());
+  combo.classList.toggle("is-open", open);
+  const last = glyphs.map((el) => el.getBoundingClientRect());
+  glyphs.forEach((el, index) => {
+    const from = first[index];
+    const to = last[index];
+    if (!from.width || !to.width) return;
+    const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+    const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+    el.animate(
+      [
+        { transform: `translate(${dx}px, ${dy}px) scale(${from.width / to.width}, ${from.height / to.height})` },
+        { transform: "none" },
+      ],
+      { duration: 560, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+    );
+  });
+}
+combo.addEventListener("click", (event) => {
+  if (!isPhone() || combo.classList.contains("is-open")) return;
+  event.stopPropagation();
+  flipTools(true);
+});
+document.addEventListener("click", (event) => {
+  if (!isPhone() || phonePage !== 2 || !combo.classList.contains("is-open")) return;
+  if (event.target.closest(".combo__plate")) return;
+  flipTools(false);
+});
 
 function paintLangLink() {
   const link = document.querySelector("#lang-link");
@@ -1566,6 +1664,20 @@ onLanguage(() => {
 });
 
 openGate();
+
+if (isPhone()) {
+  history.replaceState({
+    page: phonePage,
+    view: location.hash === "#sharing" ? "share" : null,
+    depth: 0,
+  }, "");
+  historySeeded = true;
+}
+
+window.addEventListener("popstate", (event) => {
+  if (!isPhone()) return;
+  applyHistory(event.state);
+});
 
 fetch("https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current=temperature_2m,weather_code,is_day&timezone=America%2FVancouver")
   .then((response) => response.json())

@@ -1,5 +1,6 @@
 const EXACT = new Map([
   ["/ Available for work", "/ 接受新机会"],
+  ["close", "关闭"],
   ["Memory folder", "记忆相册"],
   ["Portfolio folder", "作品集"],
   ["Music folder", "我的音乐"],
@@ -345,7 +346,7 @@ const SPECIFIC = [
   { selector: ".beyond, .work__more", en: ".", zh: "。" },
 ];
 
-const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .phone-tools, .socials, .contact__name, .handle, #time-clock, .file, #lang-link";
+const SKIP = ".gate, .player, .dock, .headline, .projects__tabs, .phone-studies, .phone-tools, .socials, .contact__name, .handle, #time-clock, .file, #lang-link, .topbar__short";
 
 const originals = new WeakMap();
 const listeners = [];

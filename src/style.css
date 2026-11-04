@@ -1896,6 +1896,13 @@ img {
   opacity: 0.5;
 }
 
+.topbar__short,
+.topbar__avail--phone,
+.close__word,
+.close__mark {
+  display: none;
+}
+
 .lang {
   display: flex;
   align-items: stretch;
@@ -3011,14 +3018,27 @@ button.dock__slot {
 
   .topbar {
     z-index: 50;
+    border-bottom: 1px solid rgba(52, 48, 25, 0.13);
   }
 
   .topbar__name {
-    padding: 0 16px;
+    gap: 6px;
+    padding: 0 0 0 16px;
+  }
+
+  .topbar__long,
+  .topbar__avail--desk {
+    display: none;
+  }
+
+  .topbar__short,
+  .topbar__avail--phone {
+    display: inline;
   }
 
   .socials {
-    padding: 0 12px 0 16px;
+    gap: 8px;
+    padding: 0 8px;
   }
 
   .lang-link__rule {
@@ -3116,8 +3136,8 @@ button.dock__slot {
   #phone-widgets {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-bottom: 92px;
+    gap: 12px;
+    padding: 12px 12px 92px;
   }
 
   #phone-widgets > * {
@@ -3129,6 +3149,7 @@ button.dock__slot {
   }
 
   #phone-tools {
+    position: relative;
     padding: calc(26 / 402 * var(--app-width, 100vw)) calc(20 / 402 * var(--app-width, 100vw)) 92px;
   }
 
@@ -3153,20 +3174,26 @@ button.dock__slot {
     aspect-ratio: 1;
   }
 
-  .combo__tile,
-  .combo__tiny {
+  .combo__tile {
+    display: flex;
+  }
+
+  .combo__glyph {
     display: grid;
     place-items: center;
+    width: 100%;
+    height: 100%;
     background: #343019;
     border: 1px solid rgba(52, 48, 25, 0.13);
-  }
-
-  .combo__tile {
     border-radius: 8px;
+    transform-origin: center;
   }
 
-  .combo__tile img,
-  .combo__tiny img {
+  .combo__tile--sm .combo__glyph {
+    border-radius: 4px;
+  }
+
+  .combo__glyph img {
     display: block;
     width: 61%;
     height: 61%;
@@ -3178,9 +3205,8 @@ button.dock__slot {
     gap: calc(5.5 / 64 * 100%);
   }
 
-  .combo__tiny {
-    border-radius: 4px;
-    aspect-ratio: 1;
+  .combo__name {
+    display: none;
   }
 
   .combo__label {
@@ -3194,14 +3220,73 @@ button.dock__slot {
     text-align: center;
   }
 
-  #phone-tools .headline {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: auto;
-    margin: calc(41 / 402 * var(--app-width, 100vw)) 0 0;
-    font-size: 38px;
-    letter-spacing: -0.38px;
+  .combo.is-open {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 12px;
+    width: calc(277 / 402 * var(--app-width, 100vw));
+    margin: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .combo.is-open .combo__plate {
+    width: 100%;
+    aspect-ratio: auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(20 / 402 * var(--app-width, 100vw)) calc(8 / 402 * var(--app-width, 100vw));
+    padding: 0;
+    background: transparent;
+  }
+
+  .combo.is-open .combo__mini {
+    display: contents;
+  }
+
+  .combo.is-open .combo__tile {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    aspect-ratio: auto;
+  }
+
+  .combo.is-open .combo__glyph,
+  .combo.is-open .combo__tile--sm .combo__glyph {
+    width: calc(64 / 402 * var(--app-width, 100vw));
+    height: calc(64 / 402 * var(--app-width, 100vw));
+    flex: none;
+    border-radius: 8px;
+  }
+
+  .combo.is-open .combo__name {
+    display: block;
+    color: #fffdf4;
+    font-family: Satoshi, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    animation: combo-name 0.35s ease 0.16s both;
+  }
+
+  .combo.is-open .combo__label {
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 17px;
+    line-height: 22px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  @keyframes combo-name {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .phone-apps {
@@ -3249,7 +3334,7 @@ button.dock__slot {
     position: relative;
     top: auto;
     right: auto;
-    gap: calc(10 / 402 * var(--app-width, 100vw));
+    gap: 12px;
     width: 100%;
     opacity: 1;
     transform: none;
@@ -3314,6 +3399,7 @@ button.dock__slot {
     width: 100%;
     height: auto;
     overflow: hidden;
+    touch-action: pan-y;
   }
 
   .about__body {
@@ -3462,14 +3548,14 @@ button.dock__slot {
     display: none;
     align-items: center;
     gap: 6px;
-    height: 28px;
+    height: 30px;
     padding: 2px 8px;
     background: #343019;
     border: 1px solid rgba(52, 48, 25, 0.13);
     border-radius: 6px;
     color: #fffdf4;
     font-family: "Reddit Mono", monospace;
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
   }
@@ -3634,6 +3720,53 @@ button.dock__slot {
     transform: translateX(-50%);
   }
 
+  .sketch__foot {
+    height: auto;
+    min-height: 30px;
+  }
+
+  .sketch__clear,
+  .lightbox__back {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .finder__close,
+  .projects__close,
+  .sketch__close,
+  .share__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    width: auto;
+    height: 16px;
+  }
+
+  .close__dots {
+    display: none;
+  }
+
+  .close__word {
+    display: block;
+    color: #343019;
+    font-family: "Reddit Mono", monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.12px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-transform: uppercase;
+  }
+
+  .close__mark {
+    display: block;
+    width: 10px;
+    height: 10px;
+  }
+
   .swatch {
     width: 36px;
     height: 36px;
@@ -3666,6 +3799,24 @@ button.dock__slot {
     overflow: hidden;
     flex: none;
     background: #d9d9d9;
+    border: 0;
+    border-radius: 6px;
+  }
+
+  .share .meet,
+  .share .ghost,
+  .share__copy {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .share__save {
+    width: 30px;
+    height: 30px;
+  }
+
+  .share__foot {
+    height: 71px;
   }
 
   .share__banner {
@@ -3786,6 +3937,7 @@ html[lang="zh-CN"] .meta,
 html[lang="zh-CN"] .projects__nav,
 html[lang="zh-CN"] .weather__label,
 html[lang="zh-CN"] .combo__label,
+html[lang="zh-CN"] .close__word,
 html[lang="zh-CN"] .phone-app,
 html[lang="zh-CN"] .compare__switch button,
 html[lang="zh-CN"] #time-date {

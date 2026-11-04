@@ -262,7 +262,9 @@
             <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
           </div>
           <button class="finder__close" type="button" aria-label="Close">
-            <img src="/assets/close-dots.svg" alt="">
+            <img class="close__dots" src="/assets/close-dots.svg" alt="">
+            <span class="close__word">close</span>
+            <img class="close__mark" src="/assets/icon-close.svg" alt="">
           </button>
         </header>
         <div class="finder__body">
@@ -294,7 +296,9 @@
             <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
           </div>
           <button class="finder__close" type="button" aria-label="Close">
-            <img src="/assets/close-dots.svg" alt="">
+            <img class="close__dots" src="/assets/close-dots.svg" alt="">
+            <span class="close__word">close</span>
+            <img class="close__mark" src="/assets/icon-close.svg" alt="">
           </button>
         </header>
         <div class="finder__body">
@@ -326,7 +330,9 @@
             <span class="finder__crumb-here">/ <span class="finder__crumb-name">Korea</span></span>
           </div>
           <button class="finder__close" type="button" aria-label="Close">
-            <img src="/assets/close-dots.svg" alt="">
+            <img class="close__dots" src="/assets/close-dots.svg" alt="">
+            <span class="close__word">close</span>
+            <img class="close__mark" src="/assets/icon-close.svg" alt="">
           </button>
         </header>
         <div class="finder__body">
@@ -449,8 +455,9 @@
         </div>
         <div class="topbar__name">
           <img src="/assets/status-dot.svg" alt="">
-          <p>Yifan Wang</p>
-          <p class="topbar__avail">/ Available for work</p>
+          <p class="topbar__who"><span class="topbar__long">Yifan Wang</span><span class="topbar__short">Yifan W.</span></p>
+          <p class="topbar__avail topbar__avail--desk">/ Available for work</p>
+          <p class="topbar__avail topbar__avail--phone">/ Available for work</p>
         </div>
         <div class="lang" role="group" aria-label="Language">
           <button class="lang__on" type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -496,15 +503,33 @@
             </div>
           </section>
           <section class="pager__view" id="phone-tools" aria-label="Software and tools">
-            <div class="combo">
+            <div class="combo" id="combo">
               <div class="combo__plate">
-                <span class="combo__tile"><img src="/assets/icon-ai.svg" alt="Illustrator"></span>
-                <span class="combo__tile"><img src="/assets/icon-openai.svg" alt="ChatGPT"></span>
-                <span class="combo__tile"><img src="/assets/icon-html.svg" alt="html/CSS/JS"></span>
+                <span class="combo__tile">
+                  <span class="combo__glyph"><img src="/assets/icon-ai.svg" alt=""></span>
+                  <span class="combo__name">Illustrator</span>
+                </span>
+                <span class="combo__tile">
+                  <span class="combo__glyph"><img src="/assets/icon-openai.svg" alt=""></span>
+                  <span class="combo__name">ChatGPT</span>
+                </span>
+                <span class="combo__tile">
+                  <span class="combo__glyph"><img src="/assets/icon-html.svg" alt=""></span>
+                  <span class="combo__name">html/CSS/JS</span>
+                </span>
                 <span class="combo__mini">
-                  <span class="combo__tiny"><img src="/assets/icon-ps.svg" alt="Photoshop"></span>
-                  <span class="combo__tiny"><img src="/assets/icon-figma.svg" alt="Figma"></span>
-                  <span class="combo__tiny"><img src="/assets/icon-sketch.svg" alt="Sketch"></span>
+                  <span class="combo__tile combo__tile--sm">
+                    <span class="combo__glyph"><img src="/assets/icon-ps.svg" alt=""></span>
+                    <span class="combo__name">Photoshop</span>
+                  </span>
+                  <span class="combo__tile combo__tile--sm">
+                    <span class="combo__glyph"><img src="/assets/icon-figma.svg" alt=""></span>
+                    <span class="combo__name">Figma</span>
+                  </span>
+                  <span class="combo__tile combo__tile--sm">
+                    <span class="combo__glyph"><img src="/assets/icon-sketch.svg" alt=""></span>
+                    <span class="combo__name">Sketch</span>
+                  </span>
                 </span>
               </div>
               <p class="combo__label">My tools</p>
@@ -537,7 +562,7 @@
             <button class="projects__tab" type="button" role="tab" data-project="website" aria-selected="false">Honor 90</button>
             <button class="projects__tab" type="button" role="tab" data-project="experiment" aria-selected="false">Experiment</button>
           </div>
-          <button class="projects__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+          <button class="projects__close" type="button" aria-label="Close"><img class="close__dots" src="/assets/close-dots.svg" alt=""><span class="close__word">close</span><img class="close__mark" src="/assets/icon-close.svg" alt=""></button>
         </header>
         <button class="study-back" type="button">
           <img src="/assets/icon-back.svg" alt="">
@@ -1479,7 +1504,7 @@
       <section class="share" id="sharecard" data-drag hidden aria-label="Share and connect">
         <header class="share__bar">
           <p class="share__title"><img src="/assets/icon-share-ink.svg" alt="">share &amp; connect</p>
-          <button class="share__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+          <button class="share__close" type="button" aria-label="Close"><img class="close__dots" src="/assets/close-dots.svg" alt=""><span class="close__word">close</span><img class="close__mark" src="/assets/icon-close.svg" alt=""></button>
         </header>
         <div class="share__body">
           <div class="share__stage">
@@ -1581,7 +1606,7 @@
       <section class="sketch" id="sketch" data-drag hidden aria-label="Note">
         <header class="sketch__bar">
           <p class="kicker kicker--note"><img src="/assets/icon-note.svg" alt="">note</p>
-          <button class="sketch__close" type="button" aria-label="Close"><img src="/assets/close-dots.svg" alt=""></button>
+          <button class="sketch__close" type="button" aria-label="Close"><img class="close__dots" src="/assets/close-dots.svg" alt=""><span class="close__word">close</span><img class="close__mark" src="/assets/icon-close.svg" alt=""></button>
         </header>
         <canvas id="sketch-canvas"></canvas>
         <footer class="sketch__foot">
