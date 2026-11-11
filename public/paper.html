@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand Tracking Interaction</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #070707;
+    }
+    #video {
+      display: none;
+    }
+    #canvas {
+      position: absolute;
+      top: 45%;
+      left: 0%;
+      z-index: 22;
+      width: 10%;
+      opacity: 1;
+  }
+    #paper {
+      position: absolute;  /* Allow the paper to move freely */
+      width: 150px;  /* Initial width */
+      height: 150px;  /* Initial height */
+      transform-origin: center;  /* Ensure the scale transformation occurs from the center */
+      transition: all 0.2s ease;  /* Smooth transition for size and position changes */
+      left: 50%; /* Center horizontally */
+      top: 50%; /* Center vertically */
+      z-index: 11;
+      background-image: url('paper8.svg');
+      background-size: cover; /* Adjust as needed: cover, contain, etc. */
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: rotate(45deg);
+      transition: box-shadow 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+@keyframes shadowPulse {
+  0% {
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.7);
+  }
+}
+  #center-square {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      top: 25%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      border: 2px dashed #FAB5C4; /* Green border for visibility */
+      z-index: 4;
+      transform: rotate(45deg);
+    }
+
+    #wall {
+      position: absolute;
+      top: 7%;
+      left: 10%;
+      width: 80%;
+      height: 86%;
+      z-index: 3; /* Ensure it appears above video */
+      background-image: url('Frame8.svg');
+      background-size: cover; /* Adjust as needed: cover, contain, etc. */
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="center-square"></div>
+  <video id="video" autoplay muted></video>
+  <canvas id="canvas"></canvas>
+  <div id="wall"></div>
+  <div id="paper" class="paper"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
