@@ -2571,6 +2571,83 @@ button.dock__slot {
   letter-spacing: -0.56px;
 }
 
+.chunk__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chunk__head h2 {
+  min-width: 0;
+}
+
+.live {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  flex: none;
+  padding: 6px 8px;
+  background: transparent;
+  border-radius: 4px;
+  outline: 1px solid rgba(52, 48, 25, 0.13);
+  outline-offset: 0;
+  color: #343019;
+  font-family: "Reddit Mono", monospace;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.live:hover {
+  background: #f0ecdb;
+}
+
+.live img {
+  display: block;
+  width: 11px;
+  height: 9px;
+  flex: none;
+}
+
+.live__rule {
+  width: 1px;
+  height: 13px;
+  flex: none;
+  background: rgba(52, 48, 25, 0.13);
+}
+
+.live span:last-child {
+  padding: 0 2px;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
+}
+
+.card__shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.card__shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card__shot:hover::after {
+  opacity: 0.1;
+}
+
 .study h3 {
   margin: 0;
   font-family: Satoshi, sans-serif;
@@ -3805,7 +3882,8 @@ button.dock__slot {
 
   .share .meet,
   .share .ghost,
-  .share__copy {
+  .share__copy,
+  .live {
     height: 30px;
     font-size: 12px;
   }
@@ -3967,6 +4045,18 @@ html[lang="zh-CN"] .share .meet,
 html[lang="zh-CN"] .share .ghost {
   font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
   font-weight: 400;
+}
+
+html[lang="zh-CN"] .live {
+  font-family: "Source Han Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="zh-CN"] .live span:last-child {
+  text-box-edge: auto;
+  text-box-trim: none;
 }
 
 html[lang="zh-CN"] .contact .meet,

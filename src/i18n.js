@@ -309,6 +309,7 @@ const EXACT = new Map([
   ["Investigate how gestures and movements can serve as intuitive inputs, connecting physical actions with digital responses.", "研究如何将手势与身体动作转化为直觉的输入方式，让现实中的动作能够自然地触发数字反馈。"],
   ["AI prototyping", "AI 辅助原型探索"],
   ["Leverage AI tools and creative coding to rapidly explore concepts, test interactions, and bring experimental ideas to life.", "借助 AI 工具与创意编程，快速探索设计概念、验证交互方式，并将实验性创意转化为可体验的原型。"],
+  ["View live", "立即体验"],
   ["Sentimental Objects", "情感物件（Sentimental Objects）"],
   ["Sentimental Objects is a personal project exploring the intersection of storytelling and immersive design. Centered on ordinary objects that hold personal meaning, the experience invites users to discover the memories and stories behind them through an interactive multimedia interface.", "Sentimental Objects 是一个探索叙事与沉浸式设计的个人项目。项目以承载个人情感的日常物件为切入点，通过互动式多媒体体验，引导用户发现物件背后的记忆与故事，在熟悉的事物中重新感受情感与时间留下的痕迹。"],
   ["Story-driven narrative", "以故事为核心的叙事体验"],
